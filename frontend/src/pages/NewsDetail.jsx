@@ -73,14 +73,14 @@ const NewsDetail = ({ language }) => {
             <div className="article-text">
               <p>
                 {language === 'vi' 
-                  ? `Giải đấu petanque vừa qua đã thu hút sự quan tâm lớn từ cộng đồng thể thao Việt Nam. Với sự tham gia của hàng trăm vận động viên từ khắp các tỉnh thành, sự kiện này không chỉ là một cuộc tranh tài mà còn là dịp để các tay chơi giao lưu, học hỏi kinh nghiệm từ nhau.`
-                  : `The recent petanque tournament attracted great attention from the Vietnamese sports community. With the participation of hundreds of athletes from provinces across the country, this event was not only a competition but also an opportunity for players to exchange and learn from each other.`
+                  ? `Giải đấu Pickleball vừa qua đã thu hút sự quan tâm lớn từ cộng đồng thể thao Việt Nam. Với sự tham gia của hàng trăm vận động viên từ khắp các tỉnh thành, sự kiện này không chỉ là một cuộc tranh tài mà còn là dịp để các tay chơi giao lưu, học hỏi kinh nghiệm từ nhau.`
+                  : `The recent Pickleball tournament attracted great attention from the Vietnamese sports community. With the participation of hundreds of athletes from provinces across the country, this event was not only a competition but also an opportunity for players to exchange and learn from each other.`
                 }
               </p>
               <p>
                 {language === 'vi'
-                  ? `Các trận đấu diễn ra trong không khí sôi động và đầy cạnh tranh. Khán giả đã được chứng kiến những pha bóng đẹp mắt, những chiến thuật thông minh và tinh thần fair-play cao từ các vận động viên. Đây là minh chứng cho sự phát triển mạnh mẽ của bộ môn Petanque tại Việt Nam.`
-                  : `The matches took place in a vibrant and competitive atmosphere. The audience witnessed beautiful plays, smart tactics, and high fair-play spirit from the athletes. This is evidence of the strong development of Petanque in Vietnam.`
+                  ? `Các trận đấu diễn ra trong không khí sôi động và đầy cạnh tranh. Khán giả đã được chứng kiến những pha bóng đẹp mắt, những chiến thuật thông minh và tinh thần fair-play cao từ các vận động viên. Đây là minh chứng cho sự phát triển mạnh mẽ của bộ môn Pickleball tại Việt Nam.`
+                  : `The matches took place in a vibrant and competitive atmosphere. The audience witnessed beautiful plays, smart tactics, and high fair-play spirit from the athletes. This is evidence of the strong development of Pickleballin Vietnam.`
                 }
               </p>
               <p>

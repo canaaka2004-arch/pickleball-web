@@ -22,7 +22,7 @@ const Contact = ({ language }) => {
         email: 'Email',
         emailPlaceholder: 'email@example.com',
         phone: 'Số Điện Thoại',
-        phonePlaceholder: '+84 123 456 789',
+        phonePlaceholder: 'É Lí Phú',
         subject: 'Tiêu Đề',
         subjectPlaceholder: 'Vấn đề bạn quan tâm',
         message: 'Nội Dung',
@@ -47,7 +47,7 @@ const Contact = ({ language }) => {
         email: 'Email',
         emailPlaceholder: 'email@example.com',
         phone: 'Phone Number',
-        phonePlaceholder: '+84 123 456 789',
+        phonePlaceholder: 'É Lí Phú',
         subject: 'Subject',
         subjectPlaceholder: 'Your inquiry topic',
         message: 'Message',
@@ -197,15 +197,15 @@ const Contact = ({ language }) => {
             <div className="info-card-contact">
               <Mail className="info-icon-large" size={32} />
               <h3>{t.info.email}</h3>
-              <p>contact@petanquevn.com</p>
-              <p>support@petanquevn.com</p>
+              <p>contact : EddiePhan@gmail.com</p>
+              <p>support : EddiePhan@gmail.com</p>
             </div>
 
             <div className="info-card-contact">
               <Phone className="info-icon-large" size={32} />
               <h3>{t.info.phone}</h3>
-              <p>+84 123 456 789</p>
-              <p>+84 987 654 321</p>
+              <p>É Lí Phú</p>
+              <p>É Lí Phú</p>
             </div>
 
             <div className="info-card-contact">

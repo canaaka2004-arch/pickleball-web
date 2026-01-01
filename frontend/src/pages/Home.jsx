@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Home.css";
 import { Link } from 'react-router-dom';
 import { Calendar, Trophy, Users, ArrowRight } from 'lucide-react';
 import { tournaments, news, stats } from '../mockData';
@@ -7,7 +8,7 @@ const Home = ({ language }) => {
   const content = {
     vi: {
       hero: {
-        title: 'Cộng Đồng Petanque Việt Nam',
+        title: 'Cộng Đồng Pickleball Việt Nam',
         subtitle: 'Kết nối đam mê - Phát triển tài năng - Tôn vinh thể thao',
         cta1: 'Xem Giải Đấu',
         cta2: 'Tham Gia Ngay'
@@ -36,7 +37,7 @@ const Home = ({ language }) => {
     },
     en: {
       hero: {
-        title: 'Vietnam Petanque Community',
+        title: 'Vietnam Pickleball Community',
         subtitle: 'Connect Passion - Develop Talent - Honor Sports',
         cta1: 'View Tournaments',
         cta2: 'Join Now'
@@ -72,20 +73,31 @@ const Home = ({ language }) => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">{t.hero.title}</h1>
-          <p className="hero-subtitle">{t.hero.subtitle}</p>
-          <div className="hero-buttons">
-            <Link to="/tournaments" className="btn-primary">
-              {t.hero.cta1}
-            </Link>
-            <Link to="/contact" className="btn-secondary">
-              {t.hero.cta2}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section
+  className="hero-section"
+  style={{
+    backgroundImage: "url('https://i.pinimg.com/736x/57/28/d8/5728d8b75ddfebe5a36cad37a88ade2b.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
+  <div className="hero-overlay">
+    <div className="hero-content">
+      <h1 className="hero-title">{t.hero.title}</h1>
+      <p className="hero-subtitle">{t.hero.subtitle}</p>
+
+      <div className="hero-buttons">
+        <Link to="/tournaments" className="btn-primary">
+          {t.hero.cta1}
+        </Link>
+        <Link to="/contact" className="btn-secondary">
+          {t.hero.cta2}
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Stats Section */}
       <section className="stats-section">

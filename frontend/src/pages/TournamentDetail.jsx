@@ -21,9 +21,9 @@ const TournamentDetail = ({ language }) => {
       description: 'Mô Tả',
       rules: 'Thể Lệ',
       contact: 'Liên Hệ',
-      descriptionText: 'Giải đấu petanque chuyên nghiệp thu hút các vận động viên hàng đầu từ khắp cả nước. Đây là sân chơi lý tưởng để các tay chơi thể hiện kỹ năng và giao lưu với cộng đồng.',
-      rulesText: '- Tuân thủ luật chơi Petanque quốc tế\n- Đăng ký trước hạn chót 2 tuần\n- Mang theo giấy tờ tùy thân khi thi đấu\n- Trang phục thể thao lịch sự',
-      contactInfo: 'Email: tournament@petanquevn.com\nĐiện thoại: +84 123 456 789'
+      descriptionText: 'Giải đấu Pickleball chuyên nghiệp thu hút các vận động viên hàng đầu từ khắp cả nước. Đây là sân chơi lý tưởng để các tay chơi thể hiện kỹ năng và giao lưu với cộng đồng.',
+      rulesText: '- Tuân thủ luật chơi Pickleball quốc tế\n- Đăng ký trước hạn chót 2 tuần\n- Mang theo giấy tờ tùy thân khi thi đấu\n- Trang phục thể thao lịch sự',
+      contactInfo: 'Email: EddiePhan@gmail.com\nĐiện thoại: É Lí Phú'
     },
     en: {
       back: 'Back',
@@ -38,9 +38,9 @@ const TournamentDetail = ({ language }) => {
       description: 'Description',
       rules: 'Rules',
       contact: 'Contact',
-      descriptionText: 'Professional petanque tournament attracting top athletes from across the country. This is an ideal platform for players to showcase their skills and connect with the community.',
-      rulesText: '- Follow international Petanque rules\n- Register before 2-week deadline\n- Bring ID documents during competition\n- Proper sports attire required',
-      contactInfo: 'Email: tournament@petanquevn.com\nPhone: +84 123 456 789'
+      descriptionText: 'Professional Pickleball tournament attracting top athletes from across the country. This is an ideal platform for players to showcase their skills and connect with the community.',
+      rulesText: '- Follow international Pickleballrules\n- Register before 2-week deadline\n- Bring ID documents during competition\n- Proper sports attire required',
+      contactInfo: 'Email: EddiePhan@gmail.com\nPhone: É Lí Phú'
     }
   };
 

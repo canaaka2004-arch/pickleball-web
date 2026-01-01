@@ -10,7 +10,7 @@ const News = ({ language }) => {
   const content = {
     vi: {
       title: 'Tin Tức & Sự Kiện',
-      subtitle: 'Cập nhật tin tức mới nhất về Petanque Việt Nam',
+      subtitle: 'Cập nhật tin tức mới nhất về Pickleball Việt Nam',
       filter: 'Lọc theo danh mục',
       all: 'Tất cả',
       search: 'Tìm kiếm tin tức...',
@@ -18,7 +18,7 @@ const News = ({ language }) => {
     },
     en: {
       title: 'News & Events',
-      subtitle: 'Latest updates about Petanque Vietnam',
+      subtitle: 'Latest updates about Pickleball Vietnam',
       filter: 'Filter by category',
       all: 'All',
       search: 'Search news...',

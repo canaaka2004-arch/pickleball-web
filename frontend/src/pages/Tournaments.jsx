@@ -25,7 +25,7 @@ const Tournaments = ({ language }) => {
       prize: 'Giải thưởng'
     },
     en: {
-      title: 'Petanque Tournaments',
+      title: 'Pickleball Tournaments',
       subtitle: 'Discover and register for tournaments nationwide',
       filters: {
         all: 'All',

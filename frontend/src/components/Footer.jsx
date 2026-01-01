@@ -6,19 +6,19 @@ const Footer = ({ language }) => {
   const content = {
     vi: {
       about: 'Về Chúng Tôi',
-      aboutText: 'Cộng đồng Petanque Việt Nam - Nơi kết nối đam mê và phát triển bộ môn Petanque trên toàn quốc.',
+      aboutText: 'Cộng đồng Pickleball Việt Nam - Nơi kết nối đam mê và phát triển bộ môn Pickleball trên toàn quốc.',
       quickLinks: 'Liên Kết',
       contact: 'Liên Hệ',
       follow: 'Theo Dõi',
-      copyright: '© 2024 Petanque Vietnam. Tất cả quyền được bảo lưu.'
+      copyright: '© 2024 Pickleball Vietnam. Tất cả quyền được bảo lưu.'
     },
     en: {
       about: 'About Us',
-      aboutText: 'Vietnam Petanque Community - Connecting passion and developing Petanque nationwide.',
+      aboutText: 'Vietnam Pickleball Community - Connecting passion and developing Pickleball nationwide.',
       quickLinks: 'Quick Links',
       contact: 'Contact',
       follow: 'Follow Us',
-      copyright: '© 2024 Petanque Vietnam. All rights reserved.'
+      copyright: '© 2024 Pickleball Vietnam. All rights reserved.'
     }
   };
 
@@ -67,11 +67,11 @@ const Footer = ({ language }) => {
             <div className="footer-contact">
               <div className="contact-item">
                 <Mail size={16} />
-                <span>contact@petanquevn.com</span>
+                <span>contact EddiePhan@gmail.com</span>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
-                <span>+84 123 456 789</span>
+                <span>É Lí Phú </span>
               </div>
               <div className="contact-item">
                 <MapPin size={16} />

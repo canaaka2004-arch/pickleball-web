@@ -31,7 +31,7 @@ const Navbar = ({ language, setLanguage }) => {
     <header className="network-header">
       <div className="nav-wrapper">
         <Link to="/" className="network-logo">
-          Petanque Vietnam
+          Pickleball Vietnam
         </Link>
 
         {/* Desktop Navigation */}
