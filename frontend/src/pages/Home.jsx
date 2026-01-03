@@ -76,7 +76,7 @@ const Home = ({ language }) => {
       <section
   className="hero-section"
   style={{
-    backgroundImage: "url('https://i.pinimg.com/736x/57/28/d8/5728d8b75ddfebe5a36cad37a88ade2b.jpg')",
+    backgroundImage: "url('https://i.pinimg.com/1200x/04/eb/c9/04ebc9b1bef4862c0eb2fc4cbc98b8ae.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat"

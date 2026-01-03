@@ -9,7 +9,7 @@ const Tournaments = ({ language }) => {
 
   const content = {
     vi: {
-      title: 'Giải Đấu Petanque',
+      title: 'Giải Đấu Pickleball',
       subtitle: 'Khám phá và đăng ký các giải đấu trên toàn quốc',
       filters: {
         all: 'Tất cả',

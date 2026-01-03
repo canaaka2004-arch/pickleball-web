@@ -11,7 +11,7 @@ export const tournaments = [
     status: "completed",
     participants: 48,
     prize: "50.000.000 VNĐ",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/f2/6c/1c/f26c1c32eef95b042987faf4b51d8e8c.jpg",
     category: "Chuyên nghiệp",
     categoryEn: "Professional"
   },
@@ -25,7 +25,7 @@ export const tournaments = [
     status: "upcoming",
     participants: 64,
     prize: "70.000.000 VNĐ",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/94/a1/f5/94a1f5fa3257a4a4dd9926e88aabbfde.jpg",
     category: "Mở rộng",
     categoryEn: "Open"
   },
@@ -35,25 +35,25 @@ export const tournaments = [
     nameEn: "Da Nang Beach Pickleball Cup",
     location: "Bãi biển Mỹ Khê, Đà Nẵng",
     locationEn: "My Khe Beach, Da Nang",
-    date: "10-12/05/2024",
+    date: "10-12/05/2025",
     status: "upcoming",
     participants: 32,
     prize: "30.000.000 VNĐ",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/b6/3f/f3/b63ff3dc96168a08b26fc859f4ce75b8.jpg",
     category: "Giải trẻ",
     categoryEn: "Youth"
   },
   {
     id: 4,
-    name: "Cúp Quốc Gia Pickleball 2024",
-    nameEn: "National Pickleball Cup 2024",
+    name: "Cúp Quốc Gia Pickleball 2025",
+    nameEn: "National Pickleball Cup 2025",
     location: "Trung tâm Thể thao Quốc gia Mỹ Đình, Hà Nội",
     locationEn: "My Dinh National Sports Center, Hanoi",
-    date: "01-05/06/2024",
+    date: "01-05/06/2025",
     status: "registration",
     participants: 128,
     prize: "200.000.000 VNĐ",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/41/01/3f/41013f0bca7ff92a3f9de7664c562190.jpg",
     category: "Quốc gia",
     categoryEn: "National"
   },
@@ -63,7 +63,7 @@ export const tournaments = [
     nameEn: "Can Tho Pickleball Charity Tournament",
     location: "Công viên Lưu Hữu Phước, Cần Thơ",
     locationEn: "Luu Huu Phuoc Park, Can Tho",
-    date: "15-16/07/2024",
+    date: "15-16/07/2025",
     status: "registration",
     participants: 40,
     prize: "25.000.000 VNĐ",
@@ -77,7 +77,7 @@ export const tournaments = [
     nameEn: "Southern Team Pickleball Championship",
     location: "Sân vận động Thống Nhất, TP.HCM",
     locationEn: "Thong Nhat Stadium, HCMC",
-    date: "20-25/08/2024",
+    date: "20-25/08/2025",
     status: "upcoming",
     participants: 80,
     prize: "100.000.000 VNĐ",
@@ -121,7 +121,7 @@ export const news = [
     date: "2024-03-18",
     category: "Giải đấu",
     categoryEn: "Tournament",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/92/08/9f/92089f39395560018eb3d02cb15dfbe4.jpg",
     author: "Ban Biên Tập"
   },
   {
@@ -134,7 +134,7 @@ export const news = [
     date: "2024-03-15",
     category: "Vận động viên",
     categoryEn: "Athletes",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/736x/f1/e2/75/f1e275cbd159b5203ccb01d6afcf284b.jpg",
     author: "Nguyễn Minh"
   },
   {
@@ -147,7 +147,7 @@ export const news = [
     date: "2024-03-12",
     category: "Sự kiện",
     categoryEn: "Events",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/2e/37/5c/2e375c5d30e1ce07d2954036ec7fe47c.jpg",
     author: "Trần Hà"
   },
   {
@@ -160,7 +160,7 @@ export const news = [
     date: "2024-03-10",
     category: "Hướng dẫn",
     categoryEn: "Tutorial",
-    image: "https://i.pinimg.com/736x/30/6d/44/306d441b00720a0479506c9bfe57e303.jpg",
+    image: "https://i.pinimg.com/1200x/b6/3f/f3/b63ff3dc96168a08b26fc859f4ce75b8.jpg",
     author: "HLV Lê Tuấn"
   },
   {
