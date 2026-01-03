@@ -47,9 +47,13 @@ const Navbar = ({ language, setLanguage }) => {
             <span className="rr-menu-label">MENU</span>
           </button>
 
-          {/* Center: Logo */}
+          {/* Center: Logo - SVG */}
           <Link to="/" className="rr-logo">
-            PETANQUE VIETNAM
+            <img 
+              src="https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/dyv9vlf0_PP%20tr%E1%BA%AFng.svg"
+              alt="Petanque Vietnam"
+              className="rr-logo-svg"
+            />
           </Link>
 
           {/* Right: Language Toggle */}
