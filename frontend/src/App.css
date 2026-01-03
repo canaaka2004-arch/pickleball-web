@@ -169,7 +169,6 @@ h1, h2, h3, h4, h5, h6 {
 .rr-logo-svg {
   height: 48px;
   width: auto;
-  filter: brightness(0) invert(1);
   transition: all 0.4s ease;
 }
 
@@ -336,7 +335,6 @@ h1, h2, h3, h4, h5, h6 {
 .rr-hero-logo-svg {
   width: auto;
   height: clamp(80px, 12vw, 180px);
-  filter: brightness(0) invert(1);
   animation: fadeInUp 1.5s ease-out;
 }
 
