@@ -141,9 +141,14 @@ const Home = ({ language }) => {
 
   return (
     <div className="home-page">
-      {/* Hero 1 - Visual Impact Only */}
+      {/* Hero 1 - Cinematic Visual Only */}
       <section className="hero-visual">
-        <div className="hero-visual-bg" />
+        <div className="hero-visual-bg" style={{
+          backgroundImage: `linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%), url('https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/sk4bsgpb_2219c6019ba8d6880360130f7a24be49.jpg')`
+        }} />
+        <div className="hero-visual-text">
+          <p className="hero-visual-hint">PICKLEBALL VIETNAM</p>
+        </div>
       </section>
 
       {/* Hero 2 - Tournament Introduction (Text Focus) */}
@@ -173,7 +178,7 @@ const Home = ({ language }) => {
                 onClick={() => setShowRegistrationForm(true)}
                 className="rr-btn-cta"
               >
-                {t.hero2.btnRegister}
+                THAM GIA
               </button>
             </div>
           </div>
