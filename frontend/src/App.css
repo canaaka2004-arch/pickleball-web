@@ -167,22 +167,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rr-logo-svg {
-  height: 48px;
+  height: 64px;
   width: auto;
   transition: all 0.4s ease;
+  display: block;
+  opacity: 1;
 }
 
 .rr-header.scrolled .rr-logo-svg {
-  height: 40px;
+  height: 52px;
 }
 
 @media (max-width: 768px) {
   .rr-logo-svg {
-    height: 36px;
+    height: 48px;
   }
   
   .rr-header.scrolled .rr-logo-svg {
-    height: 32px;
+    height: 40px;
   }
 }
 
@@ -317,11 +319,11 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.7) 100%),
-              url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1920&q=80');
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.7) 100%),
+              url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1920&q=80');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -334,8 +336,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .rr-hero-logo-svg {
   width: auto;
-  height: clamp(80px, 12vw, 180px);
+  height: clamp(120px, 15vw, 220px);
   animation: fadeInUp 1.5s ease-out;
+  display: block;
+  margin: 0 auto;
 }
 
 .rr-hero-brand {
