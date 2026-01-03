@@ -295,22 +295,391 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ============================================
-   HERO SECTION - CINEMATIC FULL SCREEN
+   HERO 1 - VISUAL IMPACT
    ============================================ */
 
-.rr-home {
-  position: relative;
-}
-
-.rr-hero {
+.hero-visual {
   position: relative;
   height: 100vh;
+  overflow: hidden;
+}
+
+.hero-visual-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%),
+              url('https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/53mirltn_2219c6019ba8d6880360130f7a24be49.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* ============================================
+   HERO 2 - TEXT FOCUS (TOURNAMENT INTRO)
+   ============================================ */
+
+.hero-text {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-page);
+  padding: var(--spacing-editorial) var(--spacing-large);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-text-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero-text-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-medium);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.hero-text-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-text-body {
+  margin-top: var(--spacing-xl);
+}
+
+.hero-text-paragraph {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 2;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-large);
+}
+
+.hero-text-paragraph.highlight {
+  color: var(--brand-primary);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+}
+
+.tournament-details {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-large);
+  border-left: 2px solid var(--brand-primary);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.detail-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-medium);
+  text-transform: uppercase;
+}
+
+.hero-text-cta {
+  margin-top: var(--spacing-xl);
+  text-align: center;
+}
+
+/* ============================================
+   HERO 3 - PICKLEBALL KNOWLEDGE
+   ============================================ */
+
+.hero-knowledge {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-editorial) var(--spacing-large);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-knowledge.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-knowledge-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.9) 100%),
+              url('https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/de6nxi9g_image.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-knowledge-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-knowledge-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-small);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.hero-knowledge-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.knowledge-item {
+  padding: var(--spacing-large);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.5s ease;
+}
+
+.knowledge-item:hover {
+  border-color: var(--brand-primary);
+  background: rgba(10, 10, 10, 0.8);
+  transform: translateY(-8px);
+}
+
+.knowledge-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--brand-primary);
+  margin-bottom: var(--spacing-medium);
+  text-transform: uppercase;
+}
+
+.knowledge-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   FADE IN ANIMATION
+   ============================================ */
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   REGISTRATION MODAL & FORM
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.registration-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(26, 26, 26, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: var(--spacing-xl);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 10001;
+  animation: slideIn 0.4s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--brand-primary);
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.form-input,
+.form-select {
+  padding: 14px 20px;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--brand-primary);
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+  opacity: 0.5;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+}
+
+.form-actions .rr-btn-primary,
+.form-actions .rr-btn-secondary {
+  flex: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero-text-title {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .registration-modal {
+    padding: var(--spacing-large);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .tournament-details {
+    padding: var(--spacing-medium);
+  }
 }
 
 .rr-hero-bg {
