@@ -40,7 +40,8 @@ const Home = ({ language }) => {
     },
     en: {
       hero: {
-        title: 'Vietnam Pickleball Community',
+        title: 'Vietnam Petanque Community',
+        titleEn: 'Vietnam Petanque Community',
         subtitle: 'Connect Passion - Develop Talent - Honor Sports',
         cta1: 'View Tournaments',
         cta2: 'Join Now'
