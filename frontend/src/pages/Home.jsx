@@ -207,7 +207,10 @@ const Home = ({ language }) => {
       {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2 className="cta-title">{t.cta.title}</h2>
+          <div className="bilingual-heading">
+            <h2 className="cta-title">{t.cta.title}</h2>
+            <p className="heading-subtitle">{t.cta.titleEn}</p>
+          </div>
           <p className="cta-subtitle">{t.cta.subtitle}</p>
           <Link to="/contact" className="btn-cta">
             {t.cta.button}
