@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 
 const Navbar = ({ language, setLanguage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = {
     vi: [
@@ -28,7 +38,7 @@ const Navbar = ({ language, setLanguage }) => {
   };
 
   return (
-    <header className="network-header">
+    <header className={`network-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-wrapper">
         <Link to="/" className="network-logo">
           Pickleball Vietnam
@@ -50,7 +60,7 @@ const Navbar = ({ language, setLanguage }) => {
             className="language-toggle"
             aria-label="Toggle language"
           >
-            <Globe size={18} />
+            <Globe size={14} />
             <span>{language.toUpperCase()}</span>
           </button>
         </nav>
