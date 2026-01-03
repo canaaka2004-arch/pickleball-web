@@ -296,7 +296,7 @@ const Home = ({ language }) => {
 
               <div className="form-actions">
                 <button type="submit" className="rr-btn-primary">
-                  {t.form.submit}
+                  GỬI ĐĂNG KÝ
                 </button>
                 <button 
                   type="button" 

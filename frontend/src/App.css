@@ -295,13 +295,17 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ============================================
-   HERO 1 - VISUAL IMPACT
+   HERO 1 - CINEMATIC VISUAL (ROLLS-ROYCE STYLE)
    ============================================ */
 
 .hero-visual {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--spacing-xl);
 }
 
 .hero-visual-bg {
@@ -310,16 +314,31 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%),
-              url('https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/53mirltn_2219c6019ba8d6880360130f7a24be49.jpg');
   background-size: cover;
   background-position: center;
   animation: slowZoom 20s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.hero-visual-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-visual-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  animation: fadeInUp 2s ease-out;
 }
 
 @keyframes slowZoom {
   from { transform: scale(1); }
-  to { transform: scale(1.05); }
+  to { transform: scale(1.08); }
 }
 
 /* ============================================
