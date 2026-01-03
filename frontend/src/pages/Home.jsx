@@ -24,7 +24,7 @@ const Home = ({ language }) => {
   const content = {
     vi: {
       hero: {
-        logoText: 'PETANQUE VIETNAM'
+        logoText: 'P VIETNAM'
       },
       intro: {
         title: 'GIẢI PETANQUE QUỐC GIA 2024',
