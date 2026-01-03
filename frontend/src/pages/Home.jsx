@@ -210,6 +210,38 @@ const Home = ({ language }) => {
       </section>
 
       {/* Contact CTA Section */}
+      <section className="rr-experience-section">
+        <div className="rr-experience-content">
+          <div className="rr-experience-image">
+            <img 
+              src="https://images.unsplash.com/photo-1603537258636-ecfc8525f86f?w=1200&q=80"
+              alt="Pickleball Community"
+              style={{
+                width: '100%',
+                height: '400px',
+                objectFit: 'cover',
+                opacity: 0.8
+              }}
+            />
+          </div>
+          <div className="rr-experience-text">
+            <h3 className="rr-detail-title" style={{ marginBottom: 'var(--spacing-medium)' }}>
+              {language === 'vi' ? 'TRẢI NGHIỆM CỘNG ĐỒNG' : 'COMMUNITY EXPERIENCE'}
+            </h3>
+            <p className="rr-detail-subtitle" style={{ marginBottom: 'var(--spacing-large)' }}>
+              {language === 'vi' ? 'Community Experience' : 'Community Experience'}
+            </p>
+            <p className="rr-intro-paragraph">
+              {language === 'vi'
+                ? 'Tham gia cộng đồng Pickleball/Petanque sôi động với các giải đấu chuyên nghiệp, giao lưu văn hóa thể thao và kết nối với những người đam mê cùng chí hướng.'
+                : 'Join our vibrant Pickleball/Petanque community with professional tournaments, sports cultural exchange, and connections with like-minded enthusiasts.'
+              }
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA Section */}
       <section className="rr-cta-section">
         <div className="rr-cta-content">
           <h2 className="rr-cta-title">
