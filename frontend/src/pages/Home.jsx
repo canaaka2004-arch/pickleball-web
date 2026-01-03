@@ -144,7 +144,7 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* Additional Content Section */}
+      {/* Additional Content Section with Image */}
       <section className="rr-details">
         <div className="rr-details-content">
           <div className="rr-detail-card">
@@ -154,6 +154,23 @@ const Home = ({ language }) => {
             <p className="rr-detail-subtitle">
               {language === 'vi' ? 'Tournament Details' : 'Tournament Details'}
             </p>
+            
+            {/* Supporting Pickleball Image */}
+            <div className="rr-detail-image">
+              <img 
+                src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=1200&q=80"
+                alt="Pickleball Tournament"
+                style={{
+                  width: '100%',
+                  height: '300px',
+                  objectFit: 'cover',
+                  borderRadius: '0',
+                  marginBottom: 'var(--spacing-xl)',
+                  opacity: 0.9
+                }}
+              />
+            </div>
+            
             <div className="rr-detail-items">
               <div className="rr-detail-item">
                 <span className="rr-detail-label">
