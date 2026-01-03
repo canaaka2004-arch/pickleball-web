@@ -174,9 +174,12 @@ const Home = ({ language }) => {
       {/* Latest News */}
       <section className="section-container news-section">
         <div className="section-header">
-          <h2 className="section-title">{t.news.title}</h2>
+          <div className="bilingual-heading" style={{ textAlign: 'left', marginBottom: 0 }}>
+            <h2 className="section-title">{t.news.title}</h2>
+            <p className="heading-subtitle">{t.news.titleEn}</p>
+          </div>
           <Link to="/news" className="view-all-link">
-            {t.news.viewAll} <ArrowRight size={18} />
+            {t.news.viewAll} <ArrowRight size={16} />
           </Link>
         </div>
         <div className="news-grid">
