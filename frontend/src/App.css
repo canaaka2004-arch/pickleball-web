@@ -628,6 +628,49 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============================================
    ANIMATIONS
+
+
+/* ============================================
+   EXPERIENCE SECTION
+   ============================================ */
+
+.rr-experience-section {
+  padding: var(--spacing-editorial) var(--spacing-large);
+  background: var(--bg-page);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.rr-experience-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.rr-experience-image {
+  overflow: hidden;
+}
+
+.rr-experience-image img {
+  transition: transform 0.6s ease;
+}
+
+.rr-experience-image:hover img {
+  transform: scale(1.05);
+}
+
+.rr-experience-text {
+  padding: var(--spacing-large);
+}
+
+@media (max-width: 968px) {
+  .rr-experience-content {
+    grid-template-columns: 1fr;
+  }
+}
+
    ============================================ */
 
 @keyframes fadeInUp {
