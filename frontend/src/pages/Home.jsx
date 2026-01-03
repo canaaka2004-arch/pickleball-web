@@ -91,7 +91,10 @@ const Home = ({ language }) => {
 >
   <div className="hero-overlay">
     <div className="hero-content">
-      <h1 className="hero-title">{t.hero.title}</h1>
+      <div className="bilingual-heading">
+        <h1 className="heading-primary">{t.hero.title}</h1>
+        <p className="heading-subtitle">{t.hero.titleEn}</p>
+      </div>
       <p className="hero-subtitle">{t.hero.subtitle}</p>
 
       <div className="hero-buttons">
