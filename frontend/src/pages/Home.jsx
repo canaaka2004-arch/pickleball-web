@@ -10,12 +10,13 @@ const Home = ({ language }) => {
       if (heroRef.current) {
         const heroHeight = heroRef.current.offsetHeight;
         const scrolled = window.scrollY;
-        const progress = Math.min(scrolled / heroHeight, 1);
+        // Smoother, more cinematic progress calculation
+        const progress = Math.min(Math.pow(scrolled / (heroHeight * 0.8), 1.2), 1);
         setScrollProgress(progress);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -56,12 +57,12 @@ const Home = ({ language }) => {
 
   const t = content[language];
 
-  // Calculate opacities for smooth transitions
-  const heroOpacity = 1 - scrollProgress;
-  const logoAOpacity = 1 - scrollProgress * 2; // Fades out faster
-  const logoBOpacity = Math.max(0, (scrollProgress - 0.3) * 2); // Fades in later
-  const introOpacity = Math.max(0, (scrollProgress - 0.4) * 2);
-  const introTransform = `translateY(${(1 - scrollProgress) * 50}px)`;
+  // Calculate opacities for smooth cinematic transitions
+  const heroOpacity = Math.pow(1 - scrollProgress, 1.5);
+  const logoAOpacity = Math.pow(1 - scrollProgress * 1.5, 2); // Fades out faster with ease
+  const logoBOpacity = Math.max(0, Math.pow((scrollProgress - 0.25) * 1.8, 1.5)); // Fades in smoothly
+  const introOpacity = Math.max(0, Math.pow((scrollProgress - 0.35) * 1.5, 1.2));
+  const introTransform = `translateY(${Math.max(0, (1 - scrollProgress) * 60)}px)`;
 
   return (
     <div className="rr-home">
@@ -78,12 +79,16 @@ const Home = ({ language }) => {
           {/* Background image will be set via CSS */}
         </div>
         
-        {/* Logo A - Main Hero Logo */}
+        {/* Logo A - Main Hero Logo (SVG) */}
         <div 
           className="rr-hero-logo-a"
           style={{ opacity: logoAOpacity }}
         >
-          <h1 className="rr-hero-brand">{t.hero.logoText}</h1>
+          <img 
+            src="https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/dyv9vlf0_PP%20tr%E1%BA%AFng.svg"
+            alt="Petanque Vietnam"
+            className="rr-hero-logo-svg"
+          />
         </div>
       </section>
 
