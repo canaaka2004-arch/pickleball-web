@@ -33,6 +33,7 @@ const Home = ({ language }) => {
       },
       cta: {
         title: 'Sẵn Sàng Tham Gia Cộng Đồng?',
+        titleEn: 'Ready to Join the Community?',
         subtitle: 'Đăng ký ngay để nhận thông tin về các giải đấu và sự kiện mới nhất',
         button: 'Liên Hệ Ngay'
       }
