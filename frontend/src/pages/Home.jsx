@@ -133,9 +133,12 @@ const Home = ({ language }) => {
       {/* Upcoming Tournaments */}
       <section className="section-container">
         <div className="section-header">
-          <h2 className="section-title">{t.upcoming.title}</h2>
+          <div className="bilingual-heading" style={{ textAlign: 'left', marginBottom: 0 }}>
+            <h2 className="section-title">{t.upcoming.title}</h2>
+            <p className="heading-subtitle">{t.upcoming.titleEn}</p>
+          </div>
           <Link to="/tournaments" className="view-all-link">
-            {t.upcoming.viewAll} <ArrowRight size={18} />
+            {t.upcoming.viewAll} <ArrowRight size={16} />
           </Link>
         </div>
         <div className="tournament-grid">
