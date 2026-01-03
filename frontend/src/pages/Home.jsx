@@ -66,6 +66,7 @@ const Home = ({ language }) => {
       },
       cta: {
         title: 'Ready to Join the Community?',
+        titleEn: 'Ready to Join the Community?',
         subtitle: 'Register now to receive information about the latest tournaments and events',
         button: 'Contact Now'
       }
