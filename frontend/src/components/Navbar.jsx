@@ -9,7 +9,7 @@ const Navbar = ({ language, setLanguage }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -19,16 +19,12 @@ const Navbar = ({ language, setLanguage }) => {
   const navLinks = {
     vi: [
       { name: 'Trang Chủ', path: '/' },
-      { name: 'Giải Đấu', path: '/tournaments' },
-      { name: 'Xếp Hạng', path: '/rankings' },
-      { name: 'Tin Tức', path: '/news' },
+      { name: 'Giải Đấu', path: '/tournament' },
       { name: 'Liên Hệ', path: '/contact' }
     ],
     en: [
       { name: 'Home', path: '/' },
-      { name: 'Tournaments', path: '/tournaments' },
-      { name: 'Rankings', path: '/rankings' },
-      { name: 'News', path: '/news' },
+      { name: 'Tournament', path: '/tournament' },
       { name: 'Contact', path: '/contact' }
     ]
   };
@@ -38,69 +34,80 @@ const Navbar = ({ language, setLanguage }) => {
   };
 
   return (
-    <header className={`network-header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="nav-wrapper">
-        <Link to="/" className="network-logo">
-          Pickleball Vietnam
-        </Link>
+    <>
+      <header className={`rr-header ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="rr-header-content">
+          {/* Left: Hamburger Menu */}
+          <button 
+            className="rr-menu-button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <Menu size={20} strokeWidth={1} />
+            <span className="rr-menu-label">MENU</span>
+          </button>
 
-        {/* Desktop Navigation */}
-        <nav className="network-nav desktop-nav">
-          {navLinks[language].map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`network-nav-link ${location.pathname === link.path ? 'active' : ''}`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {/* Center: Logo */}
+          <Link to="/" className="rr-logo">
+            PETANQUE VIETNAM
+          </Link>
+
+          {/* Right: Language Toggle */}
           <button 
             onClick={toggleLanguage}
-            className="language-toggle"
+            className="rr-language-toggle"
             aria-label="Toggle language"
           >
-            <Globe size={14} />
-            <span>{language.toUpperCase()}</span>
+            <Globe size={18} strokeWidth={1} />
+            <span className="rr-lang-text">{language.toUpperCase()}</span>
           </button>
-        </nav>
+        </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="mobile-menu-button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+        {/* White divider line under header */}
+        <div className="rr-header-divider"></div>
+      </header>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Overlay */}
       {isMenuOpen && (
-        <nav className="mobile-nav">
-          {navLinks[language].map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+        <>
+          <div className="rr-menu-overlay" onClick={() => setIsMenuOpen(false)} />
+          <nav className="rr-menu-panel">
+            <button 
+              className="rr-menu-close"
               onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
             >
-              {link.name}
-            </Link>
-          ))}
-          <button 
-            onClick={() => {
-              toggleLanguage();
-              setIsMenuOpen(false);
-            }}
-            className="mobile-language-toggle"
-          >
-            <Globe size={18} />
-            <span>{language === 'vi' ? 'English' : 'Tiếng Việt'}</span>
-          </button>
-        </nav>
+              <X size={24} strokeWidth={1} />
+            </button>
+            
+            <div className="rr-menu-links">
+              {navLinks[language].map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`rr-menu-link ${location.pathname === link.path ? 'active' : ''}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            <div className="rr-menu-footer">
+              <button 
+                onClick={() => {
+                  toggleLanguage();
+                  setIsMenuOpen(false);
+                }}
+                className="rr-menu-language"
+              >
+                {language === 'vi' ? 'English' : 'Tiếng Việt'}
+              </button>
+            </div>
+          </nav>
+        </>
       )}
-    </header>
+    </>
   );
 };
 
