@@ -27,6 +27,7 @@ const Home = ({ language }) => {
       },
       news: {
         title: 'Tin Tức Mới Nhất',
+        titleEn: 'Latest News',
         readMore: 'Đọc Thêm',
         viewAll: 'Xem Tất Cả Tin Tức'
       },
