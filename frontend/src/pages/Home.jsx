@@ -1,219 +1,205 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Trophy, Users, ArrowRight } from 'lucide-react';
-import { tournaments, news, stats } from '../mockData';
 
 const Home = ({ language }) => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const heroHeight = heroRef.current.offsetHeight;
+        const scrolled = window.scrollY;
+        const progress = Math.min(scrolled / heroHeight, 1);
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const content = {
     vi: {
       hero: {
-        title: 'Cộng Đồng Pickleball Việt Nam',
-        titleEn: 'Vietnam Pickleball Community',
-        subtitle: 'Kết nối đam mê - Phát triển tài năng - Tôn vinh thể thao',
-        cta1: 'Xem Giải Đấu',
-        cta2: 'Tham Gia Ngay'
+        logoText: 'PETANQUE VIETNAM'
       },
-      stats: {
-        players: 'Vận Động Viên',
-        tournaments: 'Giải Đấu',
-        provinces: 'Tỉnh/Thành'
-      },
-      upcoming: {
-        title: 'Giải Đấu Sắp Diễn Ra',
-        titleEn: 'Upcoming Tournaments',
-        viewAll: 'Xem Tất Cả',
-        register: 'Đăng Ký',
-        participants: 'người tham gia'
-      },
-      news: {
-        title: 'Tin Tức Mới Nhất',
-        titleEn: 'Latest News',
-        readMore: 'Đọc Thêm',
-        viewAll: 'Xem Tất Cả Tin Tức'
-      },
-      cta: {
-        title: 'Sẵn Sàng Tham Gia Cộng Đồng?',
-        titleEn: 'Ready to Join the Community?',
-        subtitle: 'Đăng ký ngay để nhận thông tin về các giải đấu và sự kiện mới nhất',
-        button: 'Liên Hệ Ngay'
+      intro: {
+        title: 'GIẢI PETANQUE QUỐC GIA 2024',
+        titleEn: 'National Petanque Championship 2024',
+        description: [
+          'Giải đấu Petanque uy tín nhất Việt Nam, quy tụ các tay chơi xuất sắc từ khắp các tỉnh thành. Đây là sân chơi lý tưởng để thể hiện kỹ năng, giao lưu học hỏi và tôn vinh tinh thần thể thao.',
+          'Với hệ thống tổ chức chuyên nghiệp, sân thi đấu đạt chuẩn quốc tế và giải thưởng hấp dẫn, giải đấu hứa hẹn mang đến những trận cầu đỉnh cao và trải nghiệm khó quên cho người chơi cũng như khán giả.',
+          'Tham gia ngay để trở thành một phần của cộng đồng Petanque Việt Nam đang phát triển mạnh mẽ.'
+        ],
+        cta: 'Đăng Ký Tham Gia'
       }
     },
     en: {
       hero: {
-        title: 'Vietnam Pickleball Community',
-        titleEn: 'Vietnam Pickleball Community',
-        subtitle: 'Connect Passion - Develop Talent - Honor Sports',
-        cta1: 'View Tournaments',
-        cta2: 'Join Now'
+        logoText: 'PETANQUE VIETNAM'
       },
-      stats: {
-        players: 'Athletes',
-        tournaments: 'Tournaments',
-        provinces: 'Provinces'
-      },
-      upcoming: {
-        title: 'Upcoming Tournaments',
-        titleEn: 'Upcoming Tournaments',
-        viewAll: 'View All',
-        register: 'Register',
-        participants: 'participants'
-      },
-      news: {
-        title: 'Latest News',
-        titleEn: 'Latest News',
-        readMore: 'Read More',
-        viewAll: 'View All News'
-      },
-      cta: {
-        title: 'Ready to Join the Community?',
-        titleEn: 'Ready to Join the Community?',
-        subtitle: 'Register now to receive information about the latest tournaments and events',
-        button: 'Contact Now'
+      intro: {
+        title: 'NATIONAL PETANQUE CHAMPIONSHIP 2024',
+        titleEn: 'National Petanque Championship 2024',
+        description: [
+          'The most prestigious Petanque tournament in Vietnam, bringing together elite players from across the country. This is the ideal platform to showcase skills, exchange experiences, and honor the spirit of sportsmanship.',
+          'With professional organization, international-standard courts, and attractive prizes, the tournament promises to deliver top-tier matches and unforgettable experiences for both players and spectators.',
+          'Join us now to become part of Vietnam\'s thriving Petanque community.'
+        ],
+        cta: 'Register Now'
       }
     }
   };
 
   const t = content[language];
-  const upcomingTournaments = tournaments.filter(t => t.status === 'upcoming' || t.status === 'registration').slice(0, 3);
-  const latestNews = news.slice(0, 3);
+
+  // Calculate opacities for smooth transitions
+  const heroOpacity = 1 - scrollProgress;
+  const logoAOpacity = 1 - scrollProgress * 2; // Fades out faster
+  const logoBOpacity = Math.max(0, (scrollProgress - 0.3) * 2); // Fades in later
+  const introOpacity = Math.max(0, (scrollProgress - 0.4) * 2);
+  const introTransform = `translateY(${(1 - scrollProgress) * 50}px)`;
 
   return (
-    <div className="home-page">
-      {/* Hero Section */}
-      <section
-  className="hero-section"
-  style={{
-    backgroundImage: "url('https://i.pinimg.com/1200x/04/eb/c9/04ebc9b1bef4862c0eb2fc4cbc98b8ae.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
-  }}
->
-  <div className="hero-overlay">
-    <div className="hero-content">
-      <div className="bilingual-heading">
-        <h1 className="heading-primary">{t.hero.title}</h1>
-        <p className="heading-subtitle">{t.hero.titleEn}</p>
-      </div>
-      <p className="hero-subtitle">{t.hero.subtitle}</p>
+    <div className="rr-home">
+      {/* Hero Section - State 1 */}
+      <section 
+        ref={heroRef}
+        className="rr-hero" 
+        style={{
+          opacity: heroOpacity,
+          transform: `scale(${1 + scrollProgress * 0.1})`
+        }}
+      >
+        <div className="rr-hero-bg">
+          {/* Background image will be set via CSS */}
+        </div>
+        
+        {/* Logo A - Main Hero Logo */}
+        <div 
+          className="rr-hero-logo-a"
+          style={{ opacity: logoAOpacity }}
+        >
+          <h1 className="rr-hero-brand">{t.hero.logoText}</h1>
+        </div>
+      </section>
 
-      <div className="hero-buttons">
-        <Link to="/tournaments" className="btn-primary">
-          {t.hero.cta1}
-        </Link>
-        <Link to="/contact" className="btn-secondary">
-          {t.hero.cta2}
-        </Link>
+      {/* Logo B - Appears during transition */}
+      <div 
+        className="rr-logo-b-container"
+        style={{ opacity: logoBOpacity }}
+      >
+        <div className="rr-logo-b">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="28" stroke="currentColor" strokeWidth="0.5" />
+            <text x="30" y="38" textAnchor="middle" fill="currentColor" fontSize="16" fontFamily="Playfair Display">
+              PV
+            </text>
+          </svg>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-      {/* Stats Section */}
-      <section className="stats-section">
-        <div className="stats-container">
-          <div className="stat-card">
-            <Users className="stat-icon" size={40} />
-            <div className="stat-number">{stats.totalPlayers.toLocaleString()}</div>
-            <div className="stat-label">{t.stats.players}</div>
+      {/* Intro Section - State 2 */}
+      <section 
+        className="rr-intro"
+        style={{
+          opacity: introOpacity,
+          transform: introTransform
+        }}
+      >
+        <div className="rr-intro-content">
+          {/* Bilingual Title */}
+          <div className="rr-intro-header">
+            <h2 className="rr-intro-title">{t.intro.title}</h2>
+            <p className="rr-intro-subtitle">{t.intro.titleEn}</p>
           </div>
-          <div className="stat-card">
-            <Trophy className="stat-icon" size={40} />
-            <div className="stat-number">{stats.totalTournaments}</div>
-            <div className="stat-label">{t.stats.tournaments}</div>
+
+          {/* Editorial Paragraphs */}
+          <div className="rr-intro-body">
+            {t.intro.description.map((paragraph, index) => (
+              <p key={index} className="rr-intro-paragraph">
+                {paragraph}
+              </p>
+            ))}
           </div>
-          <div className="stat-card">
-            <Calendar className="stat-icon" size={40} />
-            <div className="stat-number">{stats.provinces}</div>
-            <div className="stat-label">{t.stats.provinces}</div>
+
+          {/* CTA Button */}
+          <div className="rr-intro-cta">
+            <Link to="/tournament" className="rr-btn-primary">
+              {t.intro.cta}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Tournaments */}
-      <section className="section-container">
-        <div className="section-header">
-          <div className="bilingual-heading" style={{ textAlign: 'left', marginBottom: 0 }}>
-            <h2 className="section-title">{t.upcoming.title}</h2>
-            <p className="heading-subtitle">{t.upcoming.titleEn}</p>
-          </div>
-          <Link to="/tournaments" className="view-all-link">
-            {t.upcoming.viewAll} <ArrowRight size={16} />
-          </Link>
-        </div>
-        <div className="tournament-grid">
-          {upcomingTournaments.map((tournament) => (
-            <div key={tournament.id} className="tournament-card">
-              <div className="tournament-image">
-                <img src={tournament.image} alt={language === 'vi' ? tournament.name : tournament.nameEn} />
-                <span className={`status-badge ${tournament.status}`}>
-                  {tournament.status === 'upcoming' ? (language === 'vi' ? 'Sắp diễn ra' : 'Upcoming') : (language === 'vi' ? 'Đang mở' : 'Open')}
+      {/* Additional Content Section */}
+      <section className="rr-details">
+        <div className="rr-details-content">
+          <div className="rr-detail-card">
+            <h3 className="rr-detail-title">
+              {language === 'vi' ? 'THÔNG TIN GIẢI ĐẤU' : 'TOURNAMENT INFORMATION'}
+            </h3>
+            <p className="rr-detail-subtitle">
+              {language === 'vi' ? 'Tournament Details' : 'Tournament Details'}
+            </p>
+            <div className="rr-detail-items">
+              <div className="rr-detail-item">
+                <span className="rr-detail-label">
+                  {language === 'vi' ? 'Thời gian' : 'Date'}
+                </span>
+                <span className="rr-detail-value">
+                  {language === 'vi' ? '01-05 Tháng 6, 2024' : 'June 01-05, 2024'}
                 </span>
               </div>
-              <div className="tournament-content">
-                <h3 className="tournament-title">{language === 'vi' ? tournament.name : tournament.nameEn}</h3>
-                <div className="tournament-info">
-                  <div className="info-item">
-                    <Calendar size={16} />
-                    <span>{tournament.date}</span>
-                  </div>
-                  <div className="info-item">
-                    <Users size={16} />
-                    <span>{tournament.participants} {t.upcoming.participants}</span>
-                  </div>
-                </div>
-                <Link to={`/tournaments/${tournament.id}`} className="btn-primary btn-small">
-                  {t.upcoming.register}
-                </Link>
+              <div className="rr-detail-item">
+                <span className="rr-detail-label">
+                  {language === 'vi' ? 'Địa điểm' : 'Location'}
+                </span>
+                <span className="rr-detail-value">
+                  {language === 'vi' ? 'Trung tâm Thể thao Quốc gia, Hà Nội' : 'National Sports Center, Hanoi'}
+                </span>
+              </div>
+              <div className="rr-detail-item">
+                <span className="rr-detail-label">
+                  {language === 'vi' ? 'Lệ phí' : 'Entry Fee'}
+                </span>
+                <span className="rr-detail-value">
+                  {language === 'vi' ? '500.000 VNĐ / đội' : '500,000 VND / team'}
+                </span>
+              </div>
+              <div className="rr-detail-item">
+                <span className="rr-detail-label">
+                  {language === 'vi' ? 'Giải thưởng' : 'Prize Pool'}
+                </span>
+                <span className="rr-detail-value">
+                  200.000.000 VNĐ
+                </span>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Latest News */}
-      <section className="section-container news-section">
-        <div className="section-header">
-          <div className="bilingual-heading" style={{ textAlign: 'left', marginBottom: 0 }}>
-            <h2 className="section-title">{t.news.title}</h2>
-            <p className="heading-subtitle">{t.news.titleEn}</p>
-          </div>
-          <Link to="/news" className="view-all-link">
-            {t.news.viewAll} <ArrowRight size={16} />
-          </Link>
-        </div>
-        <div className="news-grid">
-          {latestNews.map((article) => (
-            <div key={article.id} className="news-card">
-              <div className="news-image">
-                <img src={article.image} alt={language === 'vi' ? article.title : article.titleEn} />
-              </div>
-              <div className="news-content">
-                <span className="news-category">{language === 'vi' ? article.category : article.categoryEn}</span>
-                <h3 className="news-title">{language === 'vi' ? article.title : article.titleEn}</h3>
-                <p className="news-excerpt">{language === 'vi' ? article.excerpt : article.excerptEn}</p>
-                <div className="news-footer">
-                  <span className="news-date">{new Date(article.date).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}</span>
-                  <Link to={`/news/${article.id}`} className="read-more-link">
-                    {t.news.readMore} <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <div className="bilingual-heading">
-            <h2 className="cta-title">{t.cta.title}</h2>
-            <p className="heading-subtitle">{t.cta.titleEn}</p>
-          </div>
-          <p className="cta-subtitle">{t.cta.subtitle}</p>
-          <Link to="/contact" className="btn-cta">
-            {t.cta.button}
+      {/* Contact CTA Section */}
+      <section className="rr-cta-section">
+        <div className="rr-cta-content">
+          <h2 className="rr-cta-title">
+            {language === 'vi' ? 'SẴN SÀNG THAM GIA?' : 'READY TO PARTICIPATE?'}
+          </h2>
+          <p className="rr-cta-subtitle">
+            {language === 'vi' ? 'Ready to Participate?' : 'Ready to Participate?'}
+          </p>
+          <p className="rr-cta-text">
+            {language === 'vi' 
+              ? 'Đăng ký ngay để nhận thông tin chi tiết và bảo đảm suất tham gia giải đấu.'
+              : 'Register now to receive detailed information and secure your spot in the tournament.'
+            }
+          </p>
+          <Link to="/contact" className="rr-btn-cta">
+            {language === 'vi' ? 'Liên Hệ Ngay' : 'Contact Now'}
           </Link>
         </div>
       </section>
