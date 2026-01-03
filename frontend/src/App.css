@@ -276,109 +276,128 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--brand-primary);
 }
 
-/* Buttons */
+/* Buttons - Luxury Minimalist */
 .btn-primary {
-  background: var(--brand-primary);
-  color: var(--brand-dark);
-  border: none;
-  border-radius: 12px;
-  padding: 14px 32px;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  font-weight: 700;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--brand-primary);
+  border-radius: 0;
+  padding: 16px 48px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 300;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 48px;
-  box-shadow: 0 0 30px rgba(163, 230, 53, 0.3);
+  gap: 12px;
+  min-height: 52px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: 'Cormorant Garamond', serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--brand-primary);
+  transition: left 0.5s ease;
+  z-index: -1;
 }
 
 .btn-primary:hover {
-  background: var(--brand-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(163, 230, 53, 0.5), 0 0 60px rgba(163, 230, 53, 0.3);
+  color: var(--brand-dark);
+  border-color: var(--brand-primary);
+  transform: none;
+  box-shadow: none;
 }
 
-.btn-primary:active {
-  transform: translateY(0) scale(0.98);
+.btn-primary:hover::before {
+  left: 0;
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--brand-primary);
-  border-radius: 12px;
-  padding: 12px 30px;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--text-secondary);
+  border-radius: 0;
+  padding: 16px 48px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 300;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 48px;
+  gap: 12px;
+  min-height: 52px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .btn-secondary:hover {
-  background: rgba(163, 230, 53, 0.1);
-  border-color: var(--brand-hover);
-  color: var(--brand-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(163, 230, 53, 0.2);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  background: transparent;
+  transform: none;
 }
 
 .btn-small {
-  padding: 10px 24px;
-  font-size: 14px;
-  min-height: 40px;
-  border-radius: 8px;
-  letter-spacing: 0.3px;
+  padding: 12px 32px;
+  font-size: 0.875rem;
+  min-height: 44px;
+  letter-spacing: 1.5px;
 }
 
 .btn-cta {
-  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-hover) 100%);
+  background: var(--brand-primary);
   color: var(--brand-dark);
   border: none;
-  border-radius: 12px;
-  padding: 18px 36px;
-  font-size: 18px;
-  font-weight: 700;
+  border-radius: 0;
+  padding: 20px 56px;
+  font-size: 1rem;
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 54px;
-  box-shadow: 0 0 40px rgba(163, 230, 53, 0.4);
+  gap: 12px;
+  min-height: 60px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .btn-cta:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 48px rgba(163, 230, 53, 0.6), 0 0 80px rgba(163, 230, 53, 0.4);
+  background: var(--brand-hover);
+  transform: none;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
 }
 
-/* Hero Section */
+/* Hero Section - Cinematic Luxury */
 .hero-section {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
-  padding: var(--spacing-giant) var(--spacing-medium);
+  background: var(--bg-page);
+  padding: var(--spacing-editorial) var(--spacing-medium);
   text-align: center;
   border-radius: 0;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 0;
   position: relative;
   overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-section::before {
@@ -389,41 +408,46 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(163, 230, 53, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(198, 255, 0, 0.05) 0%, transparent 50%);
+    linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.7) 100%);
   pointer-events: none;
 }
 
 .hero-content {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
   line-height: 1.1;
   color: var(--text-primary);
-  margin-bottom: var(--spacing-medium);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  letter-spacing: -1px;
+  margin-bottom: var(--spacing-large);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   color: var(--text-secondary);
-  margin-bottom: var(--spacing-large);
-  font-weight: 400;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: var(--spacing-xl);
+  font-weight: 300;
+  letter-spacing: 3px;
+  line-height: 1.8;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
   display: flex;
-  gap: var(--spacing-small);
+  gap: var(--spacing-medium);
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: var(--spacing-xl);
 }
 
 /* Stats Section */
