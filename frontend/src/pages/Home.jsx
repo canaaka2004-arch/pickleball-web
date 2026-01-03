@@ -7,7 +7,8 @@ const Home = ({ language }) => {
   const content = {
     vi: {
       hero: {
-        title: 'Cộng Đồng Pickleball Việt Nam',
+        title: 'Cộng Đồng Petanque Việt Nam',
+        titleEn: 'Vietnam Petanque Community',
         subtitle: 'Kết nối đam mê - Phát triển tài năng - Tôn vinh thể thao',
         cta1: 'Xem Giải Đấu',
         cta2: 'Tham Gia Ngay'
