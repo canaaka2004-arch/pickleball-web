@@ -60,6 +60,7 @@ const Home = ({ language }) => {
       },
       news: {
         title: 'Latest News',
+        titleEn: 'Latest News',
         readMore: 'Read More',
         viewAll: 'View All News'
       },
