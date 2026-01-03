@@ -25,11 +25,11 @@ const Home = ({ language }) => {
   const content = {
     vi: {
       hero: {
-        logoText: 'P VIETNAM'
+        logoText: 'Pickleball VIETNAM'
       },
       intro: {
-        title: 'GIẢI PETANQUE QUỐC GIA 2024',
-        titleEn: 'National Petanque Championship 2024',
+        title: 'GIẢI Pickleball QUỐC GIA 2024',
+        titleEn: 'National Pickle ball Championship 2024',
         description: [
           'Giải đấu Petanque uy tín nhất Việt Nam, quy tụ các tay chơi xuất sắc từ khắp các tỉnh thành. Đây là sân chơi lý tưởng để thể hiện kỹ năng, giao lưu học hỏi và tôn vinh tinh thần thể thao.',
           'Với hệ thống tổ chức chuyên nghiệp, sân thi đấu đạt chuẩn quốc tế và giải thưởng hấp dẫn, giải đấu hứa hẹn mang đến những trận cầu đỉnh cao và trải nghiệm khó quên cho người chơi cũng như khán giả.',

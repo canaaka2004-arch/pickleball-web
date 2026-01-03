@@ -2602,3 +2602,4 @@ h1, h2, h3, h4, h5, h6 {
   .tournaments-col::before { content: 'Số giải: '; font-weight: 600; }
   .wins-col::before { content: 'Vô địch: '; font-weight: 600; }
 }
+

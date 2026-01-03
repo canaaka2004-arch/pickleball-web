@@ -48,15 +48,12 @@ const Navbar = ({ language, setLanguage }) => {
           </button>
 
           {/* Center: Logo - SVG */}
-          <Link to="/" className="rr-logo">
+          <Link to="/" className="rr-logo" aria-label="Home">
             <img 
               src="https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/2raka02o_PP%20tr%E1%BA%AFng.svg"
               alt="Petanque Vietnam Logo"
               className="rr-logo-svg"
-              onError={(e) => {
-                console.error('Logo failed to load');
-                e.target.style.display = 'block';
-              }}
+              
             />
           </Link>
 
