@@ -53,6 +53,7 @@ const Home = ({ language }) => {
       },
       upcoming: {
         title: 'Upcoming Tournaments',
+        titleEn: 'Upcoming Tournaments',
         viewAll: 'View All',
         register: 'Register',
         participants: 'participants'
