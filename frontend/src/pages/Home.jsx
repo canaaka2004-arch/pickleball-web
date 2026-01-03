@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Home.css";
 import { Link } from 'react-router-dom';
 import { Calendar, Trophy, Users, ArrowRight } from 'lucide-react';
 import { tournaments, news, stats } from '../mockData';
