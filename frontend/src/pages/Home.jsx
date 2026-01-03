@@ -7,8 +7,8 @@ const Home = ({ language }) => {
   const content = {
     vi: {
       hero: {
-        title: 'Cộng Đồng Petanque Việt Nam',
-        titleEn: 'Vietnam Petanque Community',
+        title: 'Cộng Đồng Pickleball Việt Nam',
+        titleEn: 'Vietnam Pickleball Community',
         subtitle: 'Kết nối đam mê - Phát triển tài năng - Tôn vinh thể thao',
         cta1: 'Xem Giải Đấu',
         cta2: 'Tham Gia Ngay'
@@ -40,8 +40,8 @@ const Home = ({ language }) => {
     },
     en: {
       hero: {
-        title: 'Vietnam Petanque Community',
-        titleEn: 'Vietnam Petanque Community',
+        title: 'Vietnam Pickleball Community',
+        titleEn: 'Vietnam Pickleball Community',
         subtitle: 'Connect Passion - Develop Talent - Honor Sports',
         cta1: 'View Tournaments',
         cta2: 'Join Now'
