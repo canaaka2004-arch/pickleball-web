@@ -20,6 +20,7 @@ const Home = ({ language }) => {
       },
       upcoming: {
         title: 'Giải Đấu Sắp Diễn Ra',
+        titleEn: 'Upcoming Tournaments',
         viewAll: 'Xem Tất Cả',
         register: 'Đăng Ký',
         participants: 'người tham gia'
