@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-const Home = ({ language }) => {
+const Home = ({ language }) => { 
+  const [scrolly,setScrolly]= useState(0);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -138,17 +139,36 @@ const Home = ({ language }) => {
 
     return () => observer.disconnect();
   }, []);
+ useEffect(() => {
+  const onScroll = () => setScrolly(window.scrollY || 0);
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // set giá trị lần đầu
+
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
 
   return (
     <div className="home-page">
       {/* Hero 1 - Cinematic Visual Only */}
       <section className="hero-visual">
-        <div className="hero-visual-bg" style={{
-          backgroundImage: `linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%), url('https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/sk4bsgpb_2219c6019ba8d6880360130f7a24be49.jpg')`
-        }} />
-        <div className="hero-visual-text">
-          <p className="hero-visual-hint">PICKLEBALL VIETNAM</p>
-        </div>
+        <div
+  className="hero-visual-bg"
+ style={{
+  backgroundImage: `
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.85)
+    ),
+    url("https://i.pinimg.com/736x/16/fe/08/16fe08ef76315a2ec021c7546859c31a.jpg")
+  `,
+  transform: `scale(${1.03 + Math.min(scrollY / 4000, 0.05)})`
+}}
+/>
+        <div className="hero-visual-center">
+  <h1 className="hero-visual-title">PICKLEBALL VIETNAM</h1>
+</div>
       </section>
 
       {/* Hero 2 - Tournament Introduction (Text Focus) */}
@@ -174,12 +194,12 @@ const Home = ({ language }) => {
             <p className="hero-text-paragraph">{t.hero2.registration}</p>
 
             <div className="hero-text-cta">
-              <button 
-                onClick={() => setShowRegistrationForm(true)}
-                className="rr-btn-cta"
-              >
-                THAM GIA
-              </button>
+              <button
+  onClick={() => setShowRegistrationForm(true)}
+  className="rr-btn-cta join-btn"
+>
+  THAM GIA
+</button>
             </div>
           </div>
         </div>

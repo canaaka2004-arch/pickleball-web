@@ -2990,4 +2990,240 @@ h1, h2, h3, h4, h5, h6 {
   .tournaments-col::before { content: 'Số giải: '; font-weight: 600; }
   .wins-col::before { content: 'Vô địch: '; font-weight: 600; }
 }
+/* ===== HERO 1 – Rolls-Royce cinematic ===== */
+.hero-visual {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-visual-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+  will-change: transform;
+}
+
+.hero-visual-text {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 64px;
+}
+
+.hero-visual-hint {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.75);
+}
+/* ===== HERO 1 CENTER TEXT ===== */
+.hero-visual {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-visual-center {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.hero-visual-title {
+  font-family: "Playfair Display", serif; /* hoặc font hiện tại */
+  font-size: clamp(36px, 6vw, 96px);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  opacity: 0.95;
+  text-shadow: 0 12px 40px rgba(0,0,0,0.7);
+}
+/* ===== HERO 2: CENTER + TYPOGRAPHY ===== */
+.hero-text {
+  text-align: center;
+}
+
+.hero-text-content {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.hero-text-title {
+  font-size: clamp(28px, 4.2vw, 64px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 8px 0 8px;
+}
+
+.hero-text-subtitle {
+  font-size: clamp(14px, 1.6vw, 18px);
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+  margin: 0 0 28px;
+}
+
+.hero-text-body {
+  text-align: center;
+}
+
+.hero-text-paragraph {
+  max-width: 920px;
+  margin: 0 auto 18px;
+  line-height: 1.9;
+  font-size: clamp(15px, 1.7vw, 18px);
+  opacity: 0.92;
+}
+
+/* In đậm “Thể Thức thi đấu” & “Giải thưởng” */
+.detail-heading,
+.tournament-details h3 {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 26px 0 12px;
+}
+
+/* ===== BUTTON “THAM GIA” dạng vuông ===== */
+.join-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 160px;
+  height: 56px;
+
+  border: 1px solid rgba(255,255,255,0.55);
+  background: transparent;
+
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.join-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+}
+/* Tách hero2 và hero3 ra */
+.hero-text {
+  padding-bottom: 120px; /* tăng/giảm tuỳ bạn */
+}
+/* =========================
+   HERO 3 – PICKLEBALL KNOWLEDGE
+========================= */
+
+.hero-knowledge {
+  position: relative;
+  padding: 140px 0;
+  overflow: hidden;
+}
+
+/* Background hình ảnh */
+.hero-knowledge-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.92)),
+    url("https://i.pinimg.com/736x/2d/79/41/2d7941b2e8c162a6def0897f12493c02.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(20%);
+  transform: scale(1.03);
+}
+
+/* Nội dung nằm trên background */
+.hero-knowledge-content {
+  position: relative;
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ===== Heading ===== */
+.hero-knowledge-title {
+  font-size: clamp(28px, 4vw, 56px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.hero-knowledge-subtitle {
+  margin: 0 0 70px;
+  font-size: clamp(16px, 2vw, 22px);
+  opacity: 0.8;
+}
+
+/* ===== Grid kiến thức ===== */
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  text-align: left;
+}
+
+/* Card từng mục */
+.knowledge-item {
+  padding: 30px 28px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.knowledge-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* Tiêu đề từng mục */
+.knowledge-heading {
+  margin: 0 0 16px;
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Nội dung */
+.knowledge-text {
+  margin: 0;
+  line-height: 1.9;
+  opacity: 0.9;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 900px) {
+  .hero-knowledge {
+    padding: 110px 0;
+  }
+
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-item {
+    padding: 22px 18px;
+  }
+}
 
