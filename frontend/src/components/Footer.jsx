@@ -5,35 +5,28 @@ import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 const Footer = ({ language }) => {
   const content = {
     vi: {
-      about: 'Về Chúng Tôi',
-      aboutText: 'Cộng đồng Pickleball Việt Nam - Nơi kết nối đam mê và phát triển bộ môn Pickleball trên toàn quốc.',
+      
       quickLinks: 'Liên Kết',
       contact: 'Liên Hệ',
       follow: 'Theo Dõi',
-      copyright: '© 2024 Pickleball Vietnam. Tất cả quyền được bảo lưu.'
+      copyright: '© 2025 MR.PHUONG PICKLEBALL COMMUNITY '
     },
     en: {
-      about: 'About Us',
-      aboutText: 'Vietnam Pickleball Community - Connecting passion and developing Pickleball nationwide.',
       quickLinks: 'Quick Links',
       contact: 'Contact',
       follow: 'Follow Us',
-      copyright: '© 2024 Pickleball Vietnam. All rights reserved.'
+      copyright: '© 2025 MR.PHUONG PICKLEBALL COMMUNITY'
     }
   };
 
   const links = {
     vi: [
       { name: 'Trang Chủ', path: '/' },
-      { name: 'Giải Đấu', path: '/tournaments' },
-      { name: 'Xếp Hạng', path: '/rankings' },
-      { name: 'Tin Tức', path: '/news' }
+      {name: 'Vận Động Viên', path: '/athletes'},
     ],
     en: [
       { name: 'Home', path: '/' },
-      { name: 'Tournaments', path: '/tournaments' },
-      { name: 'Rankings', path: '/rankings' },
-      { name: 'News', path: '/news' }
+      {name: '', path: '/athletes'},
     ]
   };
 
@@ -67,11 +60,12 @@ const Footer = ({ language }) => {
             <div className="footer-contact">
               <div className="contact-item">
                 <Mail size={16} />
-                <span>contact EddiePhan@gmail.com</span>
+                <span>eddiephan1611@gmail.com</span>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
-                <span>É Lí Phú </span>
+                <span>Mr.Phương 0866161616</span>
+                  <span>Mr.Phong 0909135558</span>
               </div>
               <div className="contact-item">
                 <MapPin size={16} />

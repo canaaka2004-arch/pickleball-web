@@ -22,7 +22,7 @@ const Contact = ({ language }) => {
         email: 'Email',
         emailPlaceholder: 'email@example.com',
         phone: 'Số Điện Thoại',
-        phonePlaceholder: 'É Lí Phú',
+        phonePlaceholder: '0xxx',
         subject: 'Tiêu Đề',
         subjectPlaceholder: 'Vấn đề bạn quan tâm',
         message: 'Nội Dung',
@@ -30,7 +30,7 @@ const Contact = ({ language }) => {
         submit: 'Gửi Tin Nhắn'
       },
       info: {
-        title: 'Thông Tin Liên Hệ',
+        title: 'Thông Tin Hỗ Trợ',
         email: 'Email',
         phone: 'Điện Thoại',
         address: 'Địa Chỉ'
@@ -47,7 +47,7 @@ const Contact = ({ language }) => {
         email: 'Email',
         emailPlaceholder: 'email@example.com',
         phone: 'Phone Number',
-        phonePlaceholder: 'É Lí Phú',
+        phonePlaceholder: '0xxx',
         subject: 'Subject',
         subjectPlaceholder: 'Your inquiry topic',
         message: 'Message',
@@ -197,21 +197,20 @@ const Contact = ({ language }) => {
             <div className="info-card-contact">
               <Mail className="info-icon-large" size={32} />
               <h3>{t.info.email}</h3>
-              <p>contact : EddiePhan@gmail.com</p>
-              <p>support : EddiePhan@gmail.com</p>
+              <p>support : eddiephan1611@gmail.com</p>
             </div>
 
             <div className="info-card-contact">
               <Phone className="info-icon-large" size={32} />
               <h3>{t.info.phone}</h3>
-              <p>É Lí Phú</p>
-              <p>É Lí Phú</p>
+              <p>Mr.Phương 0866161616</p>
+              <p>Mr.Phong 0909135558</p>
             </div>
 
             <div className="info-card-contact">
               <MapPin className="info-icon-large" size={32} />
               <h3>{t.info.address}</h3>
-              <p>{language === 'vi' ? 'Quận 1, TP. Hồ Chí Minh' : 'District 1, Ho Chi Minh City'}</p>
+              <p>{language === 'vi' ? 'TP. Hồ Chí Minh' : ' Ho Chi Minh City'}</p>
               <p>{language === 'vi' ? 'Việt Nam' : 'Vietnam'}</p>
             </div>
           </div>

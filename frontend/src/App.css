@@ -1,5 +1,7 @@
 /* Import Luxury Serif Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap');
+
 
 /* Root Variables - Rolls-Royce Luxury Theme */
 :root {
@@ -43,14 +45,14 @@
 }
 
 body {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-family: 'Google Sans Flex', system-ui, -apple-system, sans-;
   background: var(--bg-page);
   color: var(--text-primary);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
-  letter-spacing: 0.3px;
+  letter-spacing: 0px;
 }
 
 .App {
@@ -167,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rr-logo-svg {
-  height: 64px;
+  height: 95px;
   width: auto;
   transition: all 0.4s ease;
   display: block;
@@ -175,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rr-header.scrolled .rr-logo-svg {
-  height: 52px;
+  height: 88px;
 }
 
 @media (max-width: 768px) {
@@ -184,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .rr-header.scrolled .rr-logo-svg {
-    height: 40px;
+    height: 44px;
   }
 }
 
@@ -3065,18 +3067,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-text-title {
+  font-family: 'Google Sans Flex', sans-serif;
   font-size: clamp(28px, 4.2vw, 64px);
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 700;
-  margin: 8px 0 8px;
 }
 
-.hero-text-subtitle {
-  font-size: clamp(14px, 1.6vw, 18px);
-  opacity: 0.85;
-  letter-spacing: 0.08em;
-  margin: 0 0 28px;
+.hero-text-subtitle-strong {
+  display: block;
+  margin-top: 12px;
+
+  font-size: 0.5em;          /* 👈 CHÍNH DÒNG NÀY = 1/2 size */
+  font-weight: 700;          /* vẫn đậm */
+  letter-spacing: 0.18em;    /* cho sang & thoáng */
+  opacity: 0.95;
 }
 
 .hero-text-body {
@@ -3091,14 +3096,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.92;
 }
 
-/* In đậm “Thể Thức thi đấu” & “Giải thưởng” */
-.detail-heading,
-.tournament-details h3 {
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 26px 0 12px;
-}
+
 
 /* ===== BUTTON “THAM GIA” dạng vuông ===== */
 .join-btn {
@@ -3226,4 +3224,382 @@ h1, h2, h3, h4, h5, h6 {
     padding: 22px 18px;
   }
 }
+/* FORCE GOOGLE SANS FLEX - GLOBAL */
+*,
+*::before,
+*::after {
+  font-family: 'Google Sans Flex', system-ui, -apple-system, sans-serif !important;
+}
+#emergent-badge {
+  font-family: 'Google Sans Flex', sans-serif !important;
+}
+/* ===== MOBILE HERO FIX ===== */
+@media (max-width: 768px) {
 
+  .hero-text-title {
+    white-space: nowrap;          /* 👈 không cho xuống dòng */
+    font-size: clamp(22px, 5.2vw, 28px); 
+    letter-spacing: 0.1em;
+  }
+
+}
+@media (max-width: 768px) {
+  .hero-text-paragraph { margin: 0 auto 2px !important; }
+  .rr-btn-cta.join-btn { margin-top: 6px !important; }
+  .hero-text-section { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .hero-text-section, .hero-text-content { justify-content: center !important; }
+}
+/* ===== MOBILE – FORCE CTA CLOSER ===== */
+@media (max-width: 768px) {
+
+  /* kéo nút lên mạnh */
+  .rr-btn-cta.join-btn {
+    transform: translateY(-100px);   /* 👈 kéo lên 40px */
+  }
+
+}
+.register-wrap { max-width: 720px; margin: 40px auto; padding: 0 16px; }
+.register-title { text-align: center; margin-bottom: 18px; }
+.register-form .field { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+.register-form input, .register-form select {
+  padding: 10px 12px; border: 1px solid #333; border-radius: 8px;
+}
+.err { color: #ff4d4f; font-size: 13px; margin-top: 2px; }
+.success { margin-top: 12px; color: #20c997; }
+/* ===== FIX FORM TEXT COLOR ===== */
+.form-input,
+.form-select,
+input,
+select,
+textarea {
+  color: #111 !important;        /* chữ đen */
+  background-color: #f5f5f5;     /* nền sáng */
+}
+
+/* Placeholder */
+.form-input::placeholder,
+input::placeholder {
+  color: #777;
+}
+
+/* Khi focus */
+.form-input:focus,
+.form-select:focus,
+input:focus,
+select:focus {
+  background-color: #ffffff;
+  color: #000;
+  outline: none;
+}
+
+/* Dropdown option */
+select option {
+  color: #000;
+  background: #fff;
+}
+/* =====================================================
+   ATHLETES PAGE – MILITARY LUXURY / POWER (CENTERED)
+   Paste to App.css (replace old athletes styles)
+   ===================================================== */
+
+.ath {
+  min-height: 100vh;
+  background: #070709;
+  color: #e9eaec;
+  font-family: "Google Sans Flex", "Google Sans", system-ui, -apple-system,
+    Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.ath .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 16px 70px;
+}
+
+/* ===== HERO / HEADER ===== */
+.ath .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* ✅ center */
+  justify-content: center;
+  text-align: center;      /* ✅ center text */
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* Title "VẬN ĐỘNG VIÊN" */
+.ath .title {
+  font-size: clamp(40px, 4.6vw, 64px); /* ✅ bigger */
+  font-weight: 950;                   /* ✅ bolder */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f1d58a;
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 10px 40px rgba(214,178,94,0.16);
+}
+
+/* Nếu bạn còn sub/hint thì làm nhỏ gọn (hoặc bạn đã xoá thì không sao) */
+.ath .sub,
+.ath .hint {
+  margin: 0;
+  color: rgba(233,234,236,0.7);
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+
+/* ===== CONTROLS (LEVEL + GENDER) ===== */
+.ath .controls {
+  width: 100%;
+  display: grid;
+  gap: 12px;
+  justify-items: center;   /* ✅ center groups */
+  margin: 6px 0 6px;
+}
+
+.ath .group {
+  width: min(900px, 94vw);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.ath .row {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* ✅ center buttons */
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Labels nếu còn */
+.ath .label {
+  display: none; /* ✅ hide "TRÌNH ĐỘ", "GIỚI TÍNH" nếu còn sót */
+}
+
+/* ===== BUTTON – POWER STYLE ===== */
+.ath .btn {
+  padding: 12px 18px;
+  border-radius: 0;
+  border: 1px solid rgba(214,178,94,0.8);
+  background: transparent;
+  color: #d6b25e;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+  min-height: 44px; /* ✅ mobile tap */
+}
+
+.ath .btn:hover {
+  background: rgba(214, 178, 94, 0.12);
+  border-color: rgba(214,178,94,1);
+}
+
+.ath .btn:active {
+  transform: translateY(1px);
+}
+
+.ath .btn.active {
+  background: #d6b25e;
+  color: #070709;
+}
+
+//* ===== ATHLETES: SEARCH (theo đúng class hiện tại) ===== */
+.searchGroup{
+  width: min(860px, 92vw);
+  margin: 14px auto 10px;
+  text-align: center;
+}
+
+.searchGroup .label{
+  margin-bottom: 8px;
+  color: #f1d58a;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.searchGroup{
+  position: relative;
+}
+
+/* icon kính lúp */
+.searchGroup::before{
+  content: "🔍";
+  position: absolute;
+  left: 14px;
+  top: 25px;                 /* chỉnh theo label của bạn */
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: .9;
+  pointer-events: none;
+}
+
+/* input */
+.search{
+  width: 100%;
+  height: 50px;
+  padding: 0 14px 0 44px;    /* chừa chỗ icon */
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(214,178,94,0.55);
+  color: #f3f3f3;
+  outline: none;
+  border-radius: 0;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.search::placeholder{
+  color: rgba(243,243,243,0.55);
+}
+
+.search:focus{
+  border-color: rgba(214,178,94,0.9);
+  box-shadow: 0 0 0 3px rgba(214,178,94,0.12);
+}
+
+/* ===== SUMMARY LINE (DANH SÁCH ... / COUNT) ===== */
+.ath .summary,
+.ath .count {
+  text-align: center;
+  margin: 6px 0 12px;
+  color: rgba(233,234,236,0.85);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* ===== TABLE WRAP ===== */
+.tableWrap {
+  width: min(1100px, 96vw);
+  margin: 0 auto;               /* ✅ center table */
+  overflow-x: auto;
+  border: 1px solid rgba(214,178,94,0.25);
+  background: rgba(255,255,255,0.02);
+}
+
+/* ===== TABLE ===== */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+/* HEADER */
+.tbl thead th {
+  background: rgba(255,255,255,0.02);
+  color: #f1d58a;
+  font-size: 13px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-weight: 950;
+  padding: 14px 12px;
+  border-bottom: 2px solid rgba(214,178,94,0.75);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* BODY */
+.tbl tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.tbl tbody tr:hover {
+  background: rgba(214,178,94,0.04);
+}
+
+.tbl td {
+  padding: 14px 12px;
+  font-size: 14px;
+  vertical-align: middle;
+  color: rgba(233,234,236,0.92);
+}
+
+/* ===== COLUMN SIZING ===== */
+.cRank { width: 80px; white-space: nowrap; }
+.cRating { width: 160px; text-align: center; }
+.cTrend { width: 140px; text-align: center; }
+
+/* ===== ATHLETE CELL (AVATAR + NAME) ===== */
+.athCell{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatarWrap{
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(214,178,94,0.9);
+  background: rgba(255,255,255,0.03);
+  display: grid;
+  place-items: center;
+}
+
+.avatar{
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  object-fit: cover;
+  display: block;
+}
+
+.athText .athName{
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+.athText .athSub{
+  margin-top: 2px;
+  font-size: 12px;
+  color: rgba(233,234,236,0.6);
+}
+
+/* ===== TREND ===== */
+.trend {
+  font-weight: 950;
+  letter-spacing: 1px;
+}
+
+.trend.up { color: #3ddc97; }
+.trend.down { color: #ff6b6b; }
+.trend.neu { color: rgba(233,234,236,0.55); }
+
+/* ===== EMPTY STATE ===== */
+.empty {
+  text-align: center;
+  padding: 36px 0;
+  color: rgba(233,234,236,0.6);
+  font-style: italic;
+}
+
+/* ===== SKELETON ===== */
+.skTable { padding: 16px; width: min(1100px, 96vw); margin: 0 auto; }
+.skRow {
+  display: grid;
+  grid-template-columns: 80px 1.6fr 160px 140px;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sk {
+  height: 14px;
+  background: linear-gradient(90deg, #1a1a1f 25%, #22222a 37%, #1a1a1f 63%);
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ===== MOBILE TUNING ===== */
+@media (max-width: 640px){
+.ath .wrap { padding: 92px 12px 60px; }
+  .ath .btn { padding: 12px 14px; letter-spacing: 1.2px; }
+  .tbl td { padding: 12px 10px; }
+  .avatarWrap { width: 46px; height: 46px; }
+  .avatar { width: 42px; height: 42px; }
+}

@@ -1,3 +1,4 @@
+import Athletes from "./pages/athletes";
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,6 +12,7 @@ import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
 import Contact from "./pages/Contact";
 import { Toaster } from "./components/ui/sonner";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   const [language, setLanguage] = useState('vi');
@@ -25,9 +27,11 @@ function App() {
             <Route path="/tournaments" element={<Tournaments language={language} />} />
             <Route path="/tournaments/:id" element={<TournamentDetail language={language} />} />
             <Route path="/rankings" element={<Rankings language={language} />} />
+            <Route path="/athletes" element={<Athletes />} />
             <Route path="/news" element={<News language={language} />} />
             <Route path="/news/:id" element={<NewsDetail language={language} />} />
             <Route path="/contact" element={<Contact language={language} />} />
+            <Route path="/register" element={<RegisterPage language={language} />} />
           </Routes>
         </main>
         <Footer language={language} />

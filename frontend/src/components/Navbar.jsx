@@ -20,11 +20,13 @@ const Navbar = ({ language, setLanguage }) => {
     vi: [
       { name: 'Trang Chủ', path: '/' },
       { name: 'Giải Đấu', path: '/tournament' },
+      {name: 'Vận Động Viên', path: '/athletes'},
       { name: 'Liên Hệ', path: '/contact' }
     ],
     en: [
       { name: 'Home', path: '/' },
       { name: 'Tournament', path: '/tournament' },
+      {name: '', path: '/athletes'},
       { name: 'Contact', path: '/contact' }
     ]
   };
@@ -47,11 +49,11 @@ const Navbar = ({ language, setLanguage }) => {
             <span className="rr-menu-label">MENU</span>
           </button>
 
-          {/* Center: Logo - Letter P */}
+          {/* Center: Logo - Letter P */}   
           <Link to="/" className="rr-logo">
             <img 
-              src="https://customer-assets.emergentagent.com/job_a3c89baf-2eec-47d4-b0d2-c1f4159b9223/artifacts/14uamlf0_image.png"
-              alt="Pickleball Vietnam"
+              src="LOGO_PNG_03.png"
+              alt="Mr P logo"
               className="rr-logo-svg"
             />
           </Link>
@@ -62,7 +64,7 @@ const Navbar = ({ language, setLanguage }) => {
             className="rr-language-toggle"
             aria-label="Toggle language"
           >
-            <Globe size={18} strokeWidth={1} />
+            <Globe size={25} strokeWidth={1} />
             <span className="rr-lang-text">{language.toUpperCase()}</span>
           </button>
         </div>
