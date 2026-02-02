@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
  
@@ -6,6 +6,16 @@ import { useNavigate } from "react-router-dom";
 const Home = ({ language }) => { 
   const navigate = useNavigate();
   const [scrolly,setScrolly]= useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const intervalRef = useRef(null);
+  const touchStartXRef = useRef(0);
+  const touchDeltaXRef = useRef(0);
+  const isSwipingRef = useRef(false);
+
+  const SLIDE_COUNT = 2;
+  const AUTOPLAY_MS = 5000;     // đang là 5 giây (đổi số ở đây)
+  const SWIPE_THRESHOLD = 50;   // vuốt hơn 50px mới chuyển
 
 
 
@@ -36,11 +46,9 @@ const Home = ({ language }) => {
         success: 'Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm.'
       },
       hero3: {
-        title: 'KIẾN THỨC PICKLEBALL',
-        subtitle: 'Pickleball Knowledge',
-        howToPlay: 'Cách chơi: Pickleball là môn thể thao kết hợp giữa quần vợt, cầu lông và bóng bàn. Chơi trên sân nhỏ với vợt gỗ và bóng nhựa có lỗ.',
-        scoring: 'Cách tính điểm: Trận đấu thi đấu đến 11 điểm (phải thắng cách biệt 2 điểm). Chỉ đội giao bóng mới được tính điểm.',
-        paddle: 'Cách cầm vợt: Cầm vợt như kiểu bắt tay, giữ chặt nhưng thoải mái, cổ tay linh hoạt để điều khiển bóng tốt hơn.'
+        title: 'COMING SOON...',
+        subtitle: 'COMING SOON...',
+        
       },
       
     },
@@ -70,11 +78,9 @@ const Home = ({ language }) => {
         success: 'Registration successful! We will contact you soon.'
       },
       hero3: {
-        title: 'PICKLEBALL KNOWLEDGE',
-        subtitle: 'Pickleball Knowledge',
-        howToPlay: 'How to play: Pickleball is a sport combining tennis, badminton, and table tennis. Played on a small court with wooden paddles and perforated plastic balls.',
-        scoring: 'Scoring: Games are played to 11 points (must win by 2). Only the serving team can score.',
-        paddle: 'Paddle grip: Hold the paddle like a handshake, firm but comfortable, with flexible wrist for better ball control.'
+        title: 'COMING SOON...',
+        subtitle: 'COMING SOON...',
+        
       },
       
     }
@@ -127,6 +133,29 @@ const Home = ({ language }) => {
 
     return () => observer.disconnect();
   }, []);
+  
+  useEffect(() => {
+  const mq = window.matchMedia("(max-width: 768px)");
+
+  const apply = () => setIsMobile(mq.matches);
+  apply(); // chạy lần đầu
+
+  // Safari cũ
+  if (mq.addEventListener) {
+    mq.addEventListener("change", apply);
+  } else {
+    mq.addListener(apply);
+  }
+
+  return () => {
+    if (mq.removeEventListener) {
+      mq.removeEventListener("change", apply);
+    } else {
+      mq.removeListener(apply);
+    }
+  };
+}, []);
+
  useEffect(() => {
   const onScroll = () => setScrolly(window.scrollY || 0);
 
@@ -136,32 +165,132 @@ const Home = ({ language }) => {
   return () => window.removeEventListener("scroll", onScroll);
 }, []);
 
+const startAutoplay = () => {
+  if (intervalRef.current) clearInterval(intervalRef.current);
+  intervalRef.current = setInterval(() => {
+    setHeroIndex((prev) => (prev + 1) % SLIDE_COUNT);
+  }, AUTOPLAY_MS);
+};
+
+useEffect(() => {
+  startAutoplay();
+  return () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+}, []);
+
+const goTo = (idx) => {
+  const nextIdx = (idx + SLIDE_COUNT) % SLIDE_COUNT;
+  setHeroIndex(nextIdx);
+  startAutoplay();
+};
+
+const next = () => {
+  setHeroIndex((p) => (p + 1) % SLIDE_COUNT);
+  startAutoplay();
+};
+
+const prev = () => {
+  setHeroIndex((p) => (p - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+  startAutoplay();
+};
+
+const onTouchStart = (e) => {
+  touchStartXRef.current = e.touches[0].clientX;
+  touchDeltaXRef.current = 0;
+  isSwipingRef.current = true;
+};
+
+const onTouchMove = (e) => {
+  if (!isSwipingRef.current) return;
+  const x = e.touches[0].clientX;
+  touchDeltaXRef.current = x - touchStartXRef.current;
+};
+
+const onTouchEnd = () => {
+  if (!isSwipingRef.current) return;
+  isSwipingRef.current = false;
+
+  const dx = touchDeltaXRef.current;
+  if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+  if (dx < 0) next();
+  else prev();
+};
+
+const slide1 = isMobile ? "/MB_POST.jpg" : "/DESK_POST.jpg";
+const slide2 = isMobile ? "/MB_POST_01.jpg" : "/DESK_POST1.jpg";
+
   return (
     <div className="home-page">
-      {/* Hero 1 - Cinematic Visual Only */}
-      <section className="hero-visual">
-        <div
-  className="hero-visual-bg"
- style={{
-  backgroundImage: `
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.35),
-      rgba(0,0,0,0.85)
-    ),
-    url("https://images.pexels.com/photos/6370120/pexels-photo-6370120.jpeg")
-  `,
-  transform: `scale(${1.03 + Math.min(scrollY / 4000, 0.05)})`
-}}
-/>
-        <div className="hero-visual-center">
-  <h1 className="hero-visual-title"></h1>
+
+<section className="hero-visual hero-slider"
+  onTouchStart={onTouchStart}
+  onTouchMove={onTouchMove}
+  onTouchEnd={onTouchEnd} >
+  <div className="hero-slider-track" style={{ transform: `translateX(-${heroIndex * 100}vw)` }}>
+    <div
+      className="hero-slider-slide"
+      style={{
+        backgroundImage: `
+          linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.45)
+  ),
+          url("${slide1}")
+        `
+      }}
+    />
+    <div
+      className="hero-slider-slide"
+      style={{
+        backgroundImage: `
+          linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.45)
+  ),
+          url("${slide2}")
+        `
+      }}
+    />
+  </div>
+
+  <div className="hero-visual-center">
+    <h1 className="hero-visual-title"></h1>
+  </div>
+
+  <div className="hero-slider-dots" aria-label="Hero slider pagination">
+  {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
+    <button
+      key={i}
+      type="button"
+      className={`dot ${heroIndex === i ? "active" : ""}`}
+      onClick={() => goTo(i)}
+      aria-label={`Go to slide ${i + 1}`}
+      aria-current={heroIndex === i ? "true" : "false"}
+    />
+  ))}
 </div>
-      </section>
+</section>
+
+
+
+
 
       {/* Hero 2 - Tournament Introduction (Text Focus) */}
       <section className="hero-text fade-in-section">
-        <div className="hero-text-content">
+  <div
+    className="hero-text-bg"
+    style={{
+      backgroundImage: `
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)),
+        url("hero2bg.jpg")
+      `
+    }}
+  />
+  <div className="hero-text-content">
           <div className="bilingual-heading">
             <h1 className="hero-text-title">
   MR PHƯƠNG PICKLEBALL <br />
@@ -204,26 +333,11 @@ const Home = ({ language }) => {
           </div>
 
           <div className="knowledge-grid">
-            <div className="knowledge-item">
-              <h4 className="knowledge-heading">
-                {language === 'vi' ? 'Cách Chơi' : 'How To Play'}
-              </h4>
-              <p className="knowledge-text">{t.hero3.howToPlay}</p>
-            </div>
+            
 
-            <div className="knowledge-item">
-              <h4 className="knowledge-heading">
-                {language === 'vi' ? 'Tính Điểm' : 'Scoring'}
-              </h4>
-              <p className="knowledge-text">{t.hero3.scoring}</p>
-            </div>
+            
 
-            <div className="knowledge-item">
-              <h4 className="knowledge-heading">
-                {language === 'vi' ? 'Cầm Vợt' : 'Paddle Grip'}
-              </h4>
-              <p className="knowledge-text">{t.hero3.paddle}</p>
-            </div>
+            
           </div>
         </div>
       </section>

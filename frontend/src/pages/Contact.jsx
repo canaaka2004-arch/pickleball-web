@@ -197,7 +197,7 @@ const Contact = ({ language }) => {
             <div className="info-card-contact">
               <Mail className="info-icon-large" size={32} />
               <h3>{t.info.email}</h3>
-              <p>support : eddiephan1611@gmail.com</p>
+              <p>support : mrppopencup@gmail.com</p>
             </div>
 
             <div className="info-card-contact">

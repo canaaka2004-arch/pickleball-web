@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const LEVELS = [
-  { value: "intermediate", label: "Intermediate (>2.5)", min: 0, max: 2.4 },
+  { value: "intermediate", label: "Intermediate (<2.5)", min: 0, max: 2.4 },
   { value: "advanced", label: "Advanced (2.5-3.1)", min: 2.5, max: 3.1 },
   { value: "pro", label: "Pro (3.2-3.9)", min: 3.2, max: 3.9 },
   { value: "master", label: "Master (>3.9)", min: 4.0, max: 99 },
@@ -15,6 +15,9 @@ export default function RegisterPage({ language = "vi" }) {
       dob: "Ngày tháng năm sinh",
       phone: "Số điện thoại",
       email: "Email (không bắt buộc)",
+      country: "Quốc gia",
+      chooseCountry:"-- Chọn quốc gia --",
+      errCountry:"Chưa chọn quốc gia.",
       gender: "Giới tính",
       chooseGender: "-- Chọn giới tính --",
       male: "Nam",
@@ -39,6 +42,9 @@ export default function RegisterPage({ language = "vi" }) {
       dob: "Date of birth",
       phone: "Phone number",
       email: "Email (optional)",
+      country: "Country",
+chooseCountry: "-- Select country --",
+errCountry: "Please select a country.",
       gender: "Gender",
       chooseGender: "-- Select gender --",
       male: "Male",
@@ -67,11 +73,13 @@ export default function RegisterPage({ language = "vi" }) {
     gender: "", // ✅ thêm gender
     level: "",
     rating: "",
+    countryCode:"",
     photo: null,
     photoBase64: "",
     photoName: "",
   });
 
+  const [countries, setCountries] = useState([]);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
@@ -80,6 +88,29 @@ export default function RegisterPage({ language = "vi" }) {
     () => LEVELS.find((l) => l.value === form.level),
     [form.level]
   );
+  useEffect(() => {
+  (async () => {
+    try {
+      const res = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,cca2"
+      );
+      const data = await res.json();
+
+      const list = (Array.isArray(data) ? data : [])
+        .filter((c) => c?.cca2 && c?.name?.common)
+        .map((c) => ({
+          code: c.cca2,        // ISO2: VN, US...
+          name: c.name.common, // tên quốc gia
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+      setCountries(list);
+    } catch (e) {
+      console.error("Load countries failed:", e);
+      setCountries([]);
+    }
+  })();
+}, []);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -104,6 +135,7 @@ setErrors((p) => ({ ...p, photo: "" }));
     if (!form.gender) next.gender = t.errGender; // ✅ validate gender
     if (!form.level) next.level = t.errLevel;
     if (!form.rating.toString().trim()) next.rating = t.errRating;
+    if (!form.countryCode) next.countryCode = t.errCountry;
 
     const ratingNum = Number(form.rating);
     if (form.rating && (Number.isNaN(ratingNum) || ratingNum < 0)) {
@@ -155,6 +187,7 @@ setErrors((p) => ({ ...p, photo: "" }));
         dob: form.dob,
         phone: form.phone.trim(),
         email: form.email.trim(),
+       countryCode: form.countryCode, 
         gender: form.gender, // ✅ gửi gender lên sheet
         level: form.level,
         rating: Number(form.rating),
@@ -180,6 +213,7 @@ setErrors((p) => ({ ...p, photo: "" }));
         gender: "", // ✅ reset gender
         level: "",
         rating: "",
+        countryCode: "",
         photo: null,
         photoBase64: "",
         photoName: "",
@@ -223,6 +257,19 @@ setErrors((p) => ({ ...p, photo: "" }));
             onChange={onChange}
           />
         </div>
+        {/* ✅ COUNTRY */}
+<div className="field">
+  <label>{t.country} *</label>
+  <select name="countryCode" value={form.countryCode} onChange={onChange}>
+    <option value="">{t.chooseCountry}</option>
+    {countries.map((c) => (
+      <option key={c.code} value={c.code}>
+        {c.name} ({c.code})
+      </option>
+    ))}
+  </select>
+  {errors.countryCode && <div className="err">{errors.countryCode}</div>}
+</div>
 
         {/* ✅ GENDER */}
         <div className="field">

@@ -21,6 +21,8 @@ export default function Athletes() {
   const [gender, setGender] = useState("Nam");
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("ratingDesc");
+// ratingDesc | ratingAsc | nameAsc | nameDesc
 
   useEffect(() => {
     (async () => {
@@ -39,6 +41,33 @@ export default function Athletes() {
   }, []);
 
   const norm = (s) => String(s || "").trim().toLowerCase();
+  // ===== SORT/SEARCH BY LAST NAME (ignore accents + ignore nickname in parentheses) =====
+const stripParens = (s) => String(s || "").replace(/\([^)]*\)/g, " "); // bỏ (...)
+// bỏ dấu tiếng Việt
+const removeAccents = (s) =>
+  String(s || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+// tên sạch để search/sort
+const cleanName = (s) =>
+  removeAccents(stripParens(s)).replace(/\s+/g, " ").trim();
+
+// key sort theo "tên" = từ cuối cùng (vd: "Khôi" -> "khoi")
+const lastNameKey = (fullName) => {
+  const cleaned = cleanName(fullName).toLowerCase();
+  if (!cleaned) return "";
+  const parts = cleaned.split(" ");
+  return parts[parts.length - 1] || "";
+};
+
+
+const normNameForSort = (s) =>
+  String(s || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
   // Map level từ nhiều kiểu nhập (Intermediate / intermediate / ADVANCED...)
   const normLevel = (lv) => {
@@ -49,47 +78,83 @@ export default function Athletes() {
     if (x.includes("master")) return "master";
     return x;
   };
+  const flagUrl = (code) => {
+  const c = String(code || "").trim().toLowerCase();
+  if (!c) return "";
+  return `https://flagcdn.com/w40/${c}.png`;
+};
 const toDirect = (url) => {
   url = String(url || "").trim();
   if (!url) return "";
 
+
   // /file/d/FILEID/
   let m = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
   if (m && m[1]) {
-    return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w400`;
+    return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`;
   }
 
   // ?id=FILEID
   m = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
   if (m && m[1]) {
-    return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w400`;
+    return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1000`;
   }
 
   return url;
 };
   const filtered = useMemo(() => {
-    const query = norm(q);
+  const query = norm(q);
 
-    const base = rows.map((r) => ({
-      ...r,
-      _name: norm(r.full_name),
-      _gender: String(r.gender || "").trim(),
-      _level: normLevel(r.level),
-      _rating: Number(r.rating || 0),
-    }));
+  const base = rows.map((r) => {
+  const full = String(r.full_name || "");
+  const cleanedLower = cleanName(full).toLowerCase(); // bỏ ngoặc + bỏ dấu
+  const lastKey = lastNameKey(full);                  // sort theo tên cuối
 
-    // Search theo tên: không ép level/gender để thấy họ thuộc hạng nào
-    if (query) {
-      return base
-        .filter((r) => r._name.includes(query))
-        .sort((a, b) => b._rating - a._rating);
+  return {
+    ...r,
+    _nameClean: cleanedLower, // search dùng cái này
+    _lastKey: lastKey,        // sort A-Z dùng cái này
+    _gender: String(r.gender || "").trim(),
+    _country: String(r.country_code || "").trim().toUpperCase(),
+    _level: normLevel(r.level),
+    _rating: Number(r.rating || 0),
+  };
+});
+
+  const applySort = (arr) => {
+    const sorted = [...arr];
+    switch (sortBy) {
+      case "ratingAsc":
+        sorted.sort((a, b) => a._rating - b._rating);
+        break;
+      case "ratingDesc":
+        sorted.sort((a, b) => b._rating - a._rating);
+        break;
+      case "nameAsc":
+  sorted.sort((a, b) => (a._lastKey || "").localeCompare(b._lastKey || "", "vi"));
+  break;
+
+case "nameDesc":
+  sorted.sort((a, b) => (b._lastKey || "").localeCompare(a._lastKey || "", "vi"));
+  break;
+      default:
+        sorted.sort((a, b) => b._rating - a._rating);
     }
+    return sorted;
+  };
 
-    return base
-      .filter((r) => r._level === level)
-      .filter((r) => r._gender === gender)
-      .sort((a, b) => b._rating - a._rating);
-  }, [rows, level, gender, q]);
+  if (query) {
+  const qClean = cleanName(q).toLowerCase(); // bỏ dấu + bỏ ngoặc trong query
+  const res = base.filter((r) => r._nameClean.includes(qClean));
+  return applySort(res);
+}
+
+  const res = base
+    .filter((r) => r._level === level)
+    .filter((r) => r._gender === gender);
+
+  return applySort(res);
+}, [rows, level, gender, q, sortBy]);
 
   return (
     <div className="ath">
@@ -138,8 +203,60 @@ onClick={() => setLevel(x.value)}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="NHẬP HỌ VÀ TÊN VẬN ĐỘNG VIÊN…"
               />
-              
             </div>
+<div className="sortBar">
+  <button
+    type="button"
+    className="sortBtn"
+    onClick={() =>
+      setSortBy((prev) =>
+        prev === "ratingDesc" ? "nameAsc" : "ratingDesc"
+      )
+    }
+    title="Đổi kiểu sắp xếp"
+  >
+    <span className="sortIcon">⏷</span>
+    <span className="sortText">
+      {sortBy.startsWith("rating") ? "RATING" : "A–Z"}
+    </span>
+  </button>
+
+  <div className="sortPills">
+    <button
+      type="button"
+      className={`pill ${sortBy === "ratingDesc" ? "active" : ""}`}
+      onClick={() => setSortBy("ratingDesc")}
+      title="Điểm cao → thấp"
+    >
+      ★↓
+    </button>
+    <button
+      type="button"
+      className={`pill ${sortBy === "ratingAsc" ? "active" : ""}`}
+      onClick={() => setSortBy("ratingAsc")}
+      title="Điểm thấp → cao"
+    >
+      ★↑
+    </button>
+    <button
+      type="button"
+      className={`pill ${sortBy === "nameAsc" ? "active" : ""}`}
+      onClick={() => setSortBy("nameAsc")}
+      title="Tên A → Z"
+    >
+      A→Z
+    </button>
+    <button
+      type="button"
+      className={`pill ${sortBy === "nameDesc" ? "active" : ""}`}
+      onClick={() => setSortBy("nameDesc")}
+      title="Tên Z → A"
+    >
+      Z→A
+    </button>
+  </div>
+</div>
+
           </div>
         </header>
 
@@ -170,6 +287,7 @@ onClick={() => setLevel(x.value)}
                   <tr>
                     <th className="cRank">STT</th>
                     <th className="cAth">VẬN ĐỘNG VIÊN</th>
+                    <th className="cCountry">QUỐC GIA</th>
                     <th className="cRating">ĐIỂM TRÌNH</th>
                     <th className="cTrend">PHONG ĐỘ</th>
                   </tr>
@@ -205,6 +323,20 @@ onClick={() => setLevel(x.value)}
                         </div>
                       </td>
 
+                      <td className="cCountry">
+  {r._country ? (
+    <span className="flagCircle" title={r._country}>
+      <img
+        className="flagImg"
+        src={flagUrl(r._country)}
+        alt={r._country}
+        onError={(e) => (e.currentTarget.style.display = "none")}
+      />
+    </span>
+  ) : (
+    <span className="flagEmpty">—</span>
+  )}
+</td>
                       <td className="cRating">
                         <span className="rating">{Number(r.rating || 0).toFixed(1)}</span>
                       </td>
