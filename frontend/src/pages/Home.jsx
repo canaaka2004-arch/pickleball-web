@@ -200,30 +200,22 @@ const slide2 = isMobile ? "/MB_POST_01.jpg" : "/DESK_POST1.jpg";
   <div className="hero-text-content">
           <div className="bilingual-heading">
             <h1 className="hero-text-title">
-  MR PHƯƠNG PICKLEBALL <br />
-  <span className="hero-text-subtitle-strong">OPEN CUP</span>
+  {t.home.hero2.title} <br />
+  <span className="hero-text-subtitle-strong">{t.home.hero2.subtitle}</span>
 </h1>
-            <p className="hero-text-subtitle">{t.hero2.subtitle}</p>
+            <p className="hero-text-subtitle"></p>
           </div>
 
           <div className="hero-text-body">
-            <p className="hero-text-paragraph">{t.hero2.intro}</p>
-            <p className="hero-text-paragraph">{t.hero2.about}</p>
-            
             <div className="tournament-details">
-              
-              <p className="hero-text-paragraph">{t.hero2.format}</p>
-              <p className="hero-text-paragraph highlight">{t.hero2.prize}</p>
             </div>
-
-            <p className="hero-text-paragraph">{t.hero2.registration}</p>
 
             <div className="hero-text-cta">
               <button
   onClick={() => navigate("/register")}
   className="rr-btn-cta join-btn"
 >
-  THAM GIA
+  {t.home.hero2.btnRegister}
 </button>
             </div>
           </div>
@@ -235,8 +227,8 @@ const slide2 = isMobile ? "/MB_POST_01.jpg" : "/DESK_POST1.jpg";
         <div className="hero-knowledge-bg" />
         <div className="hero-knowledge-content">
           <div className="bilingual-heading">
-            <h2 className="hero-knowledge-title">{t.hero3.title}</h2>
-            <p className="hero-knowledge-subtitle">{t.hero3.subtitle}</p>
+            <h2 className="hero-knowledge-title">{t.home.hero3.title}</h2>
+            <p className="hero-knowledge-subtitle">{t.home.hero3.subtitle}</p>
           </div>
 
           <div className="knowledge-grid">
