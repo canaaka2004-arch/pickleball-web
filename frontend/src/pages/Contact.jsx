@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { getTranslations } from '../translations';
 
 const Contact = ({ language }) => {
   const { toast } = useToast();
+  const t = getTranslations(language);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,61 +13,6 @@ const Contact = ({ language }) => {
     subject: '',
     message: ''
   });
-
-  const content = {
-    vi: {
-      title: 'Liên Hệ Với Chúng Tôi',
-      subtitle: 'Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn',
-      form: {
-        name: 'Họ và Tên',
-        namePlaceholder: 'Nguyễn Văn A',
-        email: 'Email',
-        emailPlaceholder: 'email@example.com',
-        phone: 'Số Điện Thoại',
-        phonePlaceholder: '0xxx',
-        subject: 'Tiêu Đề',
-        subjectPlaceholder: 'Vấn đề bạn quan tâm',
-        message: 'Nội Dung',
-        messagePlaceholder: 'Nhập nội dung tin nhắn của bạn...',
-        submit: 'Gửi Tin Nhắn'
-      },
-      info: {
-        title: 'Thông Tin Hỗ Trợ',
-        email: 'Email',
-        phone: 'Điện Thoại',
-        address: 'Địa Chỉ'
-      },
-      success: 'Tin nhắn đã được gửi thành công!',
-      error: 'Vui lòng điền đầy đủ thông tin'
-    },
-    en: {
-      title: 'Contact Us',
-      subtitle: 'We are always ready to listen and support you',
-      form: {
-        name: 'Full Name',
-        namePlaceholder: 'John Doe',
-        email: 'Email',
-        emailPlaceholder: 'email@example.com',
-        phone: 'Phone Number',
-        phonePlaceholder: '0xxx',
-        subject: 'Subject',
-        subjectPlaceholder: 'Your inquiry topic',
-        message: 'Message',
-        messagePlaceholder: 'Enter your message...',
-        submit: 'Send Message'
-      },
-      info: {
-        title: 'Contact Information',
-        email: 'Email',
-        phone: 'Phone',
-        address: 'Address'
-      },
-      success: 'Message sent successfully!',
-      error: 'Please fill in all fields'
-    }
-  };
-
-  const t = content[language];
 
   const handleChange = (e) => {
     setFormData({
@@ -79,7 +26,7 @@ const Contact = ({ language }) => {
     
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: t.error,
+        title: t.contact.error,
         variant: "destructive"
       });
       return;
@@ -89,7 +36,7 @@ const Contact = ({ language }) => {
     console.log('Form submitted:', formData);
     
     toast({
-      title: t.success
+      title: t.contact.success
     });
 
     // Reset form
@@ -105,8 +52,8 @@ const Contact = ({ language }) => {
   return (
     <div className="contact-page">
       <div className="page-hero">
-        <h1 className="page-title">{t.title}</h1>
-        <p className="page-subtitle">{t.subtitle}</p>
+        <h1 className="page-title">{t.contact.title}</h1>
+        <p className="page-subtitle">{t.contact.subtitle}</p>
       </div>
 
       <div className="contact-container">
@@ -115,27 +62,27 @@ const Contact = ({ language }) => {
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="name">{t.form.name}</label>
+                <label htmlFor="name">{t.contact.form.name}</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder={t.form.namePlaceholder}
+                  placeholder={t.contact.form.namePlaceholder}
                   className="form-input"
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">{t.form.email}</label>
+                <label htmlFor="email">{t.contact.form.email}</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder={t.form.emailPlaceholder}
+                  placeholder={t.contact.form.emailPlaceholder}
                   className="form-input"
                 />
               </div>
@@ -143,40 +90,40 @@ const Contact = ({ language }) => {
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="phone">{t.form.phone}</label>
+                <label htmlFor="phone">{t.contact.form.phone}</label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder={t.form.phonePlaceholder}
+                  placeholder={t.contact.form.phonePlaceholder}
                   className="form-input"
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">{t.form.subject}</label>
+                <label htmlFor="subject">{t.contact.form.subject}</label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder={t.form.subjectPlaceholder}
+                  placeholder={t.contact.form.subjectPlaceholder}
                   className="form-input"
                 />
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">{t.form.message}</label>
+              <label htmlFor="message">{t.contact.form.message}</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder={t.form.messagePlaceholder}
+                placeholder={t.contact.form.messagePlaceholder}
                 rows="6"
                 className="form-textarea"
               />
@@ -184,34 +131,34 @@ const Contact = ({ language }) => {
 
             <button type="submit" className="btn-cta">
               <Send size={20} />
-              {t.form.submit}
+              {t.contact.form.submit}
             </button>
           </form>
         </div>
 
         {/* Contact Info */}
         <div className="contact-info-section">
-          <h2 className="info-title">{t.info.title}</h2>
+          <h2 className="info-title">{t.contact.info.title}</h2>
           
           <div className="info-cards">
             <div className="info-card-contact">
               <Mail className="info-icon-large" size={32} />
-              <h3>{t.info.email}</h3>
+              <h3>{t.contact.info.email}</h3>
               <p>support : mrppopencup@gmail.com</p>
             </div>
 
             <div className="info-card-contact">
               <Phone className="info-icon-large" size={32} />
-              <h3>{t.info.phone}</h3>
+              <h3>{t.contact.info.phone}</h3>
               <p>Mr.Phương 0866161616</p>
               <p>Mr.Phong 0909135558</p>
             </div>
 
             <div className="info-card-contact">
               <MapPin className="info-icon-large" size={32} />
-              <h3>{t.info.address}</h3>
-              <p>{language === 'vi' ? 'TP. Hồ Chí Minh' : ' Ho Chi Minh City'}</p>
-              <p>{language === 'vi' ? 'Việt Nam' : 'Vietnam'}</p>
+              <h3>{t.contact.info.address}</h3>
+              <p>{t.contact.info.city}</p>
+              <p>{t.contact.info.country}</p>
             </div>
           </div>
         </div>
