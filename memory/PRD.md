@@ -194,6 +194,46 @@ POST   /api/contact - Submit contact form
 - User engagement (time on site, pages per session)
 
 ---
-**Last Updated:** January 1, 2025
+**Last Updated:** March 1, 2025
 **Status:** Phase 1 Complete - Frontend with Mock Data ✅
 **Next Phase:** Backend Development & API Integration
+
+---
+
+## Changelog
+
+### March 1, 2025 - Bilingual System Refactoring
+**Task:** Refactor and standardize the bilingual (Vietnamese/English) system across the entire website.
+
+**Files Created:**
+- `/app/frontend/src/translations.js` - Centralized translation system with all text content
+
+**Files Updated:**
+- `/app/frontend/src/components/Navbar.jsx` - Now uses centralized translations
+- `/app/frontend/src/components/Footer.jsx` - Now uses centralized translations
+- `/app/frontend/src/pages/Home.jsx` - Now uses centralized translations
+- `/app/frontend/src/pages/Contact.jsx` - Now uses centralized translations  
+- `/app/frontend/src/pages/RegisterPage.jsx` - Now uses centralized translations
+
+**Changes:**
+1. Created centralized `translations.js` with structured translation objects for vi/en
+2. Removed all hardcoded Vietnamese/English text from JSX components
+3. All static text now controlled by `getTranslations(language)` function
+4. Navigation links, form labels, placeholders, button text, error messages - all translated
+5. Footer sections (Partner, Quick Links, Contact, Follow) - all translated
+6. Language state persists across page navigation (no reload needed)
+7. Default language remains Vietnamese
+
+**Translation Categories:**
+- `nav` - Navigation menu items
+- `home` - Home page hero sections
+- `register` - Registration form fields and validation messages
+- `contact` - Contact page form and info
+- `footer` - Footer sections and links
+- `common` - Common UI elements
+
+**NOT Modified (per requirements):**
+- Athletes page (athletes.jsx) - untouched
+- UI layout, spacing, styling, animations - preserved
+- API/data logic - unchanged
+- Business logic - unchanged
