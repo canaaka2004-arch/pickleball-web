@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { getTranslations } from '../translations';
  
 
 const Home = ({ language }) => { 
@@ -12,105 +13,11 @@ const Home = ({ language }) => {
   const touchStartXRef = useRef(0);
   const touchDeltaXRef = useRef(0);
   const isSwipingRef = useRef(false);
+  const t = getTranslations(language);
 
   const SLIDE_COUNT = 2;
   const AUTOPLAY_MS = 5000;     // đang là 5 giây (đổi số ở đây)
   const SWIPE_THRESHOLD = 50;   // vuốt hơn 50px mới chuyển
-
-
-
-  const content = {
-    vi: {
-      hero2: {
-        title: 'MR PHƯƠNG PICKLEBALL OPEN CUP',
-        btnRegister: 'Đăng Ký Tham Gia'
-      },
-      form: {
-        title: 'ĐĂNG KÝ THAM GIA',
-        name: 'Họ và tên',
-        namePlaceholder: 'Nhập họ và tên đầy đủ',
-        email: 'Email',
-        emailPlaceholder: 'email@example.com',
-        phone: 'Số điện thoại',
-        phonePlaceholder: '+84 xxx xxx xxx',
-        level: 'Trình độ',
-        levelPlaceholder: 'Chọn trình độ',
-        levels: {
-          newbie: 'Newbie',
-          pro: 'Pro',
-          master: 'Master'
-        },
-        submit: 'Gửi Đăng Ký',
-        cancel: 'Hủy',
-        required: 'Vui lòng điền đầy đủ thông tin',
-        success: 'Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm.'
-      },
-      hero3: {
-        title: 'COMING SOON...',
-        subtitle: 'COMING SOON...',
-        
-      },
-      
-    },
-    en: {
-      hero2: {
-        title: 'MR. PHƯƠNG PICKLEBALL TOURNAMENT 2024',
-        btnRegister: 'Register Now'
-      },
-      form: {
-        title: 'REGISTER NOW',
-        name: 'Full Name',
-        namePlaceholder: 'Enter your full name',
-        email: 'Email',
-        emailPlaceholder: 'email@example.com',
-        phone: 'Phone Number',
-        phonePlaceholder: '+84 xxx xxx xxx',
-        level: 'Skill Level',
-        levelPlaceholder: 'Select your level',
-        levels: {
-          newbie: 'Newbie',
-          pro: 'Pro',
-          master: 'Master'
-        },
-        submit: 'Submit Registration',
-        cancel: 'Cancel',
-        required: 'Please fill in all fields',
-        success: 'Registration successful! We will contact you soon.'
-      },
-      hero3: {
-        title: 'COMING SOON...',
-        subtitle: 'COMING SOON...',
-        
-      },
-      
-    }
-  };
-
-  const t = content[language];
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.phone || !formData.level) {
-      alert(t.form.required);
-      return;
-    }
-
-    // Mock submission
-    console.log('Registration submitted:', formData);
-    alert(t.form.success);
-    
-    // Reset and close
-    setFormData({ name: '', email: '', phone: '', level: '' });
-    setShowRegistrationForm(false);
-  };
 
   useEffect(() => {
     // Smooth fade-in animation on scroll
