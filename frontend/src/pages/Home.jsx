@@ -286,7 +286,7 @@ const slide2 = isMobile ? "/MB_POST_01.jpg" : "/DESK_POST1.jpg";
     style={{
       backgroundImage: `
         linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)),
-        url("hero2bg.jpg")
+        url("cuppickleball.png")
       `
     }}
   />
