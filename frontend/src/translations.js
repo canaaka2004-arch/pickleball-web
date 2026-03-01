@@ -11,6 +11,10 @@ const translations = {
       tournament: 'Giải Đấu',
       athletes: 'Vận Động Viên',
       contact: 'Liên Hệ',
+      format: 'Thể Thức',
+      media: 'Hình Ảnh',
+      ranking: 'Bảng Xếp Hạng',
+      live: 'Kết Quả Trực Tiếp',
       menu: 'MENU',
       switchLang: 'English'
     },
@@ -92,6 +96,87 @@ const translations = {
       error: 'Vui lòng điền đầy đủ thông tin'
     },
 
+    // Tournament Slots
+    slots: {
+      title: 'ĐĂNG KÝ THEO NỘI DUNG',
+      subtitle: 'Tình trạng slot đăng ký',
+      registered: 'Đã đăng ký',
+      available: 'Còn trống',
+      full: 'HẾT SLOT'
+    },
+
+    // Format Page
+    format: {
+      title: 'THỂ THỨC GIẢI ĐẤU',
+      subtitle: 'Cấu trúc và quy định thi đấu',
+      groupStage: {
+        title: 'VÒNG BẢNG',
+        description: 'Các đội được chia thành các bảng đấu vòng tròn. Mỗi đội sẽ gặp tất cả các đội khác trong bảng.',
+        rules: [
+          'Thắng: 3 điểm',
+          'Hòa: 1 điểm',
+          'Thua: 0 điểm',
+          '2 đội đứng đầu mỗi bảng đi tiếp'
+        ]
+      },
+      knockout: {
+        title: 'VÒNG LOẠI TRỰC TIẾP',
+        description: 'Các đội thắng vòng bảng thi đấu theo thể thức loại trực tiếp.',
+        stages: ['Vòng 16', 'Tứ Kết', 'Bán Kết', 'Chung Kết']
+      },
+      bracket: {
+        title: 'SƠ ĐỒ THI ĐẤU',
+        quarterFinal: 'TỨ KẾT',
+        semiFinal: 'BÁN KẾT',
+        final: 'CHUNG KẾT',
+        champion: 'VÔ ĐỊCH'
+      }
+    },
+
+    // Prize Section
+    prize: {
+      title: 'CƠ CẤU GIẢI THƯỞNG',
+      subtitle: 'Phần thưởng hấp dẫn dành cho các vận động viên',
+      champion: 'VÔ ĐỊCH',
+      runnerUp: 'Á QUÂN',
+      thirdPlace: 'HẠNG BA',
+      total: 'TỔNG GIẢI THƯỞNG'
+    },
+
+    // Media Page
+    media: {
+      title: 'HÌNH ẢNH & VIDEO',
+      subtitle: 'Những khoảnh khắc đáng nhớ từ các giải đấu',
+      gallery: 'THƯ VIỆN ẢNH',
+      highlights: 'VIDEO NỔI BẬT',
+      pastMoments: 'KHOẢNH KHẮC QUA CÁC MÙA GIẢI'
+    },
+
+    // Ranking Page
+    ranking: {
+      title: 'BẢNG XẾP HẠNG',
+      subtitle: 'Top vận động viên theo trình độ',
+      intermediate: 'TOP 20 INTERMEDIATE',
+      advanced: 'TOP 20 ADVANCED',
+      rank: 'Hạng',
+      player: 'Vận động viên',
+      points: 'Điểm'
+    },
+
+    // Live Results
+    live: {
+      title: 'KẾT QUẢ TRỰC TIẾP',
+      subtitle: 'Theo dõi các trận đấu đang diễn ra',
+      court: 'Sân',
+      vs: 'VS',
+      status: {
+        live: 'ĐANG DIỄN RA',
+        finished: 'KẾT THÚC',
+        upcoming: 'SẮP DIỄN RA'
+      },
+      noMatches: 'Không có trận đấu nào đang diễn ra'
+    },
+
     // Footer
     footer: {
       partner: 'Đồng Hành',
@@ -126,6 +211,10 @@ const translations = {
       tournament: 'Tournament',
       athletes: 'Athletes',
       contact: 'Contact',
+      format: 'Format',
+      media: 'Media',
+      ranking: 'Ranking',
+      live: 'Live Results',
       menu: 'MENU',
       switchLang: 'Tiếng Việt'
     },
@@ -205,6 +294,87 @@ const translations = {
       },
       success: 'Message sent successfully!',
       error: 'Please fill in all fields'
+    },
+
+    // Tournament Slots
+    slots: {
+      title: 'REGISTRATION BY EVENT',
+      subtitle: 'Slot availability status',
+      registered: 'Registered',
+      available: 'Available',
+      full: 'FULL'
+    },
+
+    // Format Page
+    format: {
+      title: 'TOURNAMENT FORMAT',
+      subtitle: 'Competition structure and rules',
+      groupStage: {
+        title: 'GROUP STAGE',
+        description: 'Teams are divided into groups for round-robin matches. Each team plays all other teams in their group.',
+        rules: [
+          'Win: 3 points',
+          'Draw: 1 point',
+          'Loss: 0 points',
+          'Top 2 teams advance'
+        ]
+      },
+      knockout: {
+        title: 'KNOCKOUT STAGE',
+        description: 'Group winners compete in single elimination format.',
+        stages: ['Round of 16', 'Quarter Finals', 'Semi Finals', 'Final']
+      },
+      bracket: {
+        title: 'BRACKET',
+        quarterFinal: 'QUARTER FINAL',
+        semiFinal: 'SEMI FINAL',
+        final: 'FINAL',
+        champion: 'CHAMPION'
+      }
+    },
+
+    // Prize Section
+    prize: {
+      title: 'PRIZE STRUCTURE',
+      subtitle: 'Exciting rewards for athletes',
+      champion: 'CHAMPION',
+      runnerUp: 'RUNNER-UP',
+      thirdPlace: 'THIRD PLACE',
+      total: 'TOTAL PRIZE POOL'
+    },
+
+    // Media Page
+    media: {
+      title: 'PHOTOS & VIDEOS',
+      subtitle: 'Memorable moments from tournaments',
+      gallery: 'PHOTO GALLERY',
+      highlights: 'VIDEO HIGHLIGHTS',
+      pastMoments: 'PAST TOURNAMENT MOMENTS'
+    },
+
+    // Ranking Page
+    ranking: {
+      title: 'RANKINGS',
+      subtitle: 'Top players by skill level',
+      intermediate: 'TOP 20 INTERMEDIATE',
+      advanced: 'TOP 20 ADVANCED',
+      rank: 'Rank',
+      player: 'Player',
+      points: 'Points'
+    },
+
+    // Live Results
+    live: {
+      title: 'LIVE RESULTS',
+      subtitle: 'Follow ongoing matches',
+      court: 'Court',
+      vs: 'VS',
+      status: {
+        live: 'LIVE',
+        finished: 'FINISHED',
+        upcoming: 'UPCOMING'
+      },
+      noMatches: 'No matches currently in progress'
     },
 
     // Footer
