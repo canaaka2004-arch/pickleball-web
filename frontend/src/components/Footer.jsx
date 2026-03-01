@@ -1,45 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { getTranslations } from "../translations";
 
 const Footer = ({ language }) => {
-  const content = {
-    vi: {
-      quickLinks: "Liên Kết",
-      contact: "Liên Hệ",
-      follow: "Theo Dõi",
-      partner: "Đồng Hành",
-      copyright: "© 2025 MR.PHUONG PICKLEBALL COMMUNITY",
-    },
-    en: {
-      quickLinks: "Quick Links",
-      contact: "Contact",
-      follow: "Follow Us",
-      partner: "partner",
-      copyright: "© 2025 MR.PHUONG PICKLEBALL COMMUNITY",
-    },
-  };
-
-  const links = {
-    vi: [
-      { name: "Trang Chủ", path: "/" },
-      { name: "Vận Động Viên", path: "/athletes" },
-    ],
-    en: [
-      { name: "Home", path: "/" },
-      { name: "Athletes", path: "/athletes" },
-    ],
-  };
-
-  const t = content[language] || content.vi;
+  const t = getTranslations(language);
 
   return (
     <footer className="network-footer">
       <div className="footer-container">
         <div className="footer-grid">
-          {/* partner / Partner */}
+          {/* Partner */}
           <div className="footer-section partner-section">
-  <h3 className="footer-title">Đồng Hành</h3>
+  <h3 className="footer-title">{t.footer.partner}</h3>
 
   <div className="partner-grid">
     <a
@@ -59,7 +32,7 @@ const Footer = ({ language }) => {
     <a href="https://pinbus.vn/" className="partner-link">
       <img
         src="/pinbus.jpg"
-        alt="partner 2"
+        alt="Pinbus"
         className="partner-logo"
       />
     </a>
@@ -69,9 +42,9 @@ const Footer = ({ language }) => {
 
           {/* Quick Links */}
           <div className="footer-section">
-            <h3 className="footer-title">{t.quickLinks}</h3>
+            <h3 className="footer-title">{t.footer.quickLinks}</h3>
             <div className="footer-links">
-              {(links[language] || links.vi).map((link) => (
+              {t.footer.links.map((link) => (
                 <Link key={link.path} to={link.path} className="footer-link">
                   {link.name}
                 </Link>
@@ -81,7 +54,7 @@ const Footer = ({ language }) => {
 
           {/* Contact */}
           <div className="footer-section">
-            <h3 className="footer-title">{t.contact}</h3>
+            <h3 className="footer-title">{t.footer.contact}</h3>
             <div className="footer-contact">
               <div className="contact-item">
                 <Mail size={16} />
@@ -93,14 +66,14 @@ const Footer = ({ language }) => {
               </div>
               <div className="contact-item">
                 <MapPin size={16} />
-                <span>TP. Hồ Chí Minh, Việt Nam</span>
+                <span>{t.contact.info.city}, {t.contact.info.country}</span>
               </div>
             </div>
           </div>
 
           {/* Social */}
           <div className="footer-section">
-            <h3 className="footer-title">{t.follow}</h3>
+            <h3 className="footer-title">{t.footer.follow}</h3>
             <div className="social-links">
               <a
                 href="https://www.facebook.com/share/1KWQKycShe/?mibextid=wwXIfr"
@@ -115,7 +88,7 @@ const Footer = ({ language }) => {
         </div>
 
         <div className="footer-bottom">
-          <p className="copyright">{t.copyright}</p>
+          <p className="copyright">{t.footer.copyright}</p>
         </div>
       </div>
     </footer>
