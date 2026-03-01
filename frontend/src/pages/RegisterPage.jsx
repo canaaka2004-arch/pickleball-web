@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { getTranslations } from "../translations";
 
 const LEVELS = [
   { value: "intermediate", label: "Intermediate (<2.5)", min: 0, max: 2.4 },
@@ -8,69 +9,14 @@ const LEVELS = [
 ];
 
 export default function RegisterPage({ language = "vi" }) {
-  const t = {
-    vi: {
-      title: "ĐĂNG KÝ THAM GIA",
-      fullName: "Họ và tên vận động viên",
-      dob: "Ngày tháng năm sinh",
-      phone: "Số điện thoại",
-      email: "Email (không bắt buộc)",
-      country: "Quốc gia",
-      chooseCountry:"-- Chọn quốc gia --",
-      errCountry:"Chưa chọn quốc gia.",
-      gender: "Giới tính",
-      chooseGender: "-- Chọn giới tính --",
-      male: "Nam",
-      female: "Nữ",
-      level: "Trình độ",
-      rating: "Điểm trình",
-      upload: "Upload hình ảnh vận động viên (không bắt buộc)",
-      submit: "ĐĂNG KÝ",
-      sending: "Đang gửi...",
-      chooseLevel: "-- Chọn trình độ --",
-      errGender: "Chưa chọn giới tính.",
-      errFullName: "Chưa cung cấp họ và tên.",
-      errDob: "Chưa cung cấp ngày tháng năm sinh.",
-      errPhone: "Chưa cung cấp số điện thoại.",
-      errLevel: "Chưa chọn trình độ.",
-      errRating: "Chưa nhập điểm trình.",
-      errRatingNum: "Điểm trình phải là số >= 0.",
-    },
-    en: {
-      title: "PLAYER REGISTRATION",
-      fullName: "Full name",
-      dob: "Date of birth",
-      phone: "Phone number",
-      email: "Email (optional)",
-      country: "Country",
-chooseCountry: "-- Select country --",
-errCountry: "Please select a country.",
-      gender: "Gender",
-      chooseGender: "-- Select gender --",
-      male: "Male",
-      female: "Female",
-      level: "Skill level",
-      rating: "Rating",
-      upload: "Upload player photo (optional)",
-      submit: "SUBMIT",
-      sending: "Submitting...",
-      chooseLevel: "-- Select level --",
-      errGender: "Please select gender.",
-      errFullName: "Full name is required.",
-      errDob: "Date of birth is required.",
-      errPhone: "Phone number is required.",
-      errLevel: "Please select level.",
-      errRating: "Rating is required.",
-      errRatingNum: "Rating must be a number >= 0.",
-    },
-  }[language];
+  const t = getTranslations(language).register;
 
   const [form, setForm] = useState({
     fullName: "",
     dob: "",
     phone: "",
     email: "",
-    gender: "", // ✅ thêm gender
+    gender: "",
     level: "",
     rating: "",
     countryCode:"",
@@ -99,8 +45,8 @@ errCountry: "Please select a country.",
       const list = (Array.isArray(data) ? data : [])
         .filter((c) => c?.cca2 && c?.name?.common)
         .map((c) => ({
-          code: c.cca2,        // ISO2: VN, US...
-          name: c.name.common, // tên quốc gia
+          code: c.cca2,
+          name: c.name.common,
         }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -122,7 +68,7 @@ errCountry: "Please select a country.",
   const onFileChange = (e) => {
     const file = e.target.files?.[0] || null;
     setForm((p) => ({ ...p, photo: file }));
-setErrors((p) => ({ ...p, photo: "" }));
+    setErrors((p) => ({ ...p, photo: "" }));
     setSuccessMsg("");
   };
 
@@ -132,7 +78,7 @@ setErrors((p) => ({ ...p, photo: "" }));
     if (!form.fullName.trim()) next.fullName = t.errFullName;
     if (!form.dob) next.dob = t.errDob;
     if (!form.phone.trim()) next.phone = t.errPhone;
-    if (!form.gender) next.gender = t.errGender; // ✅ validate gender
+    if (!form.gender) next.gender = t.errGender;
     if (!form.level) next.level = t.errLevel;
     if (!form.rating.toString().trim()) next.rating = t.errRating;
     if (!form.countryCode) next.countryCode = t.errCountry;
@@ -147,7 +93,10 @@ setErrors((p) => ({ ...p, photo: "" }));
       if (rule) {
         const ok = ratingNum >= rule.min && ratingNum <= rule.max;
         if (!ok) {
-          next.rating = `Sai trình độ: ${rule.label}. Điểm hợp lệ: ${rule.min}–${rule.max}.`;
+          next.rating = t.errRatingRange
+            .replace('{label}', rule.label)
+            .replace('{min}', rule.min)
+            .replace('{max}', rule.max);
         }
       }
     }
@@ -187,8 +136,8 @@ setErrors((p) => ({ ...p, photo: "" }));
         dob: form.dob,
         phone: form.phone.trim(),
         email: form.email.trim(),
-       countryCode: form.countryCode, 
-        gender: form.gender, // ✅ gửi gender lên sheet
+        countryCode: form.countryCode, 
+        gender: form.gender,
         level: form.level,
         rating: Number(form.rating),
         photoBase64,
@@ -204,13 +153,13 @@ setErrors((p) => ({ ...p, photo: "" }));
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "Submit failed");
 
-      setSuccessMsg("Đăng ký thành công!");
+      setSuccessMsg(t.successMsg);
       setForm({
         fullName: "",
         dob: "",
         phone: "",
         email: "",
-        gender: "", // ✅ reset gender
+        gender: "",
         level: "",
         rating: "",
         countryCode: "",
@@ -220,7 +169,7 @@ setErrors((p) => ({ ...p, photo: "" }));
       });
       setErrors({});
     } catch (err) {
-      alert("Lỗi gửi đăng ký: " + (err?.message || "Không rõ lỗi"));
+      alert(`${t.errorSubmit}: ${err?.message || t.unknownError}`);
     } finally {
       setSubmitting(false);
     }
@@ -257,7 +206,7 @@ setErrors((p) => ({ ...p, photo: "" }));
             onChange={onChange}
           />
         </div>
-        {/* ✅ COUNTRY */}
+        {/* COUNTRY */}
 <div className="field">
   <label>{t.country} *</label>
   <select name="countryCode" value={form.countryCode} onChange={onChange}>
@@ -271,7 +220,7 @@ setErrors((p) => ({ ...p, photo: "" }));
   {errors.countryCode && <div className="err">{errors.countryCode}</div>}
 </div>
 
-        {/* ✅ GENDER */}
+        {/* GENDER */}
         <div className="field">
           <label>{t.gender} *</label>
           <select name="gender" value={form.gender} onChange={onChange}>
@@ -303,7 +252,7 @@ setErrors((p) => ({ ...p, photo: "" }));
             onChange={onChange}
             inputMode="decimal"
             placeholder={
-              levelRule ? `${levelRule.min} - ${levelRule.max}` : "Nhập điểm"
+              levelRule ? `${levelRule.min} - ${levelRule.max}` : t.ratingPlaceholder
             }
           />
           {errors.rating && <div className="err">{errors.rating}</div>}
