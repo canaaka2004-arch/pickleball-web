@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
+import { getTranslations } from '../translations';
 
 const Navbar = ({ language, setLanguage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const t = getTranslations(language);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,20 +18,12 @@ const Navbar = ({ language, setLanguage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = {
-    vi: [
-      { name: 'Trang Chủ', path: '/' },
-      { name: 'Giải Đấu', path: '/tournament' },
-      {name: 'Vận Động Viên', path: '/athletes'},
-      { name: 'Liên Hệ', path: '/contact' }
-    ],
-    en: [
-      { name: 'Home', path: '/' },
-      { name: 'Tournament', path: '/tournament' },
-      {name: '', path: '/athletes'},
-      { name: 'Contact', path: '/contact' }
-    ]
-  };
+  const navLinks = [
+    { name: t.nav.home, path: '/' },
+    { name: t.nav.tournament, path: '/tournament' },
+    { name: t.nav.athletes, path: '/athletes' },
+    { name: t.nav.contact, path: '/contact' }
+  ];
 
   const toggleLanguage = () => {
     setLanguage(language === 'vi' ? 'en' : 'vi');
@@ -46,7 +40,7 @@ const Navbar = ({ language, setLanguage }) => {
             aria-label="Toggle menu"
           >
             <Menu size={20} strokeWidth={1} />
-            <span className="rr-menu-label">MENU</span>
+            <span className="rr-menu-label">{t.nav.menu}</span>
           </button>
 
           {/* Center: Logo - Letter P */}   
@@ -87,7 +81,7 @@ const Navbar = ({ language, setLanguage }) => {
             </button>
             
             <div className="rr-menu-links">
-              {navLinks[language].map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -107,7 +101,7 @@ const Navbar = ({ language, setLanguage }) => {
                 }}
                 className="rr-menu-language"
               >
-                {language === 'vi' ? 'English' : 'Tiếng Việt'}
+                {t.nav.switchLang}
               </button>
             </div>
           </nav>
