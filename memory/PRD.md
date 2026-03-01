@@ -202,38 +202,37 @@ POST   /api/contact - Submit contact form
 
 ## Changelog
 
-### March 1, 2025 - Bilingual System Refactoring
-**Task:** Refactor and standardize the bilingual (Vietnamese/English) system across the entire website.
+### March 1, 2025 - Professional Tournament Platform Upgrade
+**Task:** Add 6 new professional features to upgrade the website.
 
-**Files Created:**
-- `/app/frontend/src/translations.js` - Centralized translation system with all text content
+**NEW PAGES Created:**
+- `/app/frontend/src/pages/FormatPage.jsx` - Tournament format with group stage, knockout stage, and bracket visualization
+- `/app/frontend/src/pages/MediaPage.jsx` - Photo gallery, video highlights, past tournament moments with lightbox
+- `/app/frontend/src/pages/RankingPage.jsx` - Top 20 Intermediate & Advanced player rankings with trophy/medal icons
+- `/app/frontend/src/pages/LivePage.jsx` - Live results board with simulated score updates, court numbers, match status
 
 **Files Updated:**
-- `/app/frontend/src/components/Navbar.jsx` - Now uses centralized translations
-- `/app/frontend/src/components/Footer.jsx` - Now uses centralized translations
-- `/app/frontend/src/pages/Home.jsx` - Now uses centralized translations
-- `/app/frontend/src/pages/Contact.jsx` - Now uses centralized translations  
-- `/app/frontend/src/pages/RegisterPage.jsx` - Now uses centralized translations
+- `/app/frontend/src/App.js` - Added 4 new routes (/format, /media, /ranking, /live)
+- `/app/frontend/src/translations.js` - Added translations for all new pages (format, media, ranking, live, slots, prize)
+- `/app/frontend/src/components/Navbar.jsx` - Added new navigation links
+- `/app/frontend/src/App.css` - Added 500+ lines of CSS for new components
 
-**Changes:**
-1. Created centralized `translations.js` with structured translation objects for vi/en
-2. Removed all hardcoded Vietnamese/English text from JSX components
-3. All static text now controlled by `getTranslations(language)` function
-4. Navigation links, form labels, placeholders, button text, error messages - all translated
-5. Footer sections (Partner, Quick Links, Contact, Follow) - all translated
-6. Language state persists across page navigation (no reload needed)
-7. Default language remains Vietnamese
+**New Features:**
+1. **Format Page** (/format) - Tournament structure, group stage rules, knockout stages, static bracket visualization
+2. **Media Page** (/media) - Photo gallery grid with lightbox, video highlights with play overlay, past tournament moments
+3. **Ranking Page** (/ranking) - Top 20 Intermediate + Top 20 Advanced tables with gold/silver/bronze icons
+4. **Live Results Page** (/live) - Simulated live match scoreboard with auto-updating scores, court badges, status badges
 
-**Translation Categories:**
-- `nav` - Navigation menu items
-- `home` - Home page hero sections
-- `register` - Registration form fields and validation messages
-- `contact` - Contact page form and info
-- `footer` - Footer sections and links
-- `common` - Common UI elements
+**CSS Components Added:**
+- Format page styles (bracket, stages, cards)
+- Media gallery grid + lightbox modal
+- Ranking tables with medal icons
+- Live match cards with status badges
+- Slot progress bars with shimmer animation
+- Prize section with medal animations
 
-**NOT Modified (per requirements):**
-- Athletes page (athletes.jsx) - untouched
-- UI layout, spacing, styling, animations - preserved
-- API/data logic - unchanged
-- Business logic - unchanged
+**Preserved (as required):**
+- All existing UI, layout, styling, animations
+- Existing business logic and API logic
+- Athletes page structure
+- Language switching functionality
