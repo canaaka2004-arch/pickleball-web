@@ -21,6 +21,10 @@ const Navbar = ({ language, setLanguage }) => {
   const navLinks = [
     { name: t.nav.home, path: '/' },
     { name: t.nav.tournament, path: '/tournament' },
+    { name: t.nav.format, path: '/format' },
+    { name: t.nav.ranking, path: '/ranking' },
+    { name: t.nav.live, path: '/live' },
+    { name: t.nav.media, path: '/media' },
     { name: t.nav.athletes, path: '/athletes' },
     { name: t.nav.contact, path: '/contact' }
   ];
