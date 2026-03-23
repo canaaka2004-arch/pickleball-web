@@ -21,7 +21,7 @@ const MediaPage = ({ language }) => {
           setMediaList(result.gallery);
         }
       } catch (error) {
-        console.error("Lỗi lấy thư viện:", error);
+        console.error("Error loading gallery:", error);
       } finally {
         setLoading(false);
       }
@@ -33,7 +33,7 @@ const MediaPage = ({ language }) => {
   const images = mediaList.filter(item => item.type === 'image' || !item.type);
   const videos = mediaList.filter(item => item.type === 'video');
 
-  if (loading) return <div className="loading-screen" style={{color: '#c5a459'}}>Loading Media...</div>;
+  if (loading) return <div className="loading-screen" style={{color: '#c5a459'}}>{t.media.loadingMedia}</div>;
 
   return (
     <div className="media-page" style={{ backgroundColor: '#000', minHeight: '100vh' }}>
@@ -79,8 +79,8 @@ const MediaPage = ({ language }) => {
         <div className="media-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
         
         <div className="media-hero-content">
-          <h1 className="media-hero-title">HÌNH ẢNH & VIDEO</h1>
-          <p className="media-hero-subtitle">Khoảnh khắc Match Point Championship</p>
+          <h1 className="media-hero-title">{t.media.title}</h1>
+          <p className="media-hero-subtitle">{t.media.subtitle}</p>
         </div>
       </section>
 
@@ -89,7 +89,7 @@ const MediaPage = ({ language }) => {
         {/* PHẦN HÌNH ẢNH */}
         <section className="media-section" style={{ marginBottom: '60px' }}>
           <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
-            THƯ VIỆN ẢNH
+            {t.media.gallery}
           </h2>
           {images.length > 0 ? (
             <div className="media-grid">
@@ -103,14 +103,14 @@ const MediaPage = ({ language }) => {
               ))}
             </div>
           ) : (
-             <p style={{color: '#666', fontStyle: 'italic'}}>Chưa có hình ảnh nào được tải lên...</p>
+             <p style={{color: '#666', fontStyle: 'italic'}}>{t.media.noImages}</p>
           )}
         </section>
 
         {/* PHẦN VIDEO */}
         <section className="media-section">
           <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
-            VIDEO HIGHLIGHTS
+            {t.media.highlights}
           </h2>
           {videos.length > 0 ? (
             <div className="media-grid">
@@ -120,14 +120,14 @@ const MediaPage = ({ language }) => {
                   <div className="media-overlay" style={{opacity: 1}}>
                     <div style={{textAlign: 'center'}}>
                       <Play color="#c5a459" size={48} fill="#c5a459" />
-                      <p style={{color: '#fff', marginTop: '10px', fontSize: '0.9rem'}}>{vid.title || "Xem Video"}</p>
+                      <p style={{color: '#fff', marginTop: '10px', fontSize: '0.9rem'}}>{vid.title || t.media.watchVideo}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p style={{color: '#666', fontStyle: 'italic'}}>Video sắp ra mắt (Coming Soon)...</p>
+            <p style={{color: '#666', fontStyle: 'italic'}}>{t.media.noVideos}</p>
           )}
         </section>
       </div>
