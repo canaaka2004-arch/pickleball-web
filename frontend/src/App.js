@@ -28,8 +28,9 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home language={language} />} />
-            <Route path="/tournaments" element={<Tournaments language={language} />} />
-            <Route path="/tournaments/:id" element={<TournamentDetail language={language} />} />
+            {/* ĐÃ XÓA CHỮ 's' Ở ĐÂY ĐỂ KHỚP VỚI MENU */}
+            <Route path="/tournament" element={<Tournaments language={language} />} />
+            <Route path="/tournament/:id" element={<TournamentDetail language={language} />} />
             <Route path="/rankings" element={<Rankings language={language} />} />
             <Route path="/athletes" element={<Athletes />} />
             <Route path="/news" element={<News language={language} />} />

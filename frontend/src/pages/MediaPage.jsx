@@ -1,118 +1,150 @@
-import React, { useState } from 'react';
-import { Play, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Play, X, Image as ImageIcon, Video } from 'lucide-react';
 import { getTranslations } from '../translations';
-
-// Mock data for gallery
-const galleryImages = [
-  { id: 1, src: 'https://images.pexels.com/photos/8224733/pexels-photo-8224733.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 1' },
-  { id: 2, src: 'https://images.pexels.com/photos/8224728/pexels-photo-8224728.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 2' },
-  { id: 3, src: 'https://images.pexels.com/photos/8224729/pexels-photo-8224729.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 3' },
-  { id: 4, src: 'https://images.pexels.com/photos/8224735/pexels-photo-8224735.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 4' },
-  { id: 5, src: 'https://images.pexels.com/photos/8224731/pexels-photo-8224731.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 5' },
-  { id: 6, src: 'https://images.pexels.com/photos/8224734/pexels-photo-8224734.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Tournament action 6' },
-];
-
-// Mock data for videos
-const highlightVideos = [
-  { id: 1, thumbnail: 'https://images.pexels.com/photos/8224733/pexels-photo-8224733.jpeg?auto=compress&cs=tinysrgb&w=600', title: 'MR.PP Open Cup Season 5 - Highlights', duration: '5:32' },
-  { id: 2, thumbnail: 'https://images.pexels.com/photos/8224728/pexels-photo-8224728.jpeg?auto=compress&cs=tinysrgb&w=600', title: 'Best Rallies - Championship Finals', duration: '3:45' },
-  { id: 3, thumbnail: 'https://images.pexels.com/photos/8224729/pexels-photo-8224729.jpeg?auto=compress&cs=tinysrgb&w=600', title: 'Top 10 Points of the Tournament', duration: '4:18' },
-];
-
-// Mock data for past moments
-const pastMoments = [
-  { id: 1, season: 'Season 4', image: 'https://images.pexels.com/photos/8224735/pexels-photo-8224735.jpeg?auto=compress&cs=tinysrgb&w=400', champion: 'Team Alpha' },
-  { id: 2, season: 'Season 3', image: 'https://images.pexels.com/photos/8224731/pexels-photo-8224731.jpeg?auto=compress&cs=tinysrgb&w=400', champion: 'Team Beta' },
-  { id: 3, season: 'Season 2', image: 'https://images.pexels.com/photos/8224734/pexels-photo-8224734.jpeg?auto=compress&cs=tinysrgb&w=400', champion: 'Team Gamma' },
-  { id: 4, season: 'Season 1', image: 'https://images.pexels.com/photos/8224733/pexels-photo-8224733.jpeg?auto=compress&cs=tinysrgb&w=400', champion: 'Team Delta' },
-];
 
 const MediaPage = ({ language }) => {
   const t = getTranslations(language);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [mediaList, setMediaList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Link Web App Apps Script của sếp
+  const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
+
+  // 1. LẤY DỮ LIỆU TỪ GOOGLE SHEETS (Tab Gallery)
+  useEffect(() => {
+    const fetchMedia = async () => {
+      try {
+        const response = await fetch(`${API_URL}?t=${new Date().getTime()}`);
+        const result = await response.json();
+        if (result.gallery) {
+          setMediaList(result.gallery);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy thư viện:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMedia();
+  }, []);
+
+  // Tách ra 2 nhóm: Hình ảnh và Video
+  const images = mediaList.filter(item => item.type === 'image' || !item.type);
+  const videos = mediaList.filter(item => item.type === 'video');
+
+  if (loading) return <div className="loading-screen" style={{color: '#c5a459'}}>Loading Media...</div>;
 
   return (
-    <div className="media-page">
-      <div className="page-hero">
-        <h1 className="page-title">{t.media.title}</h1>
-        <p className="page-subtitle">{t.media.subtitle}</p>
-      </div>
+    <div className="media-page" style={{ backgroundColor: '#000', minHeight: '100vh' }}>
+      
+      {/* 1. HEADER (Style Dark Net y hệt các trang khác) */}
+      <section className="fade-in-section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <style>
+          {`
+            .media-hero-content {
+              display: flex !important; flex-direction: column !important; align-items: center !important;
+              justify-content: center !important; gap: 15px !important; padding: 100px 20px !important;
+              text-align: center !important; position: relative !important; z-index: 2 !important; min-height: 40vh !important;
+            }
+            .media-hero-title {
+              color: #ffffff !important; font-size: 3rem !important; font-weight: bold !important;
+              text-transform: uppercase !important; letter-spacing: 3px !important; margin: 0 !important;
+            }
+            .media-hero-subtitle {
+              color: #c5a459 !important; font-size: 1.1rem !important; text-transform: uppercase !important; letter-spacing: 4px !important;
+            }
+            .media-dynamic-bg {
+              background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)), url("/net-bg.jpg");
+              background-size: cover; background-position: center;
+            }
+            .media-grid {
+              display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px 0;
+            }
+            .media-card {
+              position: relative; border-radius: 12px; overflow: hidden; background: #111; border: 1px solid #222;
+              aspect-ratio: 16/9; cursor: pointer; transition: all 0.3s ease;
+            }
+            .media-card:hover { transform: scale(1.02); border-color: #c5a459; }
+            .media-card img { width: 100%; height: 100%; object-fit: cover; }
+            .media-overlay {
+              position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
+              opacity: 0; transition: 0.3s;
+            }
+            .media-card:hover .media-overlay { opacity: 1; }
+          `}
+        </style>
 
-      <div className="media-container">
-        {/* Photo Gallery Section */}
-        <section className="media-section fade-in-section">
-          <h2 className="media-section-title">{t.media.gallery}</h2>
-          <div className="gallery-grid">
-            {galleryImages.map((image) => (
-              <div 
-                key={image.id} 
-                className="gallery-item"
-                onClick={() => setSelectedImage(image)}
-              >
-                <img src={image.src} alt={image.alt} />
-                <div className="gallery-overlay">
-                  <span className="gallery-zoom">+</span>
+        <div className="media-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
+        
+        <div className="media-hero-content">
+          <h1 className="media-hero-title">HÌNH ẢNH & VIDEO</h1>
+          <p className="media-hero-subtitle">Khoảnh khắc Match Point Championship</p>
+        </div>
+      </section>
+
+      <div className="media-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+        
+        {/* PHẦN HÌNH ẢNH */}
+        <section className="media-section" style={{ marginBottom: '60px' }}>
+          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
+            THƯ VIỆN ẢNH
+          </h2>
+          {images.length > 0 ? (
+            <div className="media-grid">
+              {images.map((img, idx) => (
+                <div key={idx} className="media-card" onClick={() => setSelectedItem(img)}>
+                  <img src={img.image_url} alt="Gallery" />
+                  <div className="media-overlay">
+                    <ImageIcon color="#fff" size={32} />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+             <p style={{color: '#666', fontStyle: 'italic'}}>Chưa có hình ảnh nào được tải lên...</p>
+          )}
         </section>
 
-        {/* Video Highlights Section */}
-        <section className="media-section fade-in-section">
-          <h2 className="media-section-title">{t.media.highlights}</h2>
-          <div className="video-grid">
-            {highlightVideos.map((video) => (
-              <div key={video.id} className="video-card">
-                <div className="video-thumbnail">
-                  <img src={video.thumbnail} alt={video.title} />
-                  <div className="video-play-overlay">
-                    <div className="play-button">
-                      <Play size={32} fill="currentColor" />
+        {/* PHẦN VIDEO */}
+        <section className="media-section">
+          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
+            VIDEO HIGHLIGHTS
+          </h2>
+          {videos.length > 0 ? (
+            <div className="media-grid">
+              {videos.map((vid, idx) => (
+                <div key={idx} className="media-card" onClick={() => window.open(vid.image_url, '_blank')}>
+                  <img src="/video-placeholder.jpg" alt="Video" style={{opacity: 0.5}} />
+                  <div className="media-overlay" style={{opacity: 1}}>
+                    <div style={{textAlign: 'center'}}>
+                      <Play color="#c5a459" size={48} fill="#c5a459" />
+                      <p style={{color: '#fff', marginTop: '10px', fontSize: '0.9rem'}}>{vid.title || "Xem Video"}</p>
                     </div>
                   </div>
-                  <span className="video-duration">{video.duration}</span>
                 </div>
-                <div className="video-info">
-                  <h3 className="video-title">{video.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Past Tournament Moments */}
-        <section className="media-section fade-in-section">
-          <h2 className="media-section-title">{t.media.pastMoments}</h2>
-          <div className="moments-grid">
-            {pastMoments.map((moment) => (
-              <div key={moment.id} className="moment-card">
-                <div className="moment-image">
-                  <img src={moment.image} alt={moment.season} />
-                  <div className="moment-overlay">
-                    <span className="moment-season">{moment.season}</span>
-                  </div>
-                </div>
-                <div className="moment-info">
-                  <span className="moment-champion">🏆 {moment.champion}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{color: '#666', fontStyle: 'italic'}}>Video sắp ra mắt (Coming Soon)...</p>
+          )}
         </section>
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div className="lightbox-overlay" onClick={() => setSelectedImage(null)}>
-          <button className="lightbox-close" onClick={() => setSelectedImage(null)}>
-            <X size={32} />
+      {/* LIGHTBOX XEM ẢNH TO */}
+      {selectedItem && (
+        <div className="lightbox-overlay" 
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          onClick={() => setSelectedItem(null)}
+        >
+          <button style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}>
+            <X size={40} />
           </button>
           <img 
-            src={selectedImage.src} 
-            alt={selectedImage.alt} 
-            className="lightbox-image"
-            onClick={(e) => e.stopPropagation()}
+            src={selectedItem.image_url} 
+            style={{ maxWidth: '90%', maxHeight: '90%', borderRadius: '8px', boxShadow: '0 0 20px rgba(0,0,0,0.5)' }} 
+            alt="Full size" 
           />
         </div>
       )}

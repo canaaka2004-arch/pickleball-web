@@ -13,6 +13,10 @@ const Contact = ({ language }) => {
     subject: '',
     message: ''
   });
+  
+  // Biến trạng thái gửi & Link API
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
 
   const handleChange = (e) => {
     setFormData({
@@ -21,7 +25,7 @@ const Contact = ({ language }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
@@ -32,25 +36,55 @@ const Contact = ({ language }) => {
       return;
     }
 
-    // Mock submission
-    console.log('Form submitted:', formData);
-    
-    toast({
-      title: t.contact.success
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+    try {
+      // Bắn dữ liệu về Google Apps Script
+      const response = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          type: "contact", // Nhãn báo cho Apps Script biết đây là tin nhắn
+          ...formData
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        toast({
+          title: t.contact.success
+        });
+        // Reset form cho sạch sẽ
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        throw new Error(result.error || "Lỗi máy chủ");
+      }
+    } catch (error) {
+      console.error("Lỗi gửi tin nhắn:", error);
+      toast({
+        title: "Lỗi kết nối, vui lòng thử lại sau!",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="contact-page">
+      
+      {/* CSS TRỊ BỆNH TÀNG HÌNH CHỮ */}
+      <style>
+        {`
+          .form-input, .form-textarea {
+            color: #ffffff !important; 
+          }
+          .form-input::placeholder, .form-textarea::placeholder {
+            color: #888888 !important; 
+          }
+        `}
+      </style>
+
       <div className="page-hero">
         <h1 className="page-title">{t.contact.title}</h1>
         <p className="page-subtitle">{t.contact.subtitle}</p>
@@ -129,9 +163,9 @@ const Contact = ({ language }) => {
               />
             </div>
 
-            <button type="submit" className="btn-cta">
+            <button type="submit" className="btn-cta" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1 }}>
               <Send size={20} />
-              {t.contact.form.submit}
+              {isSubmitting ? "ĐANG GỬI..." : t.contact.form.submit}
             </button>
           </form>
         </div>
@@ -144,7 +178,7 @@ const Contact = ({ language }) => {
             <div className="info-card-contact">
               <Mail className="info-icon-large" size={32} />
               <h3>{t.contact.info.email}</h3>
-              <p>support : mrppopencup@gmail.com</p>
+              <p>support : matchpointchampionship@gmail.com</p>
             </div>
 
             <div className="info-card-contact">

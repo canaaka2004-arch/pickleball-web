@@ -1,112 +1,129 @@
 import React from 'react';
-import { Trophy, Medal } from 'lucide-react';
-import { getTranslations } from '../translations';
+import { Trophy } from 'lucide-react';
 
-// Mock data for rankings
-const intermediateRankings = [
-  { rank: 1, name: 'Nguyễn Văn An', points: 2450 },
-  { rank: 2, name: 'Trần Minh Hoàng', points: 2380 },
-  { rank: 3, name: 'Lê Thị Mai', points: 2320 },
-  { rank: 4, name: 'Phạm Đức Huy', points: 2280 },
-  { rank: 5, name: 'Võ Thanh Tùng', points: 2245 },
-  { rank: 6, name: 'Ngô Quốc Bảo', points: 2210 },
-  { rank: 7, name: 'Đặng Thị Hương', points: 2185 },
-  { rank: 8, name: 'Bùi Văn Nam', points: 2150 },
-  { rank: 9, name: 'Hoàng Minh Tuấn', points: 2120 },
-  { rank: 10, name: 'Lý Thị Lan', points: 2095 },
-  { rank: 11, name: 'Trương Văn Đạt', points: 2070 },
-  { rank: 12, name: 'Mai Thanh Hà', points: 2045 },
-  { rank: 13, name: 'Đinh Quang Vinh', points: 2020 },
-  { rank: 14, name: 'Phan Thị Ngọc', points: 1995 },
-  { rank: 15, name: 'Vũ Đình Long', points: 1970 },
-  { rank: 16, name: 'Nguyễn Thu Trang', points: 1945 },
-  { rank: 17, name: 'Lê Văn Phúc', points: 1920 },
-  { rank: 18, name: 'Trần Thị Yến', points: 1895 },
-  { rank: 19, name: 'Phạm Minh Khoa', points: 1870 },
-  { rank: 20, name: 'Đỗ Thị Hạnh', points: 1845 },
-];
-
-const advancedRankings = [
-  { rank: 1, name: 'Trần Quốc Việt', points: 3850 },
-  { rank: 2, name: 'Nguyễn Thành Công', points: 3720 },
-  { rank: 3, name: 'Lê Đình Phong', points: 3680 },
-  { rank: 4, name: 'Võ Minh Tâm', points: 3620 },
-  { rank: 5, name: 'Phạm Thị Hồng', points: 3580 },
-  { rank: 6, name: 'Hoàng Văn Hải', points: 3540 },
-  { rank: 7, name: 'Ngô Thị Linh', points: 3500 },
-  { rank: 8, name: 'Đặng Minh Đức', points: 3460 },
-  { rank: 9, name: 'Bùi Thị Mai Anh', points: 3420 },
-  { rank: 10, name: 'Trương Quang Huy', points: 3380 },
-  { rank: 11, name: 'Mai Văn Toàn', points: 3340 },
-  { rank: 12, name: 'Đinh Thị Ngân', points: 3300 },
-  { rank: 13, name: 'Phan Văn Dũng', points: 3260 },
-  { rank: 14, name: 'Vũ Thị Thanh', points: 3220 },
-  { rank: 15, name: 'Nguyễn Hữu Thắng', points: 3180 },
-  { rank: 16, name: 'Lê Thị Thảo', points: 3140 },
-  { rank: 17, name: 'Trần Văn Khải', points: 3100 },
-  { rank: 18, name: 'Phạm Thị Diệu', points: 3060 },
-  { rank: 19, name: 'Đỗ Văn Quân', points: 3020 },
-  { rank: 20, name: 'Ngô Minh Châu', points: 2980 },
-];
-
-const RankingPage = ({ language }) => {
-  const t = getTranslations(language);
-
-  const getRankIcon = (rank) => {
-    if (rank === 1) return <Trophy className="rank-icon gold" size={20} />;
-    if (rank === 2) return <Medal className="rank-icon silver" size={20} />;
-    if (rank === 3) return <Medal className="rank-icon bronze" size={20} />;
-    return null;
-  };
-
-  const RankingTable = ({ data, title }) => (
-    <div className="ranking-table-container">
-      <h2 className="ranking-table-title">{title}</h2>
-      <div className="ranking-table">
-        <div className="ranking-header">
-          <div className="rank-col">{t.ranking.rank}</div>
-          <div className="player-col">{t.ranking.player}</div>
-          <div className="points-col">{t.ranking.points}</div>
-        </div>
-        <div className="ranking-body">
-          {data.map((player) => (
-            <div 
-              key={player.rank} 
-              className={`ranking-row ${player.rank <= 3 ? 'top-three' : ''}`}
-            >
-              <div className="rank-col">
-                <span className="rank-number">{player.rank}</span>
-                {getRankIcon(player.rank)}
-              </div>
-              <div className="player-col">
-                <span className="player-name">{player.name}</span>
-              </div>
-              <div className="points-col">
-                <span className="points-value">{player.points.toLocaleString()}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+const RankingPage = () => {
+  // Cập nhật danh sách 4 hạng mục: Intern, Advan, Pro, Master
+  const rankingCategories = [
+    { id: 'intern', name: 'Top 5 Intermediate', subtitle: 'Hạng Trung' },
+    { id: 'advan', name: 'Top 5 Advanced', subtitle: 'Nâng Cao' },
+    { id: 'pro', name: 'Top 5 Pro', subtitle: 'Chuyên Nghiệp' },
+    { id: 'master', name: 'Top 5 Master', subtitle: 'Siêu Cấp' }
+  ];
 
   return (
-    <div className="ranking-page">
-      <div className="page-hero">
-        <h1 className="page-title">{t.ranking.title}</h1>
-        <p className="page-subtitle">{t.ranking.subtitle}</p>
-      </div>
+    <div className="ranking-page" style={{ backgroundColor: '#000', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* 1. KHU VỰC HEADER (Style Net-Bg Dark) */}
+      <section className="fade-in-section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <style>
+          {`
+            .rank-hero-content {
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+              gap: 15px !important; 
+              padding: 100px 20px !important; 
+              text-align: center !important;
+              position: relative !important;
+              z-index: 2 !important;
+              min-height: 40vh !important;
+            }
+            .rank-hero-title {
+              color: #ffffff !important;
+              font-size: 3.5rem !important;
+              font-weight: bold !important;
+              text-transform: uppercase !important;
+              letter-spacing: 3px !important;
+              margin: 0 !important;
+            }
+            .rank-hero-subtitle {
+              color: #c5a459 !important;
+              font-size: 1.2rem !important;
+              text-transform: uppercase !important;
+              letter-spacing: 4px !important;
+            }
+            .rank-dynamic-bg {
+              background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)), url("/net-bg.jpg");
+              background-size: cover;
+              background-position: center;
+            }
+            @media (max-width: 768px) {
+              .rank-hero-title { font-size: 2.2rem !important; }
+            }
+          `}
+        </style>
 
-      <div className="ranking-container">
-        <div className="ranking-grid">
-          <section className="ranking-section fade-in-section">
-            <RankingTable data={intermediateRankings} title={t.ranking.intermediate} />
-          </section>
-          <section className="ranking-section fade-in-section">
-            <RankingTable data={advancedRankings} title={t.ranking.advanced} />
-          </section>
+        <div className="rank-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
+        
+        <div className="rank-hero-content">
+          <h1 className="rank-hero-title">Bảng Xếp Hạng</h1>
+          <p className="rank-hero-subtitle">Match Point Championship</p>
         </div>
+      </section>
+
+      {/* 2. KHU VỰC 4 KHỐI CARD COMING SOON */}
+      <div className="ranking-container" style={{ padding: '40px 20px 80px', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+        
+        <div className="ranking-grid" style={{
+          display: 'grid',
+          // Tự động chia 4 cột trên màn hình lớn, 2 cột trên tablet và 1 cột trên mobile
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+          gap: '20px'
+        }}>
+          {rankingCategories.map(cat => (
+            <section key={cat.id} className="ranking-section fade-in-section">
+              <div className="ranking-card" style={{ 
+                backgroundColor: '#0a0a0a', 
+                border: '1px solid #c5a459', 
+                borderRadius: '12px', 
+                padding: '50px 15px', 
+                textAlign: 'center',
+                boxShadow: '0 0 20px rgba(197, 164, 89, 0.05)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'transform 0.3s ease'
+              }}>
+                <Trophy style={{ color: '#c5a459', marginBottom: '20px' }} size={32} />
+                
+                <h2 style={{ color: '#ffffff', fontSize: '1.5rem', marginBottom: '5px', textTransform: 'uppercase' }}>
+                  {cat.name}
+                </h2>
+                
+                <p style={{ color: '#c5a459', fontSize: '0.9rem', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '20px' }}>
+                  {cat.subtitle}
+                </p>
+                
+                <div style={{ width: '40px', height: '2px', backgroundColor: '#c5a459', marginBottom: '25px' }}></div>
+                
+                <p className="pulse-text" style={{ 
+                  color: '#c5a459', 
+                  fontSize: '1.6rem', 
+                  fontWeight: 'bold', 
+                  letterSpacing: '3px',
+                  animation: 'pulse 2s infinite',
+                  margin: 0
+                }}>
+                  COMING SOON...
+                </p>
+                
+                <style>
+                  {`
+                    @keyframes pulse {
+                      0% { opacity: 0.4; transform: scale(0.97); }
+                      50% { opacity: 1; transform: scale(1); }
+                      100% { opacity: 0.4; transform: scale(0.97); }
+                    }
+                    .ranking-card:hover { transform: translateY(-5px); }
+                  `}
+                </style>
+              </div>
+            </section>
+          ))}
+        </div>
+
       </div>
     </div>
   );

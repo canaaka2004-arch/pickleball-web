@@ -21,11 +21,10 @@ const Navbar = ({ language, setLanguage }) => {
   const navLinks = [
     { name: t.nav.home, path: '/' },
     { name: t.nav.tournament, path: '/tournament' },
-    { name: t.nav.format, path: '/format' },
-    { name: t.nav.ranking, path: '/ranking' },
-    { name: t.nav.live, path: '/live' },
+    { name: t.nav.athletes, path: '/athletes' }, // <-- Đưa Vận Động Viên lên đây
+    { name: t.nav.format, path: '/format' },     // <-- Đẩy Thể Thức xuống đây
+    { name: t.nav.ranking, path: '/ranking' }, 
     { name: t.nav.media, path: '/media' },
-    { name: t.nav.athletes, path: '/athletes' },
     { name: t.nav.contact, path: '/contact' }
   ];
 
@@ -46,15 +45,39 @@ const Navbar = ({ language, setLanguage }) => {
             <Menu size={20} strokeWidth={1} />
             <span className="rr-menu-label">{t.nav.menu}</span>
           </button>
+<style>
+        {`
+          /* Điều chỉnh Logo nhỏ lại tinh tế hơn */
+          .rr-logo-svg {
+            height: 55px !important; /* Giảm chiều cao xuống còn 55px */
+            width: auto !important;   /* Tự động tính chiều rộng để không bị méo */
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+          }
 
-          {/* Center: Logo - Letter P */}   
-          <Link to="/" className="rr-logo">
-            <img 
-              src="LOGO_PNG_03.png"
-              alt="Mr P logo"
-              className="rr-logo-svg"
-            />
-          </Link>
+          /* Trên điện thoại thì nhỏ thêm xíu nữa cho cân đối */
+          @media (max-width: 768px) {
+            .rr-logo-svg {
+              height: 40px !important; 
+            }
+          }
+
+          .rr-logo-svg:hover {
+            transform: scale(1.05);
+          }
+        `}
+      </style>
+
+      {/* Center: Logo - Letter P */}
+      <Link to="/" className="rr-logo">
+        <img 
+          src="/logodocmauvang (1).png"
+          alt="Mr P logo"
+          className="rr-logo-svg"
+        />
+      </Link>
+          
 
           {/* Right: Language Toggle */}
           <button 

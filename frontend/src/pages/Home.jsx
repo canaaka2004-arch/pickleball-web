@@ -1,246 +1,212 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getTranslations } from '../translations';
- 
 
 const Home = ({ language }) => { 
   const navigate = useNavigate();
-  const [scrolly,setScrolly]= useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const intervalRef = useRef(null);
-  const touchStartXRef = useRef(0);
-  const touchDeltaXRef = useRef(0);
-  const isSwipingRef = useRef(false);
-  const t = getTranslations(language);
-
-  const SLIDE_COUNT = 2;
-  const AUTOPLAY_MS = 5000;     // đang là 5 giây (đổi số ở đây)
-  const SWIPE_THRESHOLD = 50;   // vuốt hơn 50px mới chuyển
-
-  useEffect(() => {
-    // Smooth fade-in animation on scroll
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-section').forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
   
+  const [slides, setSlides] = useState([]); 
+  
+  // Update cấu trúc biến để hứng thêm thuộc tính 'type'
+  const [hero2Bg, setHero2Bg] = useState({ type: "image", desktop: "cuppickleball.png", mobile: "cuppickleball.png" });
+  const [hero3Bg, setHero3Bg] = useState({ type: "image", desktop: "/net-bg.jpg", mobile: "/net-bg.jpg" }); 
+
+  const [loading, setLoading] = useState(true);
+  const intervalRef = useRef(null);
+  const t = getTranslations(language);
+  const AUTOPLAY_MS = 5000;
+  
+  const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
+
+  // Theo dõi thu phóng màn hình để ép Video tải lại bản Mobile/Desktop
   useEffect(() => {
-  const mq = window.matchMedia("(max-width: 768px)");
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const apply = () => setIsMobile(mq.matches);
-  apply(); // chạy lần đầu
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_URL}?t=${new Date().getTime()}`);
+        const result = await response.json();
+        
+        if (result.hero_slides && result.hero_slides.length > 0) {
+          setSlides(result.hero_slides);
+        } else {
+          setSlides([
+            { image_url: "/DESK_POST.jpg", title: "Match Point" },
+            { image_url: "/DESK_POST1.jpg", title: "Championship" }
+          ]);
+        }
 
-  // Safari cũ
-  if (mq.addEventListener) {
-    mq.addEventListener("change", apply);
-  } else {
-    mq.addListener(apply);
-  }
+        if (result.static_heroes && result.static_heroes.length > 0) {
+          const h2 = result.static_heroes.find(item => item.id === "hero2");
+          if (h2 && h2.desktop_url) {
+            setHero2Bg({ type: h2.type || 'image', desktop: h2.desktop_url, mobile: h2.mobile_url || h2.desktop_url });
+          }
+          
+          const h3 = result.static_heroes.find(item => item.id === "hero3");
+          if (h3 && h3.desktop_url) {
+            setHero3Bg({ type: h3.type || 'image', desktop: h3.desktop_url, mobile: h3.mobile_url || h3.desktop_url });
+          }
+        }
+      } catch (error) {
+        console.error("Lỗi lấy dữ liệu slide:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-  return () => {
-    if (mq.removeEventListener) {
-      mq.removeEventListener("change", apply);
-    } else {
-      mq.removeListener(apply);
+  const startAutoplay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (slides.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setHeroIndex((prev) => (prev + 1) % slides.length);
+      }, AUTOPLAY_MS);
     }
   };
-}, []);
 
- useEffect(() => {
-  const onScroll = () => setScrolly(window.scrollY || 0);
+  useEffect(() => {
+    startAutoplay();
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [slides]);
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll(); // set giá trị lần đầu
-
-  return () => window.removeEventListener("scroll", onScroll);
-}, []);
-
-const startAutoplay = () => {
-  if (intervalRef.current) clearInterval(intervalRef.current);
-  intervalRef.current = setInterval(() => {
-    setHeroIndex((prev) => (prev + 1) % SLIDE_COUNT);
-  }, AUTOPLAY_MS);
-};
-
-useEffect(() => {
-  startAutoplay();
-  return () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+  const goTo = (idx) => {
+    setHeroIndex(idx);
+    startAutoplay();
   };
-}, []);
 
-const goTo = (idx) => {
-  const nextIdx = (idx + SLIDE_COUNT) % SLIDE_COUNT;
-  setHeroIndex(nextIdx);
-  startAutoplay();
-};
-
-const next = () => {
-  setHeroIndex((p) => (p + 1) % SLIDE_COUNT);
-  startAutoplay();
-};
-
-const prev = () => {
-  setHeroIndex((p) => (p - 1 + SLIDE_COUNT) % SLIDE_COUNT);
-  startAutoplay();
-};
-
-const onTouchStart = (e) => {
-  touchStartXRef.current = e.touches[0].clientX;
-  touchDeltaXRef.current = 0;
-  isSwipingRef.current = true;
-};
-
-const onTouchMove = (e) => {
-  if (!isSwipingRef.current) return;
-  const x = e.touches[0].clientX;
-  touchDeltaXRef.current = x - touchStartXRef.current;
-};
-
-const onTouchEnd = () => {
-  if (!isSwipingRef.current) return;
-  isSwipingRef.current = false;
-
-  const dx = touchDeltaXRef.current;
-  if (Math.abs(dx) < SWIPE_THRESHOLD) return;
-
-  if (dx < 0) next();
-  else prev();
-};
-
-const slide1 = isMobile ? "/MB_POST.jpg" : "/DESK_POST.jpg";
-const slide2 = isMobile ? "/MB_POST_01.jpg" : "/DESK_POST1.jpg";
+  if (loading) return <div className="loading-screen">Loading...</div>;
 
   return (
     <div className="home-page">
+      {/* ================= HERO 1 (Slider) ================= */}
+      <section className="hero-visual hero-slider">
+        <div className="hero-slider-track" style={{ transform: `translateX(-${heroIndex * 100}vw)`, width: `${slides.length * 100}vw` }}>
+          {slides.map((slide, index) => {
+            const slideId = `hero-slide-${index}`;
+            const mobileImg = slide.mobile_image_url ? slide.mobile_image_url : slide.image_url;
 
-<section className="hero-visual hero-slider"
-  onTouchStart={onTouchStart}
-  onTouchMove={onTouchMove}
-  onTouchEnd={onTouchEnd} >
-  <div className="hero-slider-track" style={{ transform: `translateX(-${heroIndex * 100}vw)` }}>
-    <div
-      className="hero-slider-slide"
-      style={{
-        backgroundImage: `
-          linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.45)
-  ),
-          url("${slide1}")
-        `
-      }}
-    />
-    <div
-      className="hero-slider-slide"
-      style={{
-        backgroundImage: `
-          linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.45)
-  ),
-          url("${slide2}")
-        `
-      }}
-    />
-  </div>
-
-  <div className="hero-visual-center">
-    <h1 className="hero-visual-title"></h1>
-  </div>
-
-  <div className="hero-slider-dots" aria-label="Hero slider pagination">
-  {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
-    <button
-      key={i}
-      type="button"
-      className={`dot ${heroIndex === i ? "active" : ""}`}
-      onClick={() => goTo(i)}
-      aria-label={`Go to slide ${i + 1}`}
-      aria-current={heroIndex === i ? "true" : "false"}
-    />
-  ))}
-</div>
-</section>
-
-
-
-
-
-      {/* Hero 2 - Tournament Introduction (Text Focus) */}
-      <section className="hero-text fade-in-section">
-  <div
-    className="hero-text-bg"
-    style={{
-      backgroundImage: `
-        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)),
-        url("cuppickleball.png")
-      `
-    }}
-  />
-  <div className="hero-text-content">
-          <div className="bilingual-heading">
-            <h1 className="hero-text-title">
-  {t.home.hero2.title} <br />
-  <span className="hero-text-subtitle-strong">{t.home.hero2.subtitle}</span>
-</h1>
-            <p className="hero-text-subtitle"></p>
-          </div>
-
-          <div className="hero-text-body">
-            <div className="tournament-details">
-            </div>
-
-            <div className="hero-text-cta">
-              <button
-  onClick={() => navigate("/register")}
-  className="rr-btn-cta join-btn"
->
-  {t.home.hero2.btnRegister}
-</button>
-            </div>
-          </div>
+            return (
+              <div key={index} className="hero-slider-slide" id={slideId}>
+                <style>
+                  {`
+                    #${slideId} {
+                      background-color: #000;
+                      background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.45)), url("${slide.image_url}");
+                      background-size: cover; background-position: center; background-repeat: no-repeat; width: 100vw;
+                    }
+                    @media (max-width: 768px) {
+                      #${slideId} {
+                        background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.45)), url("${mobileImg}");
+                        background-size: contain; background-position: top center;
+                      }
+                    }
+                  `}
+                </style>
+                <div className="hero-visual-center">
+                   <h1 className="hero-visual-title">{slide.title}</h1>
+                   <p className="hero-visual-subtitle">{slide.subtitle}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="hero-slider-dots">
+          {slides.map((_, i) => (
+            <button key={i} className={`dot ${heroIndex === i ? "active" : ""}`} onClick={() => goTo(i)} />
+          ))}
         </div>
       </section>
 
-      {/* Hero 3 - Pickleball Knowledge */}
-      <section className="hero-knowledge fade-in-section">
-        <div className="hero-knowledge-bg" />
-        <div className="hero-knowledge-content">
-          <div className="bilingual-heading">
-            <h2 className="hero-knowledge-title">{t.home.hero3.title}</h2>
-            <p className="hero-knowledge-subtitle">{t.home.hero3.subtitle}</p>
-          </div>
+      {/* ================= HERO 2 (Tham gia) ================= */}
+      <section className="hero-text fade-in-section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <style>
+          {`
+            .hero-text-content {
+              display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important;
+              gap: 30px !important; padding: 60px 20px !important; text-align: center !important; position: relative !important; z-index: 2 !important; min-height: 50vh !important;
+            }
+            .hero-text-title, .join-btn { position: relative !important; margin: 0 !important; transform: none !important; }
+            .hero-2-dynamic-bg {
+              background-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)), url("${hero2Bg.desktop}");
+              background-size: cover; background-position: center;
+            }
+            @media (max-width: 768px) { .hero-2-dynamic-bg { background-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.92)), url("${hero2Bg.mobile}"); } }
+          `}
+        </style>
 
-          <div className="knowledge-grid">
-            
-
-            
-
-            
-          </div>
+        {/* CÔNG TẮC VIDEO/ẢNH */}
+        {hero2Bg.type === 'video' ? (
+          <>
+            <video 
+              key={isMobile ? hero2Bg.mobile : hero2Bg.desktop} 
+              autoPlay loop muted playsInline 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+            >
+              <source src={isMobile ? hero2Bg.mobile : hero2Bg.desktop} type="video/mp4" />
+            </video>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1 }} />
+          </>
+        ) : (
+          <div className="hero-text-bg hero-2-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
+        )}
+        
+        <div className="hero-text-content">
+          <h1 className="hero-text-title">
+            {t.home.hero2.title} <br />
+            <span className="hero-text-subtitle-strong">{t.home.hero2.subtitle}</span>
+          </h1>
+          <button onClick={() => navigate("/register")} className="rr-btn-cta join-btn">
+            {t.home.hero2.btnRegister}
+          </button>
         </div>
       </section>
 
+      {/* ================= HERO 3 (Kiến thức) ================= */}
+      <section className="hero-text fade-in-section" style={{ position: 'relative', overflow: 'hidden', marginTop: '5px' }}>
+        <style>
+          {`
+            .hero-3-dynamic-bg {
+              background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url("${hero3Bg.desktop}");
+              background-size: cover; background-position: center;
+            }
+            @media (max-width: 768px) { .hero-3-dynamic-bg { background-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url("${hero3Bg.mobile}"); } }
+          `}
+        </style>
+
+        {/* CÔNG TẮC VIDEO/ẢNH */}
+        {hero3Bg.type === 'video' ? (
+          <>
+            <video 
+              key={isMobile ? hero3Bg.mobile : hero3Bg.desktop} 
+              autoPlay loop muted playsInline 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+            >
+              <source src={isMobile ? hero3Bg.mobile : hero3Bg.desktop} type="video/mp4" />
+            </video>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1 }} />
+          </>
+        ) : (
+          <div className="hero-text-bg hero-3-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
+        )}
+
+        <div className="hero-text-content" style={{ minHeight: '40vh', padding: '80px 20px' }}>
+          <h1 className="hero-text-title" style={{ fontSize: '2.5rem' }}>
+            {t.home.hero3?.title || "KIẾN THỨC PICKLEBALL"} <br />
+            <span className="hero-text-subtitle-strong" style={{ color: '#c5a459', fontSize: '1.5rem' }}>
+              {t.home.hero3?.subtitle || "Nâng tầm kỹ năng của bạn"}
+            </span>
+          </h1>
+          
+        </div>
+      </section>
 
     </div>
   );

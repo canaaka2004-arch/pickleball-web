@@ -3392,26 +3392,29 @@ select option {
   gap: 12px;
 }
 
-.avatarWrap{
-  width: 32px;            /* tuỳ bạn muốn to nhỏ */
-  height: 32px;
-  border-radius: 999px;
-  overflow: hidden;
-  border: 1px solid rgba(214,178,94,.55);
-  background: rgba(255,255,255,.06);
-  flex: 0 0 32px;
+.avatarWrap {
+  width: 42px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 1.5px solid rgba(214, 178, 94, 0.8) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  flex: 0 0 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.avatar{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;      /* cắt cho đầy hình tròn */
-  display: block;
-
-  /* sharpening safe */
-  image-rendering: auto;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+.avatar {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: high-quality !important;
+  filter: contrast(1.02) saturate(1.05);
 }
 
 

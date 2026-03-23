@@ -183,7 +183,7 @@ const translations = {
       quickLinks: 'Liên Kết',
       contact: 'Liên Hệ',
       follow: 'Theo Dõi',
-      copyright: '© 2025 MR.PHUONG PICKLEBALL COMMUNITY',
+      copyright: '©2026 MATCH POINT CHAMPIONSHIP',
       links: [
         { name: 'Trang Chủ', path: '/' },
         { name: 'Vận Động Viên', path: '/athletes' }
@@ -383,7 +383,7 @@ const translations = {
       quickLinks: 'Quick Links',
       contact: 'Contact',
       follow: 'Follow Us',
-      copyright: '© 2025 MR.PHUONG PICKLEBALL COMMUNITY',
+      copyright: '©2026 MATCH POINT CHAMPIONSHIP',
       links: [
         { name: 'Home', path: '/' },
         { name: 'Athletes', path: '/athletes' }

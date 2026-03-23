@@ -4,72 +4,7 @@ import { getTranslations } from '../translations';
 
 // Mock data for live matches
 const mockMatches = [
-  {
-    id: 1,
-    court: 1,
-    playerA: 'Nguyễn Văn An',
-    playerB: 'Trần Minh Hoàng',
-    scoreA: 11,
-    scoreB: 9,
-    set: 2,
-    status: 'live',
-    category: 'Intermediate'
-  },
-  {
-    id: 2,
-    court: 2,
-    playerA: 'Lê Thị Mai',
-    playerB: 'Phạm Đức Huy',
-    scoreA: 7,
-    scoreB: 11,
-    set: 1,
-    status: 'live',
-    category: 'Advanced'
-  },
-  {
-    id: 3,
-    court: 3,
-    playerA: 'Võ Thanh Tùng',
-    playerB: 'Ngô Quốc Bảo',
-    scoreA: 11,
-    scoreB: 8,
-    set: 3,
-    status: 'finished',
-    category: 'Intermediate'
-  },
-  {
-    id: 4,
-    court: 4,
-    playerA: 'Đặng Thị Hương',
-    playerB: 'Bùi Văn Nam',
-    scoreA: 0,
-    scoreB: 0,
-    set: 1,
-    status: 'upcoming',
-    category: 'Pro'
-  },
-  {
-    id: 5,
-    court: 5,
-    playerA: 'Hoàng Minh Tuấn',
-    playerB: 'Lý Thị Lan',
-    scoreA: 9,
-    scoreB: 11,
-    set: 2,
-    status: 'live',
-    category: 'Advanced'
-  },
-  {
-    id: 6,
-    court: 6,
-    playerA: 'Trương Văn Đạt',
-    playerB: 'Mai Thanh Hà',
-    scoreA: 11,
-    scoreB: 6,
-    set: 2,
-    status: 'finished',
-    category: 'Intermediate'
-  },
+  
 ];
 
 const LivePage = ({ language }) => {
