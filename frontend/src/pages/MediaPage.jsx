@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Play, X, Image as ImageIcon, Video } from 'lucide-react';
-import { getTranslations } from '../translations';
+import { Play, X, Image as ImageIcon } from 'lucide-react';
 
-const MediaPage = ({ language }) => {
-  const t = getTranslations(language);
+const MediaPage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [mediaList, setMediaList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Link Web App Apps Script của sếp
   const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
 
-  // 1. LẤY DỮ LIỆU TỪ GOOGLE SHEETS (Tab Gallery)
   useEffect(() => {
     const fetchMedia = async () => {
       try {
         const response = await fetch(`${API_URL}?t=${new Date().getTime()}`);
         const result = await response.json();
-        if (result.gallery) {
-          setMediaList(result.gallery);
-        }
+        if (result.gallery) setMediaList(result.gallery);
       } catch (error) {
-        console.error("Error loading gallery:", error);
+        console.error("Error fetching media:", error);
       } finally {
         setLoading(false);
       }
@@ -29,16 +23,13 @@ const MediaPage = ({ language }) => {
     fetchMedia();
   }, []);
 
-  // Tách ra 2 nhóm: Hình ảnh và Video
   const images = mediaList.filter(item => item.type === 'image' || !item.type);
   const videos = mediaList.filter(item => item.type === 'video');
 
-  if (loading) return <div className="loading-screen" style={{color: '#c5a459'}}>{t.media.loadingMedia}</div>;
+  if (loading) return <div style={{color: '#c5a459', textAlign: 'center', padding: '100px'}}>Loading...</div>;
 
   return (
     <div className="media-page" style={{ backgroundColor: '#000', minHeight: '100vh' }}>
-      
-      {/* 1. HEADER (Style Dark Net y hệt các trang khác) */}
       <section className="fade-in-section" style={{ position: 'relative', overflow: 'hidden' }}>
         <style>
           {`
@@ -55,7 +46,7 @@ const MediaPage = ({ language }) => {
               color: #c5a459 !important; font-size: 1.1rem !important; text-transform: uppercase !important; letter-spacing: 4px !important;
             }
             .media-dynamic-bg {
-              background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)), url("/net-bg.jpg");
+              background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)), url("net-bg.jpg");
               background-size: cover; background-position: center;
             }
             .media-grid {
@@ -77,75 +68,47 @@ const MediaPage = ({ language }) => {
         </style>
 
         <div className="media-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
-        
         <div className="media-hero-content">
-          <h1 className="media-hero-title">{t.media.title}</h1>
-          <p className="media-hero-subtitle">{t.media.subtitle}</p>
+          <h1 className="media-hero-title">HÌNH ẢNH & VIDEO</h1>
+          <p className="media-hero-subtitle">Match Point Championship</p>
         </div>
       </section>
 
       <div className="media-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
-        
-        {/* PHẦN HÌNH ẢNH */}
         <section className="media-section" style={{ marginBottom: '60px' }}>
-          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
-            {t.media.gallery}
-          </h2>
-          {images.length > 0 ? (
-            <div className="media-grid">
-              {images.map((img, idx) => (
-                <div key={idx} className="media-card" onClick={() => setSelectedItem(img)}>
-                  <img src={img.image_url} alt="Gallery" />
-                  <div className="media-overlay">
-                    <ImageIcon color="#fff" size={32} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-             <p style={{color: '#666', fontStyle: 'italic'}}>{t.media.noImages}</p>
-          )}
+          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>THƯ VIỆN ẢNH</h2>
+          <div className="media-grid">
+            {images.map((img, idx) => (
+              <div key={idx} className="media-card" onClick={() => setSelectedItem(img)}>
+                <img src={img.image_url} alt="Gallery" />
+                <div className="media-overlay"><ImageIcon color="#fff" size={32} /></div>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* PHẦN VIDEO */}
         <section className="media-section">
-          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>
-            {t.media.highlights}
-          </h2>
-          {videos.length > 0 ? (
-            <div className="media-grid">
-              {videos.map((vid, idx) => (
-                <div key={idx} className="media-card" onClick={() => window.open(vid.image_url, '_blank')}>
-                  <img src="/video-placeholder.jpg" alt="Video" style={{opacity: 0.5}} />
-                  <div className="media-overlay" style={{opacity: 1}}>
-                    <div style={{textAlign: 'center'}}>
-                      <Play color="#c5a459" size={48} fill="#c5a459" />
-                      <p style={{color: '#fff', marginTop: '10px', fontSize: '0.9rem'}}>{vid.title || t.media.watchVideo}</p>
-                    </div>
+          <h2 style={{ color: '#fff', borderLeft: '4px solid #c5a459', paddingLeft: '15px', marginBottom: '25px', fontSize: '1.8rem' }}>VIDEO HIGHLIGHTS</h2>
+          <div className="media-grid">
+            {videos.map((vid, idx) => (
+              <div key={idx} className="media-card" onClick={() => window.open(vid.image_url, '_blank')}>
+                <img src="video-placeholder.jpg" alt="Video" style={{opacity: 0.5}} />
+                <div className="media-overlay" style={{opacity: 1}}>
+                  <div style={{textAlign: 'center'}}>
+                    <Play color="#c5a459" size={48} fill="#c5a459" />
+                    <p style={{color: '#fff', marginTop: '10px', fontSize: '0.9rem'}}>{vid.title || "Xem Video"}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p style={{color: '#666', fontStyle: 'italic'}}>{t.media.noVideos}</p>
-          )}
+              </div>
+            ))}
+          </div>
         </section>
       </div>
 
-      {/* LIGHTBOX XEM ẢNH TO */}
       {selectedItem && (
-        <div className="lightbox-overlay" 
-          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          onClick={() => setSelectedItem(null)}
-        >
-          <button style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}>
-            <X size={40} />
-          </button>
-          <img 
-            src={selectedItem.image_url} 
-            style={{ maxWidth: '90%', maxHeight: '90%', borderRadius: '8px', boxShadow: '0 0 20px rgba(0,0,0,0.5)' }} 
-            alt="Full size" 
-          />
+        <div className="lightbox-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setSelectedItem(null)}>
+          <button style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X size={40} /></button>
+          <img src={selectedItem.image_url} style={{ maxWidth: '90%', maxHeight: '90%', borderRadius: '8px' }} alt="Full size" />
         </div>
       )}
     </div>

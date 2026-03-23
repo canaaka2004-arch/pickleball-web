@@ -47,16 +47,16 @@ const Navbar = ({ language, setLanguage }) => {
           </button>
 <style>
         {`
-          /* Điều chỉnh Logo nhỏ lại tinh tế hơn */
+          
           .rr-logo-svg {
-            height: 55px !important; /* Giảm chiều cao xuống còn 55px */
-            width: auto !important;   /* Tự động tính chiều rộng để không bị méo */
+            height: 55px !important; 
+            width: auto !important;   
             transition: transform 0.3s ease;
             display: block;
             margin: 0 auto;
           }
 
-          /* Trên điện thoại thì nhỏ thêm xíu nữa cho cân đối */
+          
           @media (max-width: 768px) {
             .rr-logo-svg {
               height: 40px !important; 
@@ -69,7 +69,7 @@ const Navbar = ({ language, setLanguage }) => {
         `}
       </style>
 
-      {/* Center: Logo - Letter P */}
+      {}
       <Link to="/" className="rr-logo">
         <img 
           src="/logodocmauvang (1).png"
@@ -79,7 +79,7 @@ const Navbar = ({ language, setLanguage }) => {
       </Link>
           
 
-          {/* Right: Language Toggle */}
+          {}
           <button 
             onClick={toggleLanguage}
             className="rr-language-toggle"
@@ -90,11 +90,11 @@ const Navbar = ({ language, setLanguage }) => {
           </button>
         </div>
 
-        {/* White divider line under header */}
+        {}
         <div className="rr-header-divider"></div>
       </header>
 
-      {/* Mobile Navigation Overlay */}
+      {}
       {isMenuOpen && (
         <>
           <div className="rr-menu-overlay" onClick={() => setIsMenuOpen(false)} />
