@@ -82,7 +82,7 @@ const Home = ({ language }) => {
     startAutoplay();
   };
 
-  if (loading) return <div className="loading-screen">Loading...</div>;
+  if (loading) return <div className="loading-screen">{t.home.loading || t.common.loading}</div>;
 
   return (
     <div className="home-page">
@@ -199,9 +199,9 @@ const Home = ({ language }) => {
 
         <div className="hero-text-content" style={{ minHeight: '40vh', padding: '80px 20px' }}>
           <h1 className="hero-text-title" style={{ fontSize: '2.5rem' }}>
-            {t.home.hero3?.title || "KIẾN THỨC PICKLEBALL"} <br />
+            {t.home.hero3.title} <br />
             <span className="hero-text-subtitle-strong" style={{ color: '#c5a459', fontSize: '1.5rem' }}>
-              {t.home.hero3?.subtitle || "Nâng tầm kỹ năng của bạn"}
+              {t.home.hero3.subtitle}
             </span>
           </h1>
           
