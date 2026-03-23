@@ -206,7 +206,7 @@ export default function RegisterPage({ language = "vi" }) {
             onChange={onChange}
           />
         </div>
-        {/* COUNTRY */}
+        {}
 <div className="field">
   <label>{t.country} *</label>
   <select name="countryCode" value={form.countryCode} onChange={onChange}>
@@ -220,7 +220,7 @@ export default function RegisterPage({ language = "vi" }) {
   {errors.countryCode && <div className="err">{errors.countryCode}</div>}
 </div>
 
-        {/* GENDER */}
+        {}
         <div className="field">
           <label>{t.gender} *</label>
           <select name="gender" value={form.gender} onChange={onChange}>

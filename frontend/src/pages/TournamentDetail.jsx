@@ -4,7 +4,7 @@ const Tournament = () => {
   return (
     <div className="tournament-page" style={{ backgroundColor: '#000', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* KHU VỰC HEADER TÊN TRANG */}
+      {}
       <section className="fade-in-section" style={{ position: 'relative', padding: '120px 20px 40px', textAlign: 'center' }}>
         <h1 style={{ 
           color: '#ffffff', 
@@ -57,7 +57,7 @@ const Tournament = () => {
             Lịch thi đấu và danh sách chia bảng sẽ sớm được cập nhật.
           </p>
 
-          {/* Hiệu ứng nhấp nháy */}
+          {}
           <style>
             {`
               @keyframes pulse {

@@ -76,7 +76,7 @@ const LivePage = ({ language }) => {
       </div>
 
       <div className="live-container">
-        {/* Live Matches */}
+        {}
         {liveMatches.length > 0 && (
           <section className="live-section fade-in-section">
             <h2 className="live-section-title">
@@ -109,7 +109,7 @@ const LivePage = ({ language }) => {
           </section>
         )}
 
-        {/* Upcoming Matches */}
+        {}
         {upcomingMatches.length > 0 && (
           <section className="live-section fade-in-section">
             <h2 className="live-section-title">
@@ -141,7 +141,7 @@ const LivePage = ({ language }) => {
           </section>
         )}
 
-        {/* Finished Matches */}
+        {}
         {finishedMatches.length > 0 && (
           <section className="live-section fade-in-section">
             <h2 className="live-section-title">

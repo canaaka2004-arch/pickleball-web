@@ -28,7 +28,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home language={language} />} />
-            {/* ĐÃ XÓA CHỮ 's' Ở ĐÂY ĐỂ KHỚP VỚI MENU */}
+            {}
             <Route path="/tournament" element={<Tournaments language={language} />} />
             <Route path="/tournament/:id" element={<TournamentDetail language={language} />} />
             <Route path="/rankings" element={<Rankings language={language} />} />

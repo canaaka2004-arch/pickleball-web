@@ -4,7 +4,7 @@ const Tournaments = () => {
   return (
     <div className="tournament-page" style={{ backgroundColor: '#000', minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* KHU VỰC HEADER TÊN TRANG */}
+      {}
       <section className="fade-in-section" style={{ position: 'relative', padding: '120px 20px 40px', textAlign: 'center' }}>
         <h1 style={{ 
           color: '#ffffff', 
@@ -27,7 +27,7 @@ const Tournaments = () => {
         </p>
       </section>
 
-      {/* KHU VỰC COMING SOON CHÍNH GIỮA */}
+      {}
       <section className="fade-in-section" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 20px 100px' }}>
         <div style={{
           backgroundColor: 'rgba(197, 164, 89, 0.05)', 
@@ -39,7 +39,7 @@ const Tournaments = () => {
           maxWidth: '800px',
           width: '100%'
         }}>
-          {/* Vạch ngang trang trí */}
+          {}
           <div style={{ width: '80px', height: '3px', backgroundColor: '#c5a459', margin: '0 auto 30px auto' }}></div>
           
           <p className="pulse-text" style={{ 
@@ -57,7 +57,7 @@ const Tournaments = () => {
             Lịch thi đấu và danh sách chia bảng sẽ sớm được cập nhật.
           </p>
 
-          {/* Hiệu ứng nhấp nháy */}
+          {}
           <style>
             {`
               @keyframes pulse {

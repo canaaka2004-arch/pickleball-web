@@ -36,7 +36,7 @@ const Navbar = ({ language, setLanguage }) => {
     <>
       <header className={`rr-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="rr-header-content">
-          {/* Left: Hamburger Menu */}
+          {}
           <button 
             className="rr-menu-button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -5,7 +5,7 @@
 
 const translations = {
   vi: {
-    // Navigation
+    
     nav: {
       home: 'Trang Chủ',
       tournament: 'Giải Đấu',
@@ -19,7 +19,7 @@ const translations = {
       switchLang: 'English'
     },
 
-    // Home Page
+    
     home: {
       hero2: {
         title: 'MR PHƯƠNG PICKLEBALL',
@@ -33,7 +33,7 @@ const translations = {
       loading: 'Đang tải...'
     },
 
-    // Registration Form
+    
     register: {
       title: 'ĐĂNG KÝ THAM GIA',
       fullName: 'Họ và tên vận động viên',
@@ -67,7 +67,7 @@ const translations = {
       errRatingRange: 'Sai trình độ: {label}. Điểm hợp lệ: {min}–{max}.'
     },
 
-    // Contact Page
+    
     contact: {
       title: 'Liên Hệ Với Chúng Tôi',
       subtitle: 'Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn',
@@ -96,7 +96,7 @@ const translations = {
       error: 'Vui lòng điền đầy đủ thông tin'
     },
 
-    // Tournament Slots
+    
     slots: {
       title: 'ĐĂNG KÝ THEO NỘI DUNG',
       subtitle: 'Tình trạng slot đăng ký',
@@ -105,7 +105,7 @@ const translations = {
       full: 'HẾT SLOT'
     },
 
-    // Format Page
+    
     format: {
       title: 'LUẬT CHƠI & THỂ THỨC',
       subtitle: 'Match Point Championship',
@@ -158,7 +158,7 @@ const translations = {
       }
     },
 
-    // Prize Section
+    
     prize: {
       title: 'CƠ CẤU GIẢI THƯỞNG',
       subtitle: 'Phần thưởng hấp dẫn dành cho các vận động viên',
@@ -168,7 +168,7 @@ const translations = {
       total: 'TỔNG GIẢI THƯỞNG'
     },
 
-    // Media Page
+    
     media: {
       title: 'HÌNH ẢNH & VIDEO',
       subtitle: 'Khoảnh khắc Match Point Championship',
@@ -181,7 +181,7 @@ const translations = {
       loadingMedia: 'Đang tải Media...'
     },
 
-    // Ranking Page
+    
     ranking: {
       title: 'Bảng Xếp Hạng',
       subtitle: 'Match Point Championship',
@@ -199,7 +199,7 @@ const translations = {
       comingSoon: 'SẮP RA MẮT...'
     },
 
-    // Live Results
+    
     live: {
       title: 'KẾT QUẢ TRỰC TIẾP',
       subtitle: 'Theo dõi các trận đấu đang diễn ra',
@@ -214,7 +214,7 @@ const translations = {
       noMatches: 'Không có trận đấu nào đang diễn ra'
     },
 
-    // Footer
+    
     footer: {
       partner: 'Đồng Hành',
       quickLinks: 'Liên Kết',
@@ -227,7 +227,7 @@ const translations = {
       ]
     },
 
-    // Common
+    
     common: {
       loading: 'Đang tải...',
       error: 'Có lỗi xảy ra',
@@ -243,7 +243,7 @@ const translations = {
   },
 
   en: {
-    // Navigation
+    
     nav: {
       home: 'Home',
       tournament: 'Tournament',
@@ -257,7 +257,7 @@ const translations = {
       switchLang: 'Tiếng Việt'
     },
 
-    // Home Page
+    
     home: {
       hero2: {
         title: 'MR PHƯƠNG PICKLEBALL',
@@ -271,7 +271,7 @@ const translations = {
       loading: 'Loading...'
     },
 
-    // Registration Form
+    
     register: {
       title: 'PLAYER REGISTRATION',
       fullName: 'Full name',
@@ -305,7 +305,7 @@ const translations = {
       errRatingRange: 'Invalid level: {label}. Valid range: {min}–{max}.'
     },
 
-    // Contact Page
+    
     contact: {
       title: 'Contact Us',
       subtitle: 'We are always ready to listen and support you',
@@ -334,7 +334,7 @@ const translations = {
       error: 'Please fill in all fields'
     },
 
-    // Tournament Slots
+    
     slots: {
       title: 'REGISTRATION BY EVENT',
       subtitle: 'Slot availability status',
@@ -343,7 +343,7 @@ const translations = {
       full: 'FULL'
     },
 
-    // Format Page
+    
     format: {
       title: 'RULES & FORMAT',
       subtitle: 'Match Point Championship',
@@ -396,7 +396,7 @@ const translations = {
       }
     },
 
-    // Prize Section
+    
     prize: {
       title: 'PRIZE STRUCTURE',
       subtitle: 'Exciting rewards for athletes',
@@ -406,7 +406,7 @@ const translations = {
       total: 'TOTAL PRIZE POOL'
     },
 
-    // Media Page
+    
     media: {
       title: 'PHOTOS & VIDEOS',
       subtitle: 'Match Point Championship Moments',
@@ -419,7 +419,7 @@ const translations = {
       loadingMedia: 'Loading Media...'
     },
 
-    // Ranking Page
+    
     ranking: {
       title: 'Rankings',
       subtitle: 'Match Point Championship',
@@ -437,7 +437,7 @@ const translations = {
       comingSoon: 'COMING SOON...'
     },
 
-    // Live Results
+    
     live: {
       title: 'LIVE RESULTS',
       subtitle: 'Follow ongoing matches',
@@ -452,7 +452,7 @@ const translations = {
       noMatches: 'No matches currently in progress'
     },
 
-    // Footer
+    
     footer: {
       partner: 'Partners',
       quickLinks: 'Quick Links',
@@ -465,7 +465,7 @@ const translations = {
       ]
     },
 
-    // Common
+    
     common: {
       loading: 'Loading...',
       error: 'An error occurred',

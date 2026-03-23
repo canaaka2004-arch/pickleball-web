@@ -86,7 +86,7 @@ const Home = ({ language }) => {
 
   return (
     <div className="home-page">
-      {/* ================= HERO 1 (Slider) ================= */}
+      {}
       <section className="hero-visual hero-slider">
         <div className="hero-slider-track" style={{ transform: `translateX(-${heroIndex * 100}vw)`, width: `${slides.length * 100}vw` }}>
           {slides.map((slide, index) => {
@@ -125,7 +125,7 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* ================= HERO 2 (Tham gia) ================= */}
+      {}
       <section className="hero-text fade-in-section" style={{ position: 'relative', overflow: 'hidden' }}>
         <style>
           {`
@@ -142,7 +142,7 @@ const Home = ({ language }) => {
           `}
         </style>
 
-        {/* CÔNG TẮC VIDEO/ẢNH */}
+        {}
         {hero2Bg.type === 'video' ? (
           <>
             <video 
@@ -169,7 +169,7 @@ const Home = ({ language }) => {
         </div>
       </section>
 
-      {/* ================= HERO 3 (Kiến thức) ================= */}
+      {}
       <section className="hero-text fade-in-section" style={{ position: 'relative', overflow: 'hidden', marginTop: '5px' }}>
         <style>
           {`
@@ -181,7 +181,7 @@ const Home = ({ language }) => {
           `}
         </style>
 
-        {/* CÔNG TẮC VIDEO/ẢNH */}
+        {}
         {hero3Bg.type === 'video' ? (
           <>
             <video 

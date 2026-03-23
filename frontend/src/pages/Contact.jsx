@@ -73,7 +73,7 @@ const Contact = ({ language }) => {
   return (
     <div className="contact-page">
       
-      {/* CSS TRỊ BỆNH TÀNG HÌNH CHỮ */}
+      {}
       <style>
         {`
           .form-input, .form-textarea {
@@ -91,7 +91,7 @@ const Contact = ({ language }) => {
       </div>
 
       <div className="contact-container">
-        {/* Contact Form */}
+        {}
         <div className="contact-form-section">
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-row">
@@ -170,7 +170,7 @@ const Contact = ({ language }) => {
           </form>
         </div>
 
-        {/* Contact Info */}
+        {}
         <div className="contact-info-section">
           <h2 className="info-title">{t.contact.info.title}</h2>
           
