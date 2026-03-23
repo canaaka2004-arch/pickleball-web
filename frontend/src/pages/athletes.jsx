@@ -22,7 +22,7 @@ export default function Athletes() {
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("ratingDesc");
-// ratingDesc | ratingAsc | nameAsc | nameDesc
+
 
   useEffect(() => {
     (async () => {
@@ -41,19 +41,19 @@ export default function Athletes() {
   }, []);
 
   const norm = (s) => String(s || "").trim().toLowerCase();
-  // ===== SORT/SEARCH BY LAST NAME (ignore accents + ignore nickname in parentheses) =====
-const stripParens = (s) => String(s || "").replace(/\([^)]*\)/g, " "); // bỏ (...)
-// bỏ dấu tiếng Việt
+  
+const stripParens = (s) => String(s || "").replace(/\([^)]*\)/g, " "); 
+
 const removeAccents = (s) =>
   String(s || "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
-// tên sạch để search/sort
+
 const cleanName = (s) =>
   removeAccents(stripParens(s)).replace(/\s+/g, " ").trim();
 
-// key sort theo "tên" = từ cuối cùng (vd: "Khôi" -> "khoi")
+
 const lastNameKey = (fullName) => {
   const cleaned = cleanName(fullName).toLowerCase();
   if (!cleaned) return "";
@@ -69,7 +69,7 @@ const normNameForSort = (s) =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
-  // Map level từ nhiều kiểu nhập (Intermediate / intermediate / ADVANCED...)
+  
   const normLevel = (lv) => {
     const x = norm(lv);
     if (x.includes("inter")) return "intermediate";
@@ -88,13 +88,13 @@ const toDirect = (url) => {
   if (!url) return "";
 
 
-  // /file/d/FILEID/
+  
   let m = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
   if (m && m[1]) {
     return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w200`;
   }
 
-  // ?id=FILEID
+  
   m = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
   if (m && m[1]) {
     return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w200`;
@@ -107,13 +107,13 @@ const toDirect = (url) => {
 
   const base = rows.map((r) => {
   const full = String(r.full_name || "");
-  const cleanedLower = cleanName(full).toLowerCase(); // bỏ ngoặc + bỏ dấu
-  const lastKey = lastNameKey(full);                  // sort theo tên cuối
+  const cleanedLower = cleanName(full).toLowerCase(); 
+  const lastKey = lastNameKey(full);                  
 
   return {
     ...r,
-    _nameClean: cleanedLower, // search dùng cái này
-    _lastKey: lastKey,        // sort A-Z dùng cái này
+    _nameClean: cleanedLower, 
+    _lastKey: lastKey,        
     _gender: String(r.gender || "").trim(),
     _country: String(r.country_code || "").trim().toUpperCase(),
     _level: normLevel(r.level),
@@ -144,7 +144,7 @@ case "nameDesc":
   };
 
   if (query) {
-  const qClean = cleanName(q).toLowerCase(); // bỏ dấu + bỏ ngoặc trong query
+  const qClean = cleanName(q).toLowerCase(); 
   const res = base.filter((r) => r._nameClean.includes(qClean));
   return applySort(res);
 }

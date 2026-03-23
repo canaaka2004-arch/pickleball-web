@@ -27,11 +27,11 @@ const Tournament = () => {
         </p>
       </section>
 
-      {/* KHU VỰC COMING SOON CHÍNH GIỮA */}
+      {}
       <section className="fade-in-section" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 20px 100px' }}>
         <div style={{
-          backgroundColor: 'rgba(197, 164, 89, 0.05)', // Nền vàng đồng cực nhạt
-          border: '1px solid #c5a459', // Viền vàng đồng
+          backgroundColor: 'rgba(197, 164, 89, 0.05)', 
+          border: '1px solid #c5a459', 
           borderRadius: '12px',
           padding: '80px 40px',
           textAlign: 'center',
@@ -39,7 +39,7 @@ const Tournament = () => {
           maxWidth: '800px',
           width: '100%'
         }}>
-          {/* Vạch ngang trang trí */}
+          {}
           <div style={{ width: '80px', height: '3px', backgroundColor: '#c5a459', margin: '0 auto 30px auto' }}></div>
           
           <p className="pulse-text" style={{ 

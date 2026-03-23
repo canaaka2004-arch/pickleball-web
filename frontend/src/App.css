@@ -1,12 +1,12 @@
-/* Import Luxury Serif Fonts */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 
-/* Root Variables - Rolls-Royce Luxury Theme */
+
 :root {
-   /* GOLD SYSTEM */
-  --gold-main: #d4af37;                 /* vàng champagne */
+   
+  --gold-main: #d4af37;                
   --gold-soft: #e6c766;
   --gold-glow-10: rgba(212,175,55,0.10);
   --gold-glow-15: rgba(212,175,55,0.15);
@@ -14,18 +14,18 @@
   --gold-glow-30: rgba(212,175,55,0.30);
   --gold-glow-40: rgba(212,175,55,0.40);
 
-  /* Backgrounds - Deep Black Luxury */
+  
   --bg-page: #0A0A0A;
   --bg-card: #1A1A1A;
   --bg-subtle: #2A2A2A;
   --bg-section: #0F0F0F;
   
-  /* Text Colors - High Contrast Elegance */
+  
   --text-primary: #FFFFFF;
   --text-secondary: #C0C0C0;
   --text-light: #808080;
   
-  /* Borders - Subtle Luxury */
+  
   --border-light: #2A2A2A;
   --border-medium: #3A3A3A;
   --border-strong: #4A4A4A;
@@ -46,7 +46,7 @@
   --spacing-editorial: 120px;
 }
 
-/* Base Styles - Luxury Editorial */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -76,7 +76,7 @@ body {
   margin-top: 80px;
 }
 
-/* Luxury Typography System */
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', 'Georgia', serif;
   font-weight: 400;
@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* Bilingual Heading Style */
+
 .bilingual-heading {
   text-align: center;
   margin-bottom: var(--spacing-xl);
@@ -2655,7 +2655,7 @@ h1, h2, h3, h4, h5, h6 {
   white-space: pre-line;
 }
 
-/* Article Styles */
+
 .article-content {
   max-width: 900px;
   margin: 0 auto;

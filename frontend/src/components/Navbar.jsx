@@ -21,8 +21,8 @@ const Navbar = ({ language, setLanguage }) => {
   const navLinks = [
     { name: t.nav.home, path: '/' },
     { name: t.nav.tournament, path: '/tournament' },
-    { name: t.nav.athletes, path: '/athletes' }, // <-- Đưa Vận Động Viên lên đây
-    { name: t.nav.format, path: '/format' },     // <-- Đẩy Thể Thức xuống đây
+    { name: t.nav.athletes, path: '/athletes' }, 
+    { name: t.nav.format, path: '/format' },     
     { name: t.nav.ranking, path: '/ranking' }, 
     { name: t.nav.media, path: '/media' },
     { name: t.nav.contact, path: '/contact' }

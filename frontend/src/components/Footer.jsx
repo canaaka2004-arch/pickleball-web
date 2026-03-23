@@ -6,13 +6,13 @@ import { getTranslations } from "../translations";
 const Footer = ({ language }) => {
   const t = getTranslations(language);
   
-  // 1. KHAI BÁO GIỎ ĐỰNG DỮ LIỆU LOGO
+  
   const [sponsors, setSponsors] = useState([]);
   
-  // Link Web App Apps Script của bạn
+  
   const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
 
-  // 2. HÀM TỰ ĐỘNG LẤY LOGO TỪ GOOGLE SHEET
+  
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
@@ -33,12 +33,12 @@ const Footer = ({ language }) => {
       <div className="footer-container">
         <div className="footer-grid">
           
-          {/* Partner (Đơn vị đồng hành) */}
+          {}
           <div className="footer-section partner-section">
             <h3 className="footer-title">{t.footer.partner}</h3>
 
             <div className="partner-grid">
-              {/* Nếu trên Sheet có dữ liệu -> In ra logo từ Sheet */}
+              {}
               {sponsors.length > 0 ? (
                 sponsors.map((sp, index) => (
                   <a
@@ -52,12 +52,12 @@ const Footer = ({ language }) => {
                       src={sp.logo_url}
                       alt={sp.name || `Partner ${index}`}
                       className="partner-logo"
-                      style={{ objectFit: 'contain', maxHeight: '40px' }} // Ép kích thước cho an toàn
+                      style={{ objectFit: 'contain', maxHeight: '40px' }} 
                     />
                   </a>
                 ))
               ) : (
-                /* DỰ PHÒNG: Nếu Sheet trống hoặc đang load, hiện logo mặc định cũ */
+                
                 <>
                   <a href="https://keepfly.vn" target="_blank" rel="noopener noreferrer" className="partner-link">
                     <img src="/keepfly.jpg" alt="KEEPFLY" className="partner-logo" />
@@ -70,7 +70,7 @@ const Footer = ({ language }) => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {}
           <div className="footer-section">
             <h3 className="footer-title">{t.footer.quickLinks}</h3>
             <div className="footer-links">
@@ -82,7 +82,7 @@ const Footer = ({ language }) => {
             </div>
           </div>
 
-          {/* Contact */}
+          {}
           <div className="footer-section">
             <h3 className="footer-title">{t.footer.contact}</h3>
             <div className="footer-contact">
@@ -101,7 +101,7 @@ const Footer = ({ language }) => {
             </div>
           </div>
 
-          {/* Social */}
+          {}
           <div className="footer-section">
             <h3 className="footer-title">{t.footer.follow}</h3>
             <div className="social-links">

@@ -9,7 +9,7 @@ const Home = ({ language }) => {
   
   const [slides, setSlides] = useState([]); 
   
-  // Update cấu trúc biến để hứng thêm thuộc tính 'type'
+  
   const [hero2Bg, setHero2Bg] = useState({ type: "image", desktop: "cuppickleball.png", mobile: "cuppickleball.png" });
   const [hero3Bg, setHero3Bg] = useState({ type: "image", desktop: "/net-bg.jpg", mobile: "/net-bg.jpg" }); 
 
@@ -20,7 +20,7 @@ const Home = ({ language }) => {
   
   const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
 
-  // Theo dõi thu phóng màn hình để ép Video tải lại bản Mobile/Desktop
+  
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize(); 

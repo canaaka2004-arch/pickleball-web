@@ -14,7 +14,7 @@ const Contact = ({ language }) => {
     message: ''
   });
   
-  // Biến trạng thái gửi & Link API
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const API_URL = "https://script.google.com/macros/s/AKfycbxXRv-lv1Ip4-Xio-uTrlzwUgRiXTjOILKTUzlwbtkCDWAB9IxJDjkGNTl6XlJeSkT1/exec";
 
@@ -39,11 +39,11 @@ const Contact = ({ language }) => {
     setIsSubmitting(true);
 
     try {
-      // Bắn dữ liệu về Google Apps Script
+      
       const response = await fetch(API_URL, {
         method: "POST",
         body: JSON.stringify({
-          type: "contact", // Nhãn báo cho Apps Script biết đây là tin nhắn
+          type: "contact", 
           ...formData
         })
       });
@@ -54,7 +54,7 @@ const Contact = ({ language }) => {
         toast({
           title: t.contact.success
         });
-        // Reset form cho sạch sẽ
+        
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
         throw new Error(result.error || "Lỗi máy chủ");

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Radio, Clock, CheckCircle } from 'lucide-react';
 import { getTranslations } from '../translations';
 
-// Mock data for live matches
+
 const mockMatches = [
   
 ];
@@ -12,11 +12,11 @@ const LivePage = ({ language }) => {
   const [matches, setMatches] = useState(mockMatches);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  // Simulate live score updates
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
-      // Randomly update scores for live matches
+      
       setMatches(prev => prev.map(match => {
         if (match.status === 'live' && Math.random() > 0.7) {
           const updateA = Math.random() > 0.5;

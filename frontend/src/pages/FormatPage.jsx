@@ -107,10 +107,10 @@ const FormatPage = ({ language }) => {
           </div>
         </section>
 
-        {/* 3. THỂ THỨC GIẢI ĐẤU (COMING SOON) */}
+        {}
         <section className="format-section fade-in-section">
           <div className="format-card" style={{ 
-            backgroundColor: 'rgba(197, 164, 89, 0.05)', // Đổ nền vàng đồng nhạt rất sang
+            backgroundColor: 'rgba(197, 164, 89, 0.05)', 
             border: '1px solid #c5a459', 
             borderRadius: '12px', 
             padding: '60px 20px', 
