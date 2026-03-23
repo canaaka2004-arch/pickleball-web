@@ -50,8 +50,8 @@ const FormatPage = ({ language }) => {
         
         {/* Lớp chữ nổi bật lên trên */}
         <div className="format-hero-content">
-          <h1 className="format-hero-title">LUẬT CHƠI & THỂ THỨC</h1>
-          <p className="format-hero-subtitle">Match Point Championship</p>
+          <h1 className="format-hero-title">{t.format.title}</h1>
+          <p className="format-hero-subtitle">{t.format.subtitle}</p>
         </div>
       </section>
 
@@ -68,15 +68,15 @@ const FormatPage = ({ language }) => {
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
-              <h2 style={{ color: '#fff', fontSize: '1.8rem', margin: 0 }}>Luật Đánh Đôi (Doubles)</h2>
+              <h2 style={{ color: '#fff', fontSize: '1.8rem', margin: 0 }}>{t.format.doublesTitle}</h2>
             </div>
             
             <ul style={{ color: '#ccc', lineHeight: '1.8', paddingLeft: '20px', fontSize: '1.1rem' }}>
-              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>Giao bóng:</strong> Phải giao chéo sân. Điểm tiếp xúc giữa vợt và bóng phải nằm dưới mức hông.</li>
-              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>Quy tắc nảy 2 lần (Two-Bounce Rule):</strong> Bóng giao sang phải nảy 1 lần, đội đỡ trả bóng lại cũng phải chờ nảy 1 lần. Từ chạm thứ 3 trở đi mới được bắt Volley (đánh bóng trên không).</li>
-              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>Trình tự giao:</strong> Cả 2 thành viên trong đội đều được giao bóng cho đến khi phạm lỗi (ngoại trừ lượt giao đầu tiên của trận đấu, chỉ có 1 người được giao).</li>
-              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>Khu vực cấm Volley (Kitchen):</strong> Tuyệt đối không được bước chân vào hoặc đạp vạch khu vực Kitchen để thực hiện cú đánh Volley.</li>
-              <li><strong style={{ color: '#c5a459' }}>Ghi điểm:</strong> Chỉ đội cầm giao bóng mới được ghi điểm. Đánh chạm 11 điểm (cách biệt 2 điểm) sẽ giành chiến thắng.</li>
+              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>{t.format.doubles.serve}</strong> {t.format.doubles.serveDesc}</li>
+              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>{t.format.doubles.twoBounce}</strong> {t.format.doubles.twoBounceDesc}</li>
+              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>{t.format.doubles.serveOrder}</strong> {t.format.doubles.serveOrderDesc}</li>
+              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>{t.format.doubles.kitchen}</strong> {t.format.doubles.kitchenDesc}</li>
+              <li><strong style={{ color: '#c5a459' }}>{t.format.doubles.scoring}</strong> {t.format.doubles.scoringDesc}</li>
             </ul>
           </div>
         </section>
@@ -91,18 +91,18 @@ const FormatPage = ({ language }) => {
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                 </svg>
               </div>
-              <h2 style={{ color: '#fff', fontSize: '1.8rem', margin: 0 }}>Luật Đánh Đơn (Singles)</h2>
+              <h2 style={{ color: '#fff', fontSize: '1.8rem', margin: 0 }}>{t.format.singlesTitle}</h2>
             </div>
             
             <ul style={{ color: '#ccc', lineHeight: '1.8', paddingLeft: '20px', fontSize: '1.1rem' }}>
-              <li style={{ marginBottom: '10px' }}>Vẫn áp dụng đầy đủ các quy tắc nền tảng của Pickleball: Giao bóng dưới hông, Quy tắc nảy 2 lần (Two-Bounce) và Luật cấm bắt Volley trong Kitchen.</li>
-              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>Vị trí giao bóng:</strong> Dựa hoàn toàn vào điểm số của người giao bóng.
+              <li style={{ marginBottom: '10px' }}>{t.format.singles.intro}</li>
+              <li style={{ marginBottom: '10px' }}><strong style={{ color: '#c5a459' }}>{t.format.singles.position}</strong> {t.format.singles.positionDesc}
                 <ul style={{ marginTop: '5px', paddingLeft: '20px' }}>
-                  <li>Điểm chẵn (0, 2, 4, 6...): Đứng ở ô bên phải để giao chéo sân.</li>
-                  <li>Điểm lẻ (1, 3, 5, 7...): Đứng ở ô bên trái để giao chéo sân.</li>
+                  <li>{t.format.singles.evenPoints}</li>
+                  <li>{t.format.singles.oddPoints}</li>
                 </ul>
               </li>
-              <li><strong style={{ color: '#c5a459' }}>Lượt giao:</strong> Vì chỉ có 1 người, nên khi phạm lỗi hoặc mất điểm, quyền giao bóng sẽ ngay lập tức được chuyển cho đối phương (Side out).</li>
+              <li><strong style={{ color: '#c5a459' }}>{t.format.singles.sideOut}</strong> {t.format.singles.sideOutDesc}</li>
             </ul>
           </div>
         </section>
@@ -118,7 +118,7 @@ const FormatPage = ({ language }) => {
             boxShadow: '0 0 30px rgba(197, 164, 89, 0.1)'
           }}>
             <h2 style={{ color: '#ffffff', fontSize: '2.2rem', marginBottom: '15px', textTransform: 'uppercase' }}>
-              THỂ THỨC GIẢI ĐẤU
+              {t.format.tournamentFormat}
             </h2>
             <div style={{ width: '60px', height: '3px', backgroundColor: '#c5a459', margin: '0 auto 25px auto' }}></div>
             <p className="pulse-text" style={{ 
@@ -128,7 +128,7 @@ const FormatPage = ({ language }) => {
               letterSpacing: '5px',
               animation: 'pulse 2s infinite'
             }}>
-              COMING SOON...
+              {t.format.comingSoon}
             </p>
             
             {/* Hiệu ứng nhấp nháy chữ cho xịn xò */}
