@@ -1,13 +1,16 @@
 import React from 'react';
 import { Trophy } from 'lucide-react';
+import { getTranslations } from '../translations';
 
-const RankingPage = () => {
+const RankingPage = ({ language }) => {
+  const t = getTranslations(language);
+  
   // Cập nhật danh sách 4 hạng mục: Intern, Advan, Pro, Master
   const rankingCategories = [
-    { id: 'intern', name: 'Top 5 Intermediate', subtitle: 'Hạng Trung' },
-    { id: 'advan', name: 'Top 5 Advanced', subtitle: 'Nâng Cao' },
-    { id: 'pro', name: 'Top 5 Pro', subtitle: 'Chuyên Nghiệp' },
-    { id: 'master', name: 'Top 5 Master', subtitle: 'Siêu Cấp' }
+    { id: 'intern', name: t.ranking.intermediate, subtitle: t.ranking.intermediateSubtitle },
+    { id: 'advan', name: t.ranking.advanced, subtitle: t.ranking.advancedSubtitle },
+    { id: 'pro', name: t.ranking.pro, subtitle: t.ranking.proSubtitle },
+    { id: 'master', name: t.ranking.master, subtitle: t.ranking.masterSubtitle }
   ];
 
   return (
@@ -57,8 +60,8 @@ const RankingPage = () => {
         <div className="rank-dynamic-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }} />
         
         <div className="rank-hero-content">
-          <h1 className="rank-hero-title">Bảng Xếp Hạng</h1>
-          <p className="rank-hero-subtitle">Match Point Championship</p>
+          <h1 className="rank-hero-title">{t.ranking.title}</h1>
+          <p className="rank-hero-subtitle">{t.ranking.subtitle}</p>
         </div>
       </section>
 
@@ -106,7 +109,7 @@ const RankingPage = () => {
                   animation: 'pulse 2s infinite',
                   margin: 0
                 }}>
-                  COMING SOON...
+                  {t.ranking.comingSoon}
                 </p>
                 
                 <style>
