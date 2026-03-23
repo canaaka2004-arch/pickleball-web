@@ -27,8 +27,7 @@ const translations = {
         btnRegister: 'THAM GIA'
       },
       hero3: {
-        title: 'KIẾN THỨC PICKLEBALL',
-        subtitle: 'Nâng tầm kỹ năng của bạn'
+        
       },
       loading: 'Đang tải...'
     },
@@ -265,8 +264,7 @@ const translations = {
         btnRegister: 'JOIN NOW'
       },
       hero3: {
-        title: 'PICKLEBALL KNOWLEDGE',
-        subtitle: 'Elevate your skills'
+        
       },
       loading: 'Loading...'
     },

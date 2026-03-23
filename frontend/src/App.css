@@ -1,12 +1,7 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap');
 
-
-
 :root {
-   
-  --gold-main: #d4af37;                
+  --gold-main: #d4af37;
   --gold-soft: #e6c766;
   --gold-glow-10: rgba(212,175,55,0.10);
   --gold-glow-15: rgba(212,175,55,0.15);
@@ -14,28 +9,23 @@
   --gold-glow-30: rgba(212,175,55,0.30);
   --gold-glow-40: rgba(212,175,55,0.40);
 
-  
   --bg-page: #0A0A0A;
   --bg-card: #1A1A1A;
   --bg-subtle: #2A2A2A;
   --bg-section: #0F0F0F;
   
-  
   --text-primary: #FFFFFF;
   --text-secondary: #C0C0C0;
   --text-light: #808080;
-  
   
   --border-light: #2A2A2A;
   --border-medium: #3A3A3A;
   --border-strong: #4A4A4A;
   
-  
   --brand-primary: #D4AF37;
   --brand-secondary: #C0C0C0;
   --brand-dark: #0A0A0A;
   --brand-hover: #E5C158;
-  
   
   --spacing-xs: 8px;
   --spacing-small: 16px;
@@ -45,7 +35,6 @@
   --spacing-giant: 96px;
   --spacing-editorial: 120px;
 }
-
 
 * {
   box-sizing: border-box;
@@ -76,7 +65,6 @@ body {
   margin-top: 80px;
 }
 
-
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', 'Georgia', serif;
   font-weight: 400;
@@ -84,7 +72,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   color: var(--text-primary);
 }
-
 
 .bilingual-heading {
   text-align: center;
@@ -108,8 +95,6 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   font-family: 'Cormorant Garamond', serif;
 }
-
-
 
 .rr-header {
   position: fixed;
@@ -141,7 +126,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-
 .rr-menu-button {
   display: flex;
   align-items: center;
@@ -165,7 +149,6 @@ h1, h2, h3, h4, h5, h6 {
 .rr-menu-label {
   text-transform: uppercase;
 }
-
 
 .rr-logo {
   display: flex;
@@ -202,7 +185,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
 .rr-language-toggle {
   display: flex;
   align-items: center;
@@ -229,7 +211,6 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-
 .rr-header-divider {
   position: absolute;
   bottom: 0;
@@ -243,8 +224,6 @@ h1, h2, h3, h4, h5, h6 {
     transparent 100%
   );
 }
-
-
 
 .rr-menu-overlay {
   position: fixed;
@@ -297,27 +276,25 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 80px;
 }
 
+/* ĐÃ NỐI LẠI CLASS RR-MENU-LINK BỊ ĐỨT LÀM ĐÔI */
 .rr-menu-link {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
   font-weight: 400;
   letter-spacing: 3px;
   color: var(--text-secondary);
-  text-decoration: none; 
-
-
-
-
-
+  text-decoration: none;
+  transition: all 0.4s ease;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
 
 .hero-text{
   min-height: 140vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
-
-
   position: relative;
   overflow: hidden;
 }
@@ -427,8 +404,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-editorial) var(--spacing-large);
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -523,8 +500,8 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 .fade-in-section {
-  opacity: 0;
-  transform: translateY(32px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
               transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -1033,10 +1010,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   ANIMATIONS
-
-
-/* ============================================
    EXPERIENCE SECTION
    ============================================ */
 
@@ -1077,7 +1050,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-   ============================================ */
+/* ============================================ */
 
 @keyframes fadeInUp {
   from {
@@ -1144,12 +1117,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
     gap: var(--spacing-medium);
   }
-}
-
-  transition: all 0.4s ease;
-  position: relative;
-  display: inline-block;
-  width: fit-content;
 }
 
 .rr-menu-link::after {
@@ -1871,6 +1838,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
+
 /* ===== FIX FOOTER ALIGN + 4 COLS ONE ROW ===== */
 .footer-container{
   max-width: 1280px;
@@ -1901,9 +1869,6 @@ h1, h2, h3, h4, h5, h6 {
   align-self: start;
 }
 
-
-
-
 .footer-section h3 {
   font-size: 1.25rem;
   margin-bottom: var(--spacing-small);
@@ -1917,11 +1882,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--spacing-small);
   color: var(--brand-primary);
 }
-.footer-section{
-  min-width: 0;
-}
-
-
 
 .footer-text {
   line-height: 1.7;
@@ -2649,7 +2609,6 @@ h1, h2, h3, h4, h5, h6 {
   white-space: pre-line;
 }
 
-
 .article-content {
   max-width: 900px;
   margin: 0 auto;
@@ -2808,8 +2767,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-
-
 /* Responsive Design */
 @media (min-width: 768px) {
   .desktop-nav {
@@ -2910,8 +2867,6 @@ h1, h2, h3, h4, h5, h6 {
   .wins-col::before { content: 'Vô địch: '; font-weight: 600; }
 }
 
-
-
 .hero-text {
   text-align: center;
 }
@@ -2932,7 +2887,6 @@ h1, h2, h3, h4, h5, h6 {
 .hero-text-subtitle-strong {
   display: block;
   margin-top: 12px;
-
   font-size: 0.5em;          /* 👈 CHÍNH DÒNG NÀY = 1/2 size */
   font-weight: 700;          /* vẫn đậm */
   letter-spacing: 0.18em;    /* cho sang & thoáng */
@@ -2951,25 +2905,21 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.92;
 }
 
-
-
 /* ===== BUTTON “THAM GIA” dạng vuông ===== */
 .join-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 160px;
   height: 56px;
-
+  padding: 0 !important;
+  white-space: nowrap !important;
   border: 1px solid rgba(255,255,255,0.55);
   background: transparent;
-
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-
   cursor: pointer;
   transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
 }
@@ -2979,6 +2929,7 @@ h1, h2, h3, h4, h5, h6 {
   border-color: rgba(255,255,255,0.9);
   background: rgba(255,255,255,0.06);
 }
+
 /* Tách hero2 và hero3 ra */
 .hero-text {
   padding-bottom: 120px; /* tăng/giảm tuỳ bạn */
@@ -3984,7 +3935,6 @@ select option {
   color: rgba(255,255,255,0.72);
 }
 
-/* Input/textarea đồng bộ đen + border gold */
 .contact-page .form-input,
 .contact-page .form-textarea{
   width: 100%;
@@ -4100,7 +4050,6 @@ select option {
   margin-right: auto;
   max-width: 720px;   /* giữ chữ gọn, không quá dài */
 }
-
 
 /* ============================================
    FORMAT PAGE STYLES
@@ -4363,7 +4312,7 @@ select option {
 
 .gallery-item {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
@@ -4423,7 +4372,7 @@ select option {
 
 .video-thumbnail {
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -4995,6 +4944,7 @@ select option {
   animation: fullPulse 2s ease-in-out infinite;
 }
 
+
 @keyframes fullPulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
@@ -5056,9 +5006,7 @@ select option {
   font-weight: 600;
 }
 
-/* ============================================
-   PRIZE SECTION ENHANCED STYLES
-   ============================================ */
+/* PRIZE SECTION ENHANCED STYLES */
 .prize-section {
   margin: 80px 0;
   padding: 60px 40px;
