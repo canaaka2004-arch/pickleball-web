@@ -3267,7 +3267,7 @@ select option {
   box-shadow: 0 0 0 3px rgba(214,178,94,0.12);
 }
 
-/* ===== SUMMARY LINE (DANH SÁCH ... / COUNT) ===== */
+/* ===== SUMMARY LINE (DANH SÁCH ...  COUNT) ===== */
 .ath .summary,
 .ath .count {
   text-align: center;
