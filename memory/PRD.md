@@ -202,37 +202,52 @@ POST   /api/contact - Submit contact form
 
 ## Changelog
 
-### March 1, 2025 - Professional Tournament Platform Upgrade
-**Task:** Add 6 new professional features to upgrade the website.
-
-**NEW PAGES Created:**
-- `/app/frontend/src/pages/FormatPage.jsx` - Tournament format with group stage, knockout stage, and bracket visualization
-- `/app/frontend/src/pages/MediaPage.jsx` - Photo gallery, video highlights, past tournament moments with lightbox
-- `/app/frontend/src/pages/RankingPage.jsx` - Top 20 Intermediate & Advanced player rankings with trophy/medal icons
-- `/app/frontend/src/pages/LivePage.jsx` - Live results board with simulated score updates, court numbers, match status
+### March 23, 2025 - Full Multi-language (VI/EN) Support Implementation
+**Task:** Implement complete bilingual system across the entire website.
 
 **Files Updated:**
-- `/app/frontend/src/App.js` - Added 4 new routes (/format, /media, /ranking, /live)
-- `/app/frontend/src/translations.js` - Added translations for all new pages (format, media, ranking, live, slots, prize)
-- `/app/frontend/src/components/Navbar.jsx` - Added new navigation links
-- `/app/frontend/src/App.css` - Added 500+ lines of CSS for new components
+- `/app/frontend/src/translations.js` - Comprehensive translations added:
+  - Format page: Doubles rules, Singles rules, Tournament format
+  - Media page: Gallery, highlights, empty states
+  - Ranking page: All 4 categories with subtitles
+  - Home page: Hero sections, loading states
+  - Common: Coming soon messages
+  
+- `/app/frontend/src/pages/FormatPage.jsx` - Now uses translations for:
+  - Page title and subtitle
+  - Doubles rules (Serve, Two-Bounce Rule, Serve Order, Kitchen, Scoring)
+  - Singles rules (Intro, Position, Side Out)
+  - Tournament Format section with "Coming Soon"
 
-**New Features:**
-1. **Format Page** (/format) - Tournament structure, group stage rules, knockout stages, static bracket visualization
-2. **Media Page** (/media) - Photo gallery grid with lightbox, video highlights with play overlay, past tournament moments
-3. **Ranking Page** (/ranking) - Top 20 Intermediate + Top 20 Advanced tables with gold/silver/bronze icons
-4. **Live Results Page** (/live) - Simulated live match scoreboard with auto-updating scores, court badges, status badges
+- `/app/frontend/src/pages/MediaPage.jsx` - Now uses translations for:
+  - Page title and subtitle
+  - Gallery section header
+  - Video highlights header
+  - Empty state messages
 
-**CSS Components Added:**
-- Format page styles (bracket, stages, cards)
-- Media gallery grid + lightbox modal
-- Ranking tables with medal icons
-- Live match cards with status badges
-- Slot progress bars with shimmer animation
-- Prize section with medal animations
+- `/app/frontend/src/pages/RankingPage.jsx` - Now uses translations for:
+  - Page title and subtitle
+  - All 4 ranking categories (Intermediate, Advanced, Pro, Master)
+  - Subtitles for each category
+  - "Coming Soon" message
 
-**Preserved (as required):**
-- All existing UI, layout, styling, animations
-- Existing business logic and API logic
-- Athletes page structure
-- Language switching functionality
+- `/app/frontend/src/pages/Home.jsx` - Now uses translations for:
+  - Hero 3 title and subtitle
+  - Loading state
+
+**Translation Coverage:**
+- ✅ Navigation menu (8 items)
+- ✅ Contact form (labels, placeholders, messages)
+- ✅ Format page (Pickleball rules - Doubles & Singles)
+- ✅ Media page (headers, empty states)
+- ✅ Ranking page (all categories)
+- ✅ Home page (all hero sections)
+- ✅ Footer (all sections)
+- ✅ "Coming Soon" messages
+- ✅ Loading states
+
+**Key Features:**
+- Instant language switching (no page reload)
+- Language state persists across page navigation
+- Default language: Vietnamese
+- All static text controlled by centralized translation object
