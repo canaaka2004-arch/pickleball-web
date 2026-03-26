@@ -82,6 +82,10 @@ export default function RegisterPage({ language = "vi" }) {
     if (!form.level) next.level = t.errLevel;
     if (!form.rating.toString().trim()) next.rating = t.errRating;
     if (!form.countryCode) next.countryCode = t.errCountry;
+    
+    
+    if (!form.photo) next.photo = t.errPhoto; 
+    
 
     const ratingNum = Number(form.rating);
     if (form.rating && (Number.isNaN(ratingNum) || ratingNum < 0)) {

@@ -47,7 +47,7 @@ const translations = {
       female: 'Nữ',
       level: 'Trình độ',
       rating: 'Điểm trình',
-      upload: 'Upload hình ảnh vận động viên (không bắt buộc)',
+      upload: 'Upload hình ảnh vận động viên (bắt buộc)',
       submit: 'ĐĂNG KÝ',
       sending: 'Đang gửi...',
       chooseLevel: '-- Chọn trình độ --',
@@ -63,7 +63,8 @@ const translations = {
       errRating: 'Chưa nhập điểm trình.',
       errRatingNum: 'Điểm trình phải là số >= 0.',
       errCountry: 'Chưa chọn quốc gia.',
-      errRatingRange: 'Sai trình độ: {label}. Điểm hợp lệ: {min}–{max}.'
+      errRatingRange: 'Sai trình độ: {label}. Điểm hợp lệ: {min}–{max}.',
+      errPhoto: 'Vui lòng tải lên hình ảnh vận động viên.'
     },
 
     
@@ -284,7 +285,7 @@ const translations = {
       female: 'Female',
       level: 'Skill level',
       rating: 'Rating',
-      upload: 'Upload player photo (optional)',
+      upload: 'Upload player photo (required)',
       submit: 'SUBMIT',
       sending: 'Submitting...',
       chooseLevel: '-- Select level --',
@@ -300,7 +301,8 @@ const translations = {
       errRating: 'Rating is required.',
       errRatingNum: 'Rating must be a number >= 0.',
       errCountry: 'Please select a country.',
-      errRatingRange: 'Invalid level: {label}. Valid range: {min}–{max}.'
+      errRatingRange: 'Invalid level: {label}. Valid range: {min}–{max}.',
+      errPhoto: 'Please upload a player photo.'
     },
 
     

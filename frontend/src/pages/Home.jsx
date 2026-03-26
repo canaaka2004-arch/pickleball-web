@@ -82,6 +82,53 @@ const Home = ({ language }) => {
     startAutoplay();
   };
 
+  // --- THÊM ĐOẠN NÀY VÀO DƯỚI HÀM goTo ---
+  
+  // Xử lý vuốt màn hình
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const nextSlide = () => {
+    setHeroIndex((prev) => (prev + 1) % slides.length);
+    startAutoplay();
+  };
+
+  const prevSlide = () => {
+    setHeroIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    startAutoplay();
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].screenX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    const minSwipeDistance = 50; // Khoảng cách vuốt tối thiểu (pixel)
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) prevSlide(); // Vuốt sang phải -> Slide trước
+      else nextSlide(); // Vuốt sang trái -> Slide sau
+    }
+  };
+
+  
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [slides.length]); 
+  
+
   if (loading) return <div className="loading-screen">{t.home.loading || t.common.loading}</div>;
 
   return (
